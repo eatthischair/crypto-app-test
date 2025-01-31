@@ -38,8 +38,10 @@ export default function RootLayout({
         <div>
         <Link href="/dashboard/portfolio">Portfolio</Link>
         <Link href="/dashboard/analytics">Analytics</Link>
-        <Link href="/dashboard/settings/profile">Profile</Link>
-        <Link href="/dashboard/settings/password">Password</Link>
+        <Link href="/">Home</Link>
+
+        {/* <Link href="/dashboard/settings/profile">Profile</Link>
+        <Link href="/dashboard/settings/password">Password</Link> */}
         </div>
 
       <div>
