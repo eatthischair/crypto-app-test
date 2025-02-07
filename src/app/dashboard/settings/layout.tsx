@@ -4,9 +4,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
     <div>
-    <div style={{height: '100px', background: 'pink'}}>
+    <div style={{height: "100px", background: "pink"}}>
     </div>
     {children}
     </div>
