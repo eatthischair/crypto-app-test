@@ -1,3 +1,1 @@
-export const Filters = () => {
-
-}
+export const Filters = () => {};

@@ -1,3 +1,1 @@
-export const CoinTable = () => {
-
-}
+export const CoinTable = () => {};

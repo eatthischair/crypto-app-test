@@ -1,8 +1,4 @@
-import { useSelector } from 'react-redux';
-
 export const SearchBar = () => {
-  const nightMode = useSelector((state) => state.themeReducer.nightMode);
-
   return (
     <input
       placeholder="Search..."
