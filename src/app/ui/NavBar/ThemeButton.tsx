@@ -1,23 +1,38 @@
 'use client';
-import { MdOutlineLightMode } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
-//later implement conditionally switching icons with
-import { MdModeNight } from 'react-icons/md';
-import { themeSwitch } from '@/app/features/themeSlice';
-export const ThemeButton = () => {
-  const nightMode = useSelector((state) => state.themeReducer.nightMode);
-  const dispatch = useDispatch();
+import * as React from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+//refactor to toggle once local storage implemented
+
+export function ThemeButton() {
+  const { setTheme } = useTheme();
 
   return (
-    <button
-      onClick={() => dispatch(themeSwitch())}
-      className="border-red-800 border-2 rounded-md w-[10%] h-[60%]"
-    >
-      {nightMode ? (
-        <MdOutlineLightMode className="w-full h-full" />
-      ) : (
-        <MdModeNight fill="black" className="w-full h-full" />
-      )}
-    </button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme('light')}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>
+          Dark
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
-};
+}

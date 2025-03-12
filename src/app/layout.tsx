@@ -3,11 +3,10 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { NavBar } from './ui/NavBar/Navbar';
-// import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-// import { theme } from './ui/theme';
 import { store } from './store';
-import { Theme } from './ui/Theme/Theme';
+import { ThemeProvider } from './ui/components/theme-provider';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
@@ -16,14 +15,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Provider store={store}>
-          <Theme>
-            <NavBar />
-            {children}
-          </Theme>
-        </Provider>
+        <div className="w-screen h-screen">
+          <Provider store={store}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NavBar />
+              {children}
+            </ThemeProvider>
+          </Provider>
+        </div>
       </body>
     </html>
   );
