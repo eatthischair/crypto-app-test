@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { StyledA } from './Link';
 import { useSelector } from 'react-redux';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export const NavBarLinks = ({
   href,
@@ -10,13 +11,17 @@ export const NavBarLinks = ({
   title: string;
 }) => {
   const nightMode = useSelector((state) => state.themeReducer.nightMode);
-  const color = nightMode ? 'white' : 'black';
+  const color = nightMode ? 'outline' : 'secondary';
 
   return (
-    <Link href={href} legacyBehavior={true}>
-      <StyledA href={href} theme={{ main: color }}>
-        {title}
-      </StyledA>
+    <Link
+      href={href}
+      className={cn(
+        buttonVariants({ variant: color }),
+        'text-xl p-4 w-[90%] h-[80%]'
+      )}
+    >
+      {title}
     </Link>
   );
 };
