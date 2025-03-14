@@ -1,15 +1,15 @@
-import BigNumber from 'bignumber.js';
+// import BigNumber from 'bignumber.js';
 
 import { Progress } from '@/components/ui/progress';
 
 export const DataBar = () => {
   const { data } = require('../../data/marketData.json');
-  const totalCoins = require('../../data/coinsTraded.json');
+  // const totalCoins = require('../../data/coinsTraded.json');
 
-  const marketCap = Object.values(data.total_volume).reduce((total, val) => {
-    total = BigNumber(total);
-    return Math.trunc(total.plus(BigNumber(val)).toString());
-  });
+  // const marketCap = Object.values(data.total_volume).reduce((total, val) => {
+  //   total = BigNumber(total);
+  //   return Math.trunc(total.plus(BigNumber(val)).toString());
+  // });
 
   // total_market_cap[currency]; // where currency is the currency you selected in the app
   // total_volume[currency]; // where currency is the currency you selected in the app
