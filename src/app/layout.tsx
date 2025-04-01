@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="w-screen h-screen">
+        <div className="w-screen h-screen p-12">
           <Provider store={store}>
             <ThemeProvider
               attribute="class"

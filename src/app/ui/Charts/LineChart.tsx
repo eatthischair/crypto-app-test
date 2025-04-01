@@ -1,8 +1,5 @@
 'use client';
-// export const Charts = () => {
-//   return <div className="w-full h-[50%] border-blue-400 border-2">
-//     charts</div>;
-// };
+
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -26,25 +23,9 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
-
-export const prices = require('../../data/prices.json').prices;
+export const prices = require('../../data/prices.json').prices.slice(-30);
 export const pricesData = require('../../data/prices.json');
-
-export const labels = prices.map((price) => '1');
-
-console.log('prices', prices, 'pricesdata', pricesData);
+export const labels = prices.map((item) => new Date(item[0]).getDate());
 
 export const data = {
   labels,
@@ -58,10 +39,49 @@ export const data = {
   ],
 };
 
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+      display: false,
+    },
+  },
+  scales: {
+    y: {
+      display: false,
+      grid: {
+        display: false,
+      },
+      max: 110000,
+    },
+    x: {
+      min: 0,
+      max: 30,
+      grid: {
+        display: false,
+      },
+    },
+  },
+  elements: {
+    line: {
+      tension: 0.1,
+    },
+    point: {
+      pointRadius: 1,
+    },
+  },
+};
+
 export function LineChart() {
   return (
-    <div className="w-[40%]  border-blue-400 border-2">
-      <Line options={options} data={data} />
+    <div className="w-[40%] ">
+      <div className="absolute m-4 text-foreground p-4">
+        <h4 className="text-sm">Bitcoin</h4>
+        <h2 className="text-4xl font-bold">$85,029.51</h2>
+        <div className="text-sm">Apr 01 2025</div>
+      </div>
+      <Line options={options} data={data} height={500} width={800} />
     </div>
   );
 }

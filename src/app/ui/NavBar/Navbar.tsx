@@ -3,10 +3,7 @@ import { SearchBar } from './SearchBar';
 import { ThemeButton } from './ThemeButton';
 export const NavBar = () => {
   return (
-    <div
-      className="flex flex-row border-red-400 border-2 w-full h-[10%] gap-3 items-center
-     "
-    >
+    <div className="flex flex-row w-[100%] h-[10%] gap-3 items-center">
       <div className="flex gap-5 ml-5">
         <NavBarLinks href="/" title={'Coins'} />
         <NavBarLinks href="dashboard/portfolio" title={'Portfolio'} />
