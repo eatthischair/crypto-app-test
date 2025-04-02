@@ -1,19 +1,6 @@
-// import BigNumber from 'bignumber.js';
-
 import { Progress } from '@/components/ui/progress';
-
+import { data } from '../../data/marketData.json';
 export const DataBar = () => {
-  const { data } = require('../../data/marketData.json');
-  // const totalCoins = require('../../data/coinsTraded.json');
-
-  // const marketCap = Object.values(data.total_volume).reduce((total, val) => {
-  //   total = BigNumber(total);
-  //   return Math.trunc(total.plus(BigNumber(val)).toString());
-  // });
-
-  // total_market_cap[currency]; // where currency is the currency you selected in the app
-  // total_volume[currency]; // where currency is the currency you selected in the app
-
   return (
     <span className="flex m-auto my-4 h-[10%] w-[60%] items-center justify-center gap-4 text-xs ">
       <div className="p-8">Coins {data.active_cryptocurrencies}</div>

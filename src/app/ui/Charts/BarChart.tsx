@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import {
   Chart as ChartJS,
@@ -24,25 +23,6 @@ ChartJS.register(
 export const volume = require('../../data/prices.json').total_volumes;
 export const pricesData = require('../../data/prices.json');
 
-// export const spliceLatestVolume = () => {
-//   const endTimeStamp = volume[volume.length - 1][0];
-//   const startTimeStamp = endTimeStamp - 86400000 * 7; //1 day
-
-//   const endTime = new Date(endTimeStamp);
-//   const startTime = new Date(startTimeStamp);
-
-//   let volume24hrs;
-//   for (let i = volume.length - 1; i >= 0; i--) {
-//     const currentTimeStamp = volume[i][0];
-//     if (currentTimeStamp <= startTimeStamp) {
-//       volume24hrs = volume.slice(i);
-//       break;
-//     }
-//   }
-//   return volume24hrs;
-// };
-// export const dayVolume = spliceLatestVolume();
-
 export const dayVolume = volume.slice(-30).map((item) => item[1]);
 export const labels = volume.map((item) => new Date(item[0]).getDate());
 
@@ -52,7 +32,6 @@ export const data = {
     {
       label: 'Dataset 1',
       data: dayVolume,
-      // borderColor: 'rgb(255, 255, 132)',
       backgroundColor: 'blue',
       color: 'white',
     },
