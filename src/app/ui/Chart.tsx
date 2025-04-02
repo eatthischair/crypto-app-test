@@ -1,3 +1,1 @@
-export const Chart = () => {
-
-}
+export const Chart = () => {};

@@ -1,3 +1,1 @@
-export const GlobalData = () => {
-
-}
+export const GlobalData = () => {};

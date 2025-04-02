@@ -3,9 +3,10 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { NavBar } from './ui/NavBar/Navbar';
+import { DataBar } from './ui/MarketData/DataBar';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { ThemeProvider } from './ui/components/theme-provider';
+import { ThemeProvider } from './ui/Components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="w-screen h-screen">
+        <div className="w-screen h-screen p-12">
           <Provider store={store}>
             <ThemeProvider
               attribute="class"
@@ -26,6 +27,7 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <NavBar />
+              <DataBar />
               {children}
             </ThemeProvider>
           </Provider>
