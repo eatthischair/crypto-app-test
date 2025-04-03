@@ -9,7 +9,7 @@ export const CoinTable = () => {
       </div>
       <div className="grid auto-cols-auto overflow-y-auto overscroll-y-none h-[80vh]">
         {coinTable.map((row, index) => {
-          return <TableRow coin={row} index={index} key={index} />;
+          return <TableRow coin={row} index={index} key={row.symbol} />;
         })}
       </div>
     </div>

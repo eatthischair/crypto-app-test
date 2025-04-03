@@ -2,18 +2,12 @@ import { Progress } from '@/components/ui/progress';
 import { CoinTableLineChart } from './CoinTableLineChart';
 import { FaCaretDown } from 'react-icons/fa';
 import { FaCaretUp } from 'react-icons/fa';
-import { Image } from 'next/image';
+import { formatNum } from '../../../lib/utils';
+import Image from 'next/image';
 export const TableRow = ({ coin, index }) => {
   const progressVolumeMarketCap = (coin.total_volume / coin.market_cap) * 100;
   const circulatingTotalSupply =
     (coin.circulating_supply / coin.total_supply) * 100;
-
-  const formatNum = (num) => {
-    return new Intl.NumberFormat('en', {
-      notation: 'compact',
-      maximumSignificantDigits: 3,
-    }).format(num);
-  };
 
   const formatPriceChange = (num) => {
     const isPositive = Math.sign(num);
@@ -29,11 +23,12 @@ export const TableRow = ({ coin, index }) => {
       </div>
     );
   };
+
   return (
     <div className="grid grid-cols-[5%_20%_10%_5%_5%_5%_12%_12%_15%] gap-4 p-4 truncate h-[15vh]">
       <div>{index}</div>
       <div className="grid grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal ">
-        <img className="m-0 p-0" src={coin.image} width="30" />
+        <Image src={coin.image} width="30" height="30" alt="Coin Icon" />
         <div className="m-0 p-0">
           {coin.name}({coin.symbol.toUpperCase()})
         </div>

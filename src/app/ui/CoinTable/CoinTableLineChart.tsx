@@ -124,8 +124,8 @@ export function CoinTableLineChart({ coin }) {
     ],
   };
   return (
-    <div>
+    <>
       <Line options={options} data={data} height={50} width={100} />
-    </div>
+    </>
   );
 }
