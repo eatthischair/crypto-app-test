@@ -1,8 +1,8 @@
-import { CoinPage } from './ui/CoinPage/CoinPage';
+import { HomePage } from './ui/HomePage/HomePage';
 export default function Home() {
   return (
     <>
-      <CoinPage />
+      <HomePage />
     </>
   );
 }
