@@ -1,13 +1,10 @@
 'use client';
-
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { NavBar } from './ui/NavBar/Navbar';
-import { DataBar } from './ui/MarketData/DataBar';
+import { HeaderComponents } from './ui/HeaderComponents';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { ThemeProvider } from './ui/Components/theme-provider';
-
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
@@ -26,8 +23,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <NavBar />
-              <DataBar />
+              <HeaderComponents />
               {children}
             </ThemeProvider>
           </Provider>

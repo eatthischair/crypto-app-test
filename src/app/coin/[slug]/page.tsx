@@ -1,11 +1,24 @@
-import coin from '../../data/coinPage.json';
 import { LinksRow } from '../../ui/CoinPage/LinksRow';
 import { ConvertCurrency } from '../../ui/CoinPage/ConvertCurrency';
 import { BottomChart } from '@/app/ui/CoinPage/BottomChart';
 import { CoinData } from '@/app/ui/CoinPage/CoinData';
 import Image from 'next/image';
 
-export default async function Page({}: {}) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const slug = (await params).slug.toLowerCase();
+  const data = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${slug}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`
+  );
+  const coin = await data.json();
+
+  const pricesData = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${slug}/market_chart?vs_currency=usd&days=180&interval=daily`
+  );
+  const allPrices = await pricesData.json();
   return (
     <div>
       <div className="grid grid-cols-3 grid-rows-[80%_20%] h-[40vh] gap-8 p-8 ">
@@ -16,7 +29,7 @@ export default async function Page({}: {}) {
             src={coin.image.large}
             alt="Coin symbol"
           />
-          <div className="w-24  m-0 py-2 gap-0">
+          <div className="w-36 flex place-content-center m-0 p-2 gap-0 ">
             {coin.name}({coin.symbol.toUpperCase()})
           </div>
         </div>
@@ -25,7 +38,7 @@ export default async function Page({}: {}) {
           href={coin.links.homepage}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center bg-[var(--card)] rounded-sm"
+          className="flex place-content-center flex-nowrap truncate overflow-hidden text-overflow-ellipsis items-center  bg-[var(--card)] rounded-sm"
         >
           {coin.links.homepage}
         </a>
@@ -37,7 +50,7 @@ export default async function Page({}: {}) {
         <LinksRow coin={coin} />
       </div>
       <ConvertCurrency coin={coin} />
-      <BottomChart coin={coin} />
+      <BottomChart allPrices={allPrices.prices} />
     </div>
   );
 }
