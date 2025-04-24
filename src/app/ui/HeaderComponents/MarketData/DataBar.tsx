@@ -1,6 +1,8 @@
 import { Progress } from '@/components/ui/progress';
-import { data } from '../../data/marketData.json';
-export const DataBar = () => {
+import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+
+export function DataBar({ data }) {
+  if (!data) return <LoadingSpinner />;
   return (
     <span className="flex m-auto my-4 h-[10%] w-[60%] items-center justify-center gap-4 text-xs ">
       <div className="p-8">Coins {data.active_cryptocurrencies}</div>
@@ -20,4 +22,4 @@ export const DataBar = () => {
       </div>
     </span>
   );
-};
+}

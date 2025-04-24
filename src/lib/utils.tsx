@@ -32,6 +32,8 @@ export const numToPrice = (num) => {
 };
 
 export const formatPriceChange = (num) => {
+  if (num === null) return;
+  num = num.toFixed(2);
   const isPositive = Math.sign(num);
   const formatted = isPositive === 1 ? <FaCaretUp /> : <FaCaretDown />;
   const color = isPositive === 1 ? 'text-green-500' : 'text-red-500';

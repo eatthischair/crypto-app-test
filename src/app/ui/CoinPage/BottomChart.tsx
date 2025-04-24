@@ -2,11 +2,9 @@
 import { LineChart } from './LineChart';
 import { useState, useEffect } from 'react';
 import { RadioGroupForChart } from './RadioGroupForChart';
-import pricesData from '../../data/prices.json';
 import { changeChartTimeline } from './changeChartTimeline';
 
-export const BottomChart = () => {
-  const allPrices = pricesData.prices;
+export const BottomChart = ({ allPrices }) => {
   const [prices, setPrices] = useState(allPrices);
   const [radioSelect, setRadioSelect] = useState(3);
 

@@ -9,7 +9,11 @@ export const ConvertCurrency = ({ coin }) => {
   const currentPrice = coin.market_data.current_price.usd;
   const [firstVal, setFirstVal] = useState(1);
   const [secondVal, setSecondVal] = useState(firstVal / currentPrice);
-  const [symbolArr, setSymbolArr] = useState(['$', '₿']);
+  //eventually will be replaced w/ coin and currency chosen at the navbar
+  const [symbolArr, setSymbolArr] = useState([
+    'USD',
+    coin.symbol.toUpperCase(),
+  ]);
 
   const convert = (val) => {
     setFirstVal(val);

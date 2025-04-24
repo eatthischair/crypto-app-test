@@ -1,5 +1,5 @@
 import { HomePage } from './ui/HomePage/HomePage';
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <HomePage />
