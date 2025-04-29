@@ -4,7 +4,7 @@ import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 export function DataBar({ data }) {
   if (!data) return <LoadingSpinner />;
   return (
-    <span className="flex m-auto my-4 h-[10%] w-[60%] items-center justify-center gap-4 text-xs ">
+    <span className="flex m-auto my-4 h-[10%] w-[60%] items-center justify-center gap-4 text-xs z-0">
       <div className="p-8">Coins {data.active_cryptocurrencies}</div>
       <div className="p-8">Exchange {data.markets} </div>
       <div className="p-8">$2.77T</div>
