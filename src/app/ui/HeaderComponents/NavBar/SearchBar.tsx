@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import coinsList from '../../../../data/coinsList.json';
@@ -19,7 +20,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <div className="relative w-full z-1000">
+    <div className="relative w-full">
       <Input
         placeholder="Search..."
         className="flex w-full"
@@ -34,7 +35,7 @@ export const SearchBar = () => {
             <Link href={`/coin/${coin.id}`} key={coin.id}>
               <li
                 key={coin.id}
-                className="px-4 py-2 z-100 cursor-pointer opacity-100 hover:bg-secondary"
+                className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary"
               >
                 {coin.id}
               </li>

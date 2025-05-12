@@ -4,10 +4,17 @@ import { formatNum, formatPriceChange } from '../../../../lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { useSelector } from 'react-redux';
+import { convert } from '../../HeaderComponents/NavBar/convert';
 export const TableRow = ({ coin, index, ref }) => {
   const progressVolumeMarketCap = (coin.total_volume / coin.market_cap) * 100;
   const circulatingTotalSupply =
     (coin.circulating_supply / coin.total_supply) * 100;
+
+  const test = useSelector((state) => state.testReducer.test);
+  const { currentPrice, unit } = convert(coin.current_price, test);
+  const totalVolume = convert(coin.total_volume, test).currentPrice;
+  const marketCap = convert(coin.market_cap, test).currentPrice;
 
   return (
     <div
@@ -22,7 +29,11 @@ export const TableRow = ({ coin, index, ref }) => {
           {coin.name}({coin.symbol.toUpperCase()})
         </Link>
       </div>
-      <div>${coin.current_price}</div>
+      {/* <div>${coin.current_price}</div> */}
+      <div>
+        {unit} {formatNum(currentPrice)}
+      </div>
+
       <div>
         {formatPriceChange(coin.price_change_percentage_1h_in_currency)}
       </div>
@@ -34,10 +45,9 @@ export const TableRow = ({ coin, index, ref }) => {
       </div>
 
       <div className="grid grid-cols-2 grid-rows-[25%_75%] m-0 p-0">
-        <div className="m-0 p-0">{formatNum(coin.total_volume)}</div>
+        <div className="m-0 p-0">{formatNum(totalVolume)}</div>
         <div className="m-0 p-0"></div>
-        <div className="m-0 p-0">{formatNum(coin.market_cap)}</div>
-
+        <div className="m-0 p-0">{formatNum(marketCap)}</div>
         <div className="col-span-3 m-0 p-0 py-1">
           <Progress value={progressVolumeMarketCap} />
         </div>

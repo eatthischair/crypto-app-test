@@ -3,15 +3,18 @@ import { IoMdSwap } from 'react-icons/io';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { formatPrice } from '@/lib/utils';
-
+import { useSelector } from 'react-redux';
 export const ConvertCurrency = ({ coin }) => {
   const [toggled, setToggled] = useState(false);
   const currentPrice = coin.market_data.current_price.usd;
   const [firstVal, setFirstVal] = useState(1);
   const [secondVal, setSecondVal] = useState(firstVal / currentPrice);
+
+  const test = useSelector((state) => state.testReducer.test);
+  // console.log('testee', test);
   //eventually will be replaced w/ coin and currency chosen at the navbar
   const [symbolArr, setSymbolArr] = useState([
-    'USD',
+    test.toUpperCase(),
     coin.symbol.toUpperCase(),
   ]);
 
