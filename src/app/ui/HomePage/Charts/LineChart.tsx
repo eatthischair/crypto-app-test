@@ -10,7 +10,10 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { useSelector } from 'react-redux';
+import { convert } from '../../HeaderComponents/NavBar/convert';
 import { Line } from 'react-chartjs-2';
+import { formatNum } from '@/lib/utils';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,6 +27,14 @@ ChartJS.register(
 export function LineChart({ pricesData }) {
   const prices = pricesData?.prices;
   const labels = prices?.map((item) => new Date(item[0]).getDate());
+
+  const currency = useSelector((state) => state.currencyReducer.currency);
+
+  const { currentPrice, unit } = convert(
+    prices[prices.length - 1][1],
+    currency
+  );
+  const latestPrice = `${unit} ${formatNum(currentPrice)}`;
 
   const data = {
     labels,
@@ -75,7 +86,7 @@ export function LineChart({ pricesData }) {
     <div className="w-[40%] ">
       <div className="absolute m-4 text-foreground p-4">
         <h4 className="text-sm">Bitcoin</h4>
-        <h2 className="text-4xl font-bold">$85,029.51</h2>
+        <h2 className="text-4xl font-bold">{latestPrice}</h2>
         <div className="text-sm">Apr 01 2025</div>
       </div>
       <Line options={options} data={data} height={500} width={800} />

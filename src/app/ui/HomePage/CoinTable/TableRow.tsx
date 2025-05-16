@@ -11,10 +11,10 @@ export const TableRow = ({ coin, index, ref }) => {
   const circulatingTotalSupply =
     (coin.circulating_supply / coin.total_supply) * 100;
 
-  const test = useSelector((state) => state.testReducer.test);
-  const { currentPrice, unit } = convert(coin.current_price, test);
-  const totalVolume = convert(coin.total_volume, test).currentPrice;
-  const marketCap = convert(coin.market_cap, test).currentPrice;
+  const currency = useSelector((state) => state.currencyReducer.currency);
+  const { currentPrice, unit } = convert(coin.current_price, currency);
+  const totalVolume = convert(coin.total_volume, currency).currentPrice;
+  const marketCap = convert(coin.market_cap, currency).currentPrice;
 
   return (
     <div
@@ -29,7 +29,6 @@ export const TableRow = ({ coin, index, ref }) => {
           {coin.name}({coin.symbol.toUpperCase()})
         </Link>
       </div>
-      {/* <div>${coin.current_price}</div> */}
       <div>
         {unit} {formatNum(currentPrice)}
       </div>

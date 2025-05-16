@@ -6,13 +6,12 @@ import { formatNum } from '@/lib/utils';
 export function DataBar({ data }) {
   // if (!data) return <LoadingSpinner />;
 
-  const test = useSelector((state) => state.testReducer.test);
+  const currency = useSelector((state) => state.currencyReducer.currency);
 
-  // const { currentPrice, unit } = convert(coin.current_price, test);
-  const totalVolume = convert(data.total_volume.btc, test).currentPrice;
-  const marketCap = convert(data.total_market_cap.btc, test).currentPrice;
+  // const { currentPrice, unit } = convert(coin.current_price, currency);
+  const totalVolume = convert(data.total_volume.btc, currency).currentPrice;
+  const marketCap = convert(data.total_market_cap.btc, currency).currentPrice;
 
-  console.log('data in databar', data);
   return (
     <span className="flex m-auto my-4 h-[10%] w-[60%] items-center justify-center gap-4 text-xs z-0">
       <div className="p-8">Coins {data.active_cryptocurrencies}</div>

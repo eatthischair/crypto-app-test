@@ -4,9 +4,6 @@ import { BottomChart } from '@/app/ui/CoinPage/BottomChart';
 import { CoinData } from '@/app/ui/CoinPage/CoinData';
 import Image from 'next/image';
 
-import { convert } from '@/app/ui/HeaderComponents/NavBar/convert';
-import { formatNum } from '@/lib/utils';
-
 export const Grid = ({ coin, allPrices }) => {
   // if (!data) return <LoadingSpinner />;
 

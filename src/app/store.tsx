@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from './features/themeSlice';
-import testReducer from './features/testSlice';
+import currencyReducer from './features/currencySlice';
 
 export const store = configureStore({
   reducer: {
     themeReducer,
-    testReducer,
+    currencyReducer,
   },
 });
 

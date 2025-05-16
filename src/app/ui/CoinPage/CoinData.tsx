@@ -5,26 +5,29 @@ import { formatNum } from '@/lib/utils';
 import { useSelector } from 'react-redux';
 
 export const CoinData = ({ coin }) => {
-  const test = useSelector((state) => state.testReducer.test);
+  const currency = useSelector((state) => state.currencyReducer.currency);
 
   const volumeMarketRatio =
     coin.market_data.total_volume.usd / coin.market_data.market_cap.usd;
 
   const { currentPrice, unit } = convert(
     coin.market_data.current_price.usd,
-    test
+    currency
   );
 
-  const allTimeHigh = convert(coin.market_data.ath.usd, test).currentPrice;
-  const allTimeLow = convert(coin.market_data.atl.usd, test).currentPrice;
-  const marketCap = convert(coin.market_data.market_cap.usd, test).currentPrice;
+  const allTimeHigh = convert(coin.market_data.ath.usd, currency).currentPrice;
+  const allTimeLow = convert(coin.market_data.atl.usd, currency).currentPrice;
+  const marketCap = convert(
+    coin.market_data.market_cap.usd,
+    currency
+  ).currentPrice;
   const fullyDilutedValuation = convert(
     coin.market_data.fully_diluted_valuation.usd,
-    test
+    currency
   ).currentPrice;
   const totalVolume = convert(
     coin.market_data.total_volume.usd,
-    test
+    currency
   ).currentPrice;
   return (
     <>

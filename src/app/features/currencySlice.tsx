@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  test: 'usd',
+  currency: 'usd',
 };
 
-export const testSlice = createSlice({
-  name: 'test',
+export const currencySlice = createSlice({
+  name: 'currency',
   initialState,
   reducers: {
-    testSwitch: (state, action) => {
-      state.test = action.payload;
+    currencySwitch: (state, action) => {
+      state.currency = action.payload;
     },
   },
 });
@@ -18,5 +18,5 @@ export const testSlice = createSlice({
 // export const  themeSlice.reducer;
 
 // Action creators are generated for each case reducer function
-export const { testSwitch } = testSlice.actions;
-export default testSlice.reducer;
+export const { currencySwitch } = currencySlice.actions;
+export default currencySlice.reducer;
