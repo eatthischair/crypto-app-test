@@ -1,21 +1,32 @@
 'use client';
 import { IoMdSwap } from 'react-icons/io';
 import { Input } from '@/components/ui/input';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { formatPrice } from '@/lib/utils';
+import { useSelector } from 'react-redux';
+import { convert } from '../HeaderComponents/NavBar/convert';
 
 export const ConvertCurrency = ({ coin }) => {
   const [toggled, setToggled] = useState(false);
-  const currentPrice = coin.market_data.current_price.usd;
   const [firstVal, setFirstVal] = useState(1);
-  const [secondVal, setSecondVal] = useState(firstVal / currentPrice);
-  //eventually will be replaced w/ coin and currency chosen at the navbar
-  const [symbolArr, setSymbolArr] = useState([
-    'USD',
-    coin.symbol.toUpperCase(),
-  ]);
 
-  const convert = (val) => {
+  const currency = useSelector((state) => state.currencyReducer.currency);
+  console.log('currencyee', currency);
+  const currentPrice = convert(
+    coin.market_data.current_price.usd,
+    currency
+  ).currentPrice;
+  const [secondVal, setSecondVal] = useState(firstVal * currentPrice);
+
+  const symbolArr = useMemo(() => {
+    if (!toggled) {
+      return [currency.toUpperCase(), coin.symbol.toUpperCase()];
+    } else {
+      return [coin.symbol.toUpperCase(), currency.toUpperCase()];
+    }
+  }, [currency, coin.symbol, toggled]);
+
+  const convertCurToCrypto = (val) => {
     setFirstVal(val);
     let outputVal;
     if (!toggled) {
@@ -31,7 +42,6 @@ export const ConvertCurrency = ({ coin }) => {
     setFirstVal(secondVal);
     setSecondVal(placeholder);
     setToggled(!toggled);
-    setSymbolArr(symbolArr.reverse());
   };
 
   return (
@@ -41,7 +51,7 @@ export const ConvertCurrency = ({ coin }) => {
         <Input
           placeholder="1.00"
           className="w-full text-xl border-none"
-          onChange={(e) => convert(e.target.value)}
+          onChange={(e) => convertCurToCrypto(e.target.value)}
           value={firstVal}
         />
       </div>

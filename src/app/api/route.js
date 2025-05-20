@@ -4,7 +4,7 @@ export async function GetChartData(coin) {
   try {
     const res = await fetch(
       `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=180&interval=daily`,
-      { cache: 'force-cache' }
+      { next: { revalidate: 3600 } }
     );
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
@@ -22,7 +22,7 @@ export async function getCoinTableData(page) {
   try {
     const res = await fetch(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
-      { cache: 'force-cache' }
+      { next: { revalidate: 3600 } }
     );
 
     if (!res.ok) {

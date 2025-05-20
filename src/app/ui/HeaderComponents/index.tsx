@@ -7,7 +7,8 @@ import useSWR from 'swr';
 export function HeaderComponents() {
   const { data, error, isLoading } = useSWR(
     'https://api.coingecko.com/api/v3/global',
-    fetcher
+    fetcher,
+    { refreshInterval: 3600000 }
   );
 
   return (

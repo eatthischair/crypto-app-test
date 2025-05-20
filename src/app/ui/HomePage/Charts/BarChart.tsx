@@ -9,7 +9,10 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { convert } from '../../HeaderComponents/NavBar/convert';
+import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
+import { formatNum } from '@/lib/utils';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -20,9 +23,17 @@ ChartJS.register(
 );
 
 export function BarChart({ pricesData }) {
+  const currency = useSelector((state) => state.currencyReducer.currency);
+
   const volume = pricesData.total_volumes;
   const dayVolume = volume.map((item) => item[1]);
   const labels = volume.map((item) => new Date(item[0]).getDate());
+
+  const { currentPrice, unit } = convert(
+    volume[volume.length - 1][1],
+    currency
+  );
+  const latestVolume = `${unit} ${formatNum(currentPrice)}`;
 
   const data = {
     labels,
@@ -78,7 +89,7 @@ export function BarChart({ pricesData }) {
     <div className="w-[40%]">
       <div className="absolute m-4 text-foreground p-4">
         <h4 className="text-sm">Volume 24h</h4>
-        <h2 className="text-4xl font-bold">$26.121B</h2>
+        <h2 className="text-4xl font-bold">{latestVolume}</h2>
         <div className="text-sm">Apr 01 2025</div>
       </div>
       <Bar options={options} data={data} height={500} width={800} />

@@ -1,6 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { TableRow } from './TableRow';
+
 export const Table = ({ coinsSorted, getData, hasMore }) => {
   return (
     <div className="grid auto-cols-auto overscroll-none">
