@@ -4,6 +4,7 @@ import { convert } from '@/app/ui/HeaderComponents/NavBar/convert';
 import { formatNum } from '@/lib/utils';
 import { useSelector } from 'react-redux';
 export const CoinData = ({ coin }) => {
+  console.log('coindata', coin);
   const currency = useSelector((state) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state) => state.exchangeRatesReducer.exchangeRates
@@ -66,7 +67,7 @@ export const CoinData = ({ coin }) => {
 
             <small className="text-base ">
               {formatPriceChange(
-                coin.market_data.price_change_percentage_24h.toFixed(2)
+                coin.market_data.price_change_percentage_24h?.toFixed(2)
               )}
             </small>
           </span>

@@ -1,10 +1,11 @@
 'use client';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import coinsList from '../../../../data/coinsList.json';
+// import coinsList from '../../../../data/coinsList.json';
 import Link from 'next/link';
+import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 
-export const SearchBar = () => {
+export const SearchBar = ({ coinsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 

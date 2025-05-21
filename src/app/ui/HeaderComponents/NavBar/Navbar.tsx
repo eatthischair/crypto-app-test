@@ -4,30 +4,49 @@ import { ThemeButton } from './ThemeButton';
 import { CurrencySwitch } from './CurrencySwitch';
 import { useAppDispatch } from '@/app/hooks';
 import { exchangeRatesSwitch } from '@/app/features/exchangeRatesSlice';
-import { useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 
 export const NavBar = () => {
+  const [coinsList, setCoinsList] = useState(null);
+
   const dispatch = useAppDispatch();
   dispatch(exchangeRatesSwitch);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(
+        // First fetch for exchange rates
+        const exchangeResponse = await fetch(
           'https://api.coingecko.com/api/v3/exchange_rates',
           {
             method: 'GET',
             headers: {
               accept: 'application/json',
-              'x-cg-demo-api-key': 'CG-tLCRhygcvpcYho3BrWGp8J7m	',
+              'x-cg-demo-api-key': 'CG-tLCRhygcvpcYho3BrWGp8J7m',
             },
             next: { revalidate: 3600 },
           }
         );
-        const data = await response.json();
-        dispatch(exchangeRatesSwitch(data));
+        const exchangeData = await exchangeResponse.json();
+        dispatch(exchangeRatesSwitch(exchangeData));
+
+        // Second fetch for coins list
+        const coins = await fetch(
+          'https://api.coingecko.com/api/v3/coins/list',
+          {
+            method: 'GET',
+            headers: {
+              accept: 'application/json',
+            },
+            next: { revalidate: 3600 },
+          }
+        );
+        const coinsListData = await coins.json();
+        console.log('COINS', coinsListData);
+        setCoinsList(coinsListData);
       } catch (error) {
-        console.error('Failed to fetch exchange data:', error);
+        console.error('Failed to fetch data:', error);
       }
     }
     fetchData();
@@ -40,7 +59,7 @@ export const NavBar = () => {
         <NavBarLinks href="dashboard/portfolio" title={'Portfolio'} />
       </div>
       <div className="flex flex-grow ml-[50%] mr-5 h-[90%] items-center gap-4">
-        <SearchBar />
+        {coinsList ? <SearchBar coinsList={coinsList} /> : <LoadingSpinner />}
         <CurrencySwitch />
         <ThemeButton />
       </div>

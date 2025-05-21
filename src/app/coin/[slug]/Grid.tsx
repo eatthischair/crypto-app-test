@@ -31,7 +31,7 @@ export const Grid = ({ coin, allPrices }) => {
           <Image
             height="100"
             width="100"
-            src={coin.image.large}
+            src={coin.image?.large}
             alt="Coin symbol"
           />
           <div className="w-36 flex place-content-center m-0 p-2 gap-0 ">

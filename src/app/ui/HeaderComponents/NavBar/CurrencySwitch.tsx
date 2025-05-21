@@ -20,8 +20,6 @@ export const CurrencySwitch = () => {
   const exchangeRates = useSelector(
     (state) => state.exchangeRatesReducer.exchangeRates
   );
-  console.log('exchangerates', exchangeRates);
-  //only need two objects, the object for usd, the object for the currency, and the name
   useEffect(() => {
     const localStorageCur = localStorage.getItem('currency');
     setCurrency(localStorageCur);
@@ -29,12 +27,6 @@ export const CurrencySwitch = () => {
   }, [stateCurrency, dispatch]);
 
   const handleCurrencyChange = (cur) => {
-    console.log(
-      'handlecurchange',
-      cur,
-      localStorage.getItem('currency'),
-      stateCurrency
-    );
     dispatch(currencySwitch(cur));
     localStorage.setItem('currency', cur);
   };
