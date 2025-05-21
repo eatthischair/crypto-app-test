@@ -9,14 +9,22 @@ import currencies from '../../../../data/exchangeRates.json';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/app/hooks';
 import { currencySwitch } from '@/app/features/currencySlice';
+import { useState, useEffect } from 'react';
+
 export const CurrencySwitch = () => {
   const dispatch = useAppDispatch();
-  const savedCurrency = localStorage?.getItem('currency');
-
-  const stateCurrency = useSelector((state) => state.currencyReducer.currency);
-  const currency = savedCurrency || stateCurrency;
-
   dispatch(currencySwitch);
+
+  const [currency, setCurrency] = useState('usd');
+  const stateCurrency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
+  useEffect(() => {
+    const localStorageCur = localStorage.getItem('currency');
+    setCurrency(localStorageCur);
+    dispatch(currencySwitch(localStorageCur));
+  }, [stateCurrency, dispatch]);
 
   const handleCurrencyChange = (cur) => {
     dispatch(currencySwitch(cur));

@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  currency: 'usd',
+  exchangeRates: {},
   isHydrated: false,
 };
 
-export const currencySlice = createSlice({
-  name: 'currency',
+export const exchangeRatesSlice = createSlice({
+  name: 'exchangeRates',
   initialState,
   reducers: {
-    currencySwitch: (state, action) => {
-      state.currency = action.payload;
+    exchangeRatesSwitch: (state, action) => {
+      state.exchangeRates = action.payload;
       state.isHydrated = true;
     },
   },
@@ -20,5 +20,5 @@ export const currencySlice = createSlice({
 // export const  themeSlice.reducer;
 
 // Action creators are generated for each case reducer function
-export const { currencySwitch } = currencySlice.actions;
-export default currencySlice.reducer;
+export const { exchangeRatesSwitch } = exchangeRatesSlice.actions;
+export default exchangeRatesSlice.reducer;

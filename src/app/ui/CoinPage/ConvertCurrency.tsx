@@ -3,19 +3,22 @@ import { IoMdSwap } from 'react-icons/io';
 import { Input } from '@/components/ui/input';
 import { useState, useMemo } from 'react';
 import { formatPrice } from '@/lib/utils';
-import { useSelector } from 'react-redux';
 import { convert } from '../HeaderComponents/NavBar/convert';
-
-export const ConvertCurrency = ({ coin }) => {
+export const ConvertCurrency = ({
+  coin,
+  exchangeRateObj,
+  exchangeRateUsd,
+  currency,
+}) => {
   const [toggled, setToggled] = useState(false);
   const [firstVal, setFirstVal] = useState(1);
 
-  const currency = useSelector((state) => state.currencyReducer.currency);
-  console.log('currencyee', currency);
   const currentPrice = convert(
     coin.market_data.current_price.usd,
-    currency
+    exchangeRateObj,
+    exchangeRateUsd
   ).currentPrice;
+
   const [secondVal, setSecondVal] = useState(firstVal * currentPrice);
 
   const symbolArr = useMemo(() => {

@@ -3,32 +3,59 @@ import { formatPriceChange } from '@/lib/utils';
 import { convert } from '@/app/ui/HeaderComponents/NavBar/convert';
 import { formatNum } from '@/lib/utils';
 import { useSelector } from 'react-redux';
-
 export const CoinData = ({ coin }) => {
+  console.log('coindata', coin);
   const currency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
+
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    return <div>Loading...</div>;
+  }
+  const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   const volumeMarketRatio =
     coin.market_data.total_volume.usd / coin.market_data.market_cap.usd;
 
   const { currentPrice, unit } = convert(
     coin.market_data.current_price.usd,
-    currency
+    exchangeRateObj,
+    exchangeRates.rates.usd
   );
 
-  const allTimeHigh = convert(coin.market_data.ath.usd, currency).currentPrice;
-  const allTimeLow = convert(coin.market_data.atl.usd, currency).currentPrice;
+  const allTimeHigh = convert(
+    coin.market_data.ath.usd,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  ).currentPrice;
+  const allTimeLow = convert(
+    coin.market_data.atl.usd,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  ).currentPrice;
   const marketCap = convert(
     coin.market_data.market_cap.usd,
-    currency
+    exchangeRateObj,
+    exchangeRates.rates.usd
   ).currentPrice;
   const fullyDilutedValuation = convert(
     coin.market_data.fully_diluted_valuation.usd,
-    currency
+    exchangeRateObj,
+    exchangeRates.rates.usd
   ).currentPrice;
   const totalVolume = convert(
     coin.market_data.total_volume.usd,
-    currency
+    exchangeRateObj,
+    exchangeRates.rates.usd
   ).currentPrice;
+
   return (
     <>
       <div className="row-span-2 p-4 bg-[var(--card)] rounded-sm">
@@ -40,7 +67,7 @@ export const CoinData = ({ coin }) => {
 
             <small className="text-base ">
               {formatPriceChange(
-                coin.market_data.price_change_percentage_24h.toFixed(2)
+                coin.market_data.price_change_percentage_24h?.toFixed(2)
               )}
             </small>
           </span>
