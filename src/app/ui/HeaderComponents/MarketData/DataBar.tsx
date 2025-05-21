@@ -7,10 +7,31 @@ export function DataBar({ data }) {
   // if (!data) return <LoadingSpinner />;
 
   const currency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
 
-  // const { currentPrice, unit } = convert(coin.current_price, currency);
-  const totalVolume = convert(data.total_volume.btc, currency).currentPrice;
-  const marketCap = convert(data.total_market_cap.btc, currency).currentPrice;
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    return <div>Loading...</div>;
+  }
+  const exchangeRateObj = exchangeRates?.rates?.[currency];
+
+  const totalVolume = convert(
+    data.total_volume.btc,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  ).currentPrice;
+  const marketCap = convert(
+    data.total_market_cap.btc,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  ).currentPrice;
 
   return (
     <span className="flex m-auto my-4 h-[10%] w-[60%] items-center justify-center gap-4 text-xs z-0">

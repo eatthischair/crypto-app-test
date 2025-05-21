@@ -1,11 +1,28 @@
+'use client';
 import { LinksRow } from '../../ui/CoinPage/LinksRow';
 import { ConvertCurrency } from '../../ui/CoinPage/ConvertCurrency';
 import { BottomChart } from '@/app/ui/CoinPage/BottomChart';
 import { CoinData } from '@/app/ui/CoinPage/CoinData';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
 export const Grid = ({ coin, allPrices }) => {
   // if (!data) return <LoadingSpinner />;
+  const currency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
+
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    return <div>Loading...</div>;
+  }
+  const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   return (
     <div>
@@ -37,7 +54,12 @@ export const Grid = ({ coin, allPrices }) => {
         </div>
         <LinksRow coin={coin} />
       </div>
-      <ConvertCurrency coin={coin} />
+      <ConvertCurrency
+        coin={coin}
+        exchangeRateObj={exchangeRateObj}
+        exchangeRateUsd={exchangeRates.rates.usd}
+        currency={currency}
+      />
       <BottomChart allPrices={allPrices.prices} />
     </div>
   );

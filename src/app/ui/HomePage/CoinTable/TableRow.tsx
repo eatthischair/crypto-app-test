@@ -7,14 +7,41 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 export const TableRow = ({ coin, index, ref }) => {
+  const currency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
+
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    return <div>Loading...</div>;
+  }
+  const exchangeRateObj = exchangeRates?.rates?.[currency];
+
   const progressVolumeMarketCap = (coin.total_volume / coin.market_cap) * 100;
   const circulatingTotalSupply =
     (coin.circulating_supply / coin.total_supply) * 100;
 
-  const currency = useSelector((state) => state.currencyReducer.currency);
-  const { currentPrice, unit } = convert(coin.current_price, currency);
-  const totalVolume = convert(coin.total_volume, currency).currentPrice;
-  const marketCap = convert(coin.market_cap, currency).currentPrice;
+  const { currentPrice, unit } = convert(
+    coin.current_price,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  );
+  const totalVolume = convert(
+    coin.total_volume,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  ).currentPrice;
+  const marketCap = convert(
+    coin.market_cap,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  ).currentPrice;
 
   return (
     <div

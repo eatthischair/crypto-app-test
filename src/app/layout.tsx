@@ -5,6 +5,7 @@ import { HeaderComponents } from './ui/HeaderComponents';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { ThemeProvider } from './ui/Components/theme-provider';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({

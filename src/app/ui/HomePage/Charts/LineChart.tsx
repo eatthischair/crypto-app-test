@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 import { Line } from 'react-chartjs-2';
@@ -29,11 +30,36 @@ export function LineChart({ pricesData }) {
   const labels = prices?.map((item) => new Date(item[0]).getDate());
 
   const currency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
+
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    return <div>Loading...</div>;
+  }
+
+  const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   const { currentPrice, unit } = convert(
     prices[prices.length - 1][1],
-    currency
+    exchangeRateObj,
+    exchangeRates.rates.usd
   );
+
+  console.log(
+    'linechart',
+    currency,
+    exchangeRates,
+    exchangeRateObj,
+    exchangeRates.rates?.usd
+  );
+
   const latestPrice = `${unit} ${formatNum(currentPrice)}`;
 
   const data = {

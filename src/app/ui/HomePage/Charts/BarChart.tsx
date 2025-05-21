@@ -13,6 +13,7 @@ import { convert } from '../../HeaderComponents/NavBar/convert';
 import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
+import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,6 +25,20 @@ ChartJS.register(
 
 export function BarChart({ pricesData }) {
   const currency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
+
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    return <div>Loading...</div>;
+  }
+  const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   const volume = pricesData.total_volumes;
   const dayVolume = volume.map((item) => item[1]);
@@ -31,8 +46,10 @@ export function BarChart({ pricesData }) {
 
   const { currentPrice, unit } = convert(
     volume[volume.length - 1][1],
-    currency
+    exchangeRateObj,
+    exchangeRates.rates.usd
   );
+
   const latestVolume = `${unit} ${formatNum(currentPrice)}`;
 
   const data = {
