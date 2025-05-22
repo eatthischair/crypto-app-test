@@ -41,7 +41,8 @@ export const CoinTableComponents = ({ coinTable }) => {
       const response = await fetch(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${
           page + 1
-        }&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+        }&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
+        { next: { revalidate: 3600 } }
       );
       const newData = await response.json();
       if (newData.length === 0) {
