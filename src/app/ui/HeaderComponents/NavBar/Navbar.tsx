@@ -4,8 +4,7 @@ import { ThemeButton } from './ThemeButton';
 import { CurrencySwitch } from './CurrencySwitch';
 import { useAppDispatch } from '@/app/hooks';
 import { exchangeRatesSwitch } from '@/app/features/exchangeRatesSlice';
-import { Suspense, useEffect, useState } from 'react';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import { useEffect, useState } from 'react';
 
 export const NavBar = () => {
   const [coinsList, setCoinsList] = useState(null);
