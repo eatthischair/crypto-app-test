@@ -25,7 +25,7 @@ export const NavBar = () => {
               accept: 'application/json',
               'x-cg-demo-api-key': 'CG-tLCRhygcvpcYho3BrWGp8J7m',
             },
-            next: { revalidate: 3600 },
+            next: { revalidate: 36000 },
           }
         );
         const exchangeData = await exchangeResponse.json();
@@ -39,11 +39,10 @@ export const NavBar = () => {
             headers: {
               accept: 'application/json',
             },
-            next: { revalidate: 3600 },
+            next: { revalidate: 36000 },
           }
         );
         const coinsListData = await coins.json();
-        console.log('COINS', coinsListData);
         setCoinsList(coinsListData);
       } catch (error) {
         console.error('Failed to fetch data:', error);
@@ -59,7 +58,7 @@ export const NavBar = () => {
         <NavBarLinks href="dashboard/portfolio" title={'Portfolio'} />
       </div>
       <div className="flex flex-grow ml-[50%] mr-5 h-[90%] items-center gap-4">
-        {coinsList ? <SearchBar coinsList={coinsList} /> : <LoadingSpinner />}
+        <SearchBar coinsList={coinsList} />
         <CurrencySwitch />
         <ThemeButton />
       </div>
