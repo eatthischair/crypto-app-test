@@ -15,7 +15,6 @@ import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
 //fix later
 import coinsList from '../../../data/coinsList.json';
-import { AlertCircle } from 'lucide-react';
 
 export const AddCoinButton = ({ coins, setCoins }) => {
   const [coinName, setCoinName] = useState('');
@@ -41,7 +40,6 @@ export const AddCoinButton = ({ coins, setCoins }) => {
       ...coinData,
       ...apiData,
     };
-    console.log('mergedObj', mergedObj, apiData);
     localStorage.setItem('coins', JSON.stringify([...coins, mergedObj]));
     setCoins([...coins, mergedObj]);
   };

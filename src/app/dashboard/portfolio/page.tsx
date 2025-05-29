@@ -11,8 +11,6 @@ export default function Page() {
     const fetchData = async () => {
       const coins = JSON.parse(localStorage.getItem('coins')) || [];
       const coinNames = coins.map((coin) => coin.coinName);
-      console.log('COINS', coins);
-      // setCoins(coins);
 
       const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinNames}&per_page=${coinNames.length}&page=1&sparkline=false&price_change_percentage=24h`;
       try {
@@ -29,15 +27,11 @@ export default function Page() {
           const priceChangeToday = coinInfo.price_change_percentage_24h;
           data.currentPriceToday = currentPriceToday;
           data.priceChangeToday = priceChangeToday;
-
           return {
             ...data,
-            // ...coinInfo, // Merge the matching price data
           };
         });
-        console.log('combineddata', combinedData);
-        // console.log('coins', coins, coinResponse, combinedData);
-        setCoinsData(coins);
+        setCoinsData(combinedData);
       } catch (error) {
         console.error('Error fetching data: in getData', error);
       }

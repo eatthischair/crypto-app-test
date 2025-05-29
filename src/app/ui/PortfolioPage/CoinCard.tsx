@@ -6,12 +6,10 @@ import { formatPrice } from '@/lib/utils';
 //add stuff later to change price with currency in navbar
 
 export const CoinCard = ({ coin, data }) => {
-  console.log('COINCARD', coin, data);
   if (!data) {
     return <LoadingSpinner />;
   }
 
-  //need to do api request for all the coins, to find out their current price
   const amtChangeSincePurchase = coin.currentPriceToday / coin.current_price;
 
   return (
