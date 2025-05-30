@@ -3,7 +3,6 @@ import { CoinTableLineChart } from './CoinTableLineChart';
 import { formatNum, formatPriceChange } from '../../../../lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 export const TableRow = ({ coin, index, ref }) => {
