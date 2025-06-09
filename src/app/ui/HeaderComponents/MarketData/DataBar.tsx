@@ -1,10 +1,13 @@
+'use client';
 import { Progress } from '@/components/ui/progress';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { useSelector } from 'react-redux';
 import { convert } from '../NavBar/convert';
 import { formatNum } from '@/lib/utils';
+import { DataBarSkeleton } from './DataBarSkeleton';
+
 export function DataBar({ data }) {
-  // if (!data) return <LoadingSpinner />;
+  // if (!data) return <DataBarSkeleton />;
 
   const currency = useSelector((state) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
@@ -18,7 +21,7 @@ export function DataBar({ data }) {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 

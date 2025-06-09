@@ -52,14 +52,6 @@ export function LineChart({ pricesData }) {
     exchangeRates.rates.usd
   );
 
-  console.log(
-    'linechart',
-    currency,
-    exchangeRates,
-    exchangeRateObj,
-    exchangeRates.rates?.usd
-  );
-
   const latestPrice = `${unit} ${formatNum(currentPrice)}`;
 
   const data = {

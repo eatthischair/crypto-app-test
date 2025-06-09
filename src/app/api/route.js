@@ -36,4 +36,20 @@ export async function getCoinTableData(page) {
   }
 }
 
+export async function getCoinsList() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/list', {
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error fetching data:', error.message);
+  }
+}
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());

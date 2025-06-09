@@ -69,9 +69,7 @@ export const CoinCard = ({ coin, data }) => {
 
         <div className="text-center sm:text-left">
           <h3 className="text-sm font-semibold">Coin Amount</h3>
-          <span className="text-lg font-bold">
-            {numToPrice(coin.purchasedAmt)}
-          </span>
+          <span className="text-lg font-bold">{coin.purchasedAmt}</span>
         </div>
         <div className="text-center sm:text-left">
           <h3 className="text-sm font-semibold">Amount Value</h3>

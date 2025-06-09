@@ -14,6 +14,8 @@ import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import Skeleton from 'react-loading-skeleton';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -36,7 +38,7 @@ export function BarChart({ pricesData }) {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    return <div>Loading...</div>;
+    return <Skeleton />;
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 

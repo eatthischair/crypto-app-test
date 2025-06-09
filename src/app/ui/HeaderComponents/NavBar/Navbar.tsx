@@ -1,3 +1,4 @@
+'use client';
 import { NavBarLinks } from './NavbarLinks';
 import { SearchBar } from './SearchBar';
 import { ThemeButton } from './ThemeButton';
