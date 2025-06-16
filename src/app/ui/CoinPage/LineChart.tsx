@@ -20,7 +20,7 @@ ChartJS.register(
 );
 
 export function LineChart({ prices }) {
-  const labels = prices.map(() => null);
+  const labels = prices?.map(() => null);
 
   const data = {
     labels,

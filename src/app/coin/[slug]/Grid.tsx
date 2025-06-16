@@ -60,7 +60,13 @@ export const Grid = ({ coin, allPrices }) => {
         exchangeRateUsd={exchangeRates.rates.usd}
         currency={currency}
       />
-      <BottomChart allPrices={allPrices.prices} />
+      {allPrices && allPrices.prices ? (
+        <BottomChart allPrices={allPrices.prices} />
+      ) : (
+        <div className="flex justify-center items-center h-[50vh]">
+          Chart data Not Available
+        </div>
+      )}
     </div>
   );
 };

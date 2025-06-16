@@ -9,6 +9,7 @@ import {
   convertURLParamsToState,
   sortCoins,
 } from './coinTableUtils';
+import { getCoins } from '@/app/api/getCoins';
 
 export const CoinTableComponents = ({ coinTable }) => {
   const router = useRouter();
@@ -37,27 +38,14 @@ export const CoinTableComponents = ({ coinTable }) => {
   const [hasMore, setHasMore] = useState(true);
 
   const getData = async () => {
-    try {
-      const response = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${
-          page + 1
-        }&sparkline=true&price_change_percentage=1h%2C24h%2C7d`,
-        { next: { revalidate: 3600 } }
+    const newData = await getCoins(page);
+    if (newData.length === 0) {
+      setHasMore(false);
+    } else {
+      setCoinsSorted((prevItems) =>
+        sortCoins([...prevItems, ...newData], toggleState)
       );
-      const newData = await response.json();
-      if (newData.length === 0) {
-        setHasMore(false);
-      } else if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      } else {
-        setCoinsSorted((prevItems) =>
-          sortCoins([...prevItems, ...newData], toggleState)
-        );
-        setPage((prevPage) => prevPage + 1);
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error fetching data: in getData', error);
+      setPage((prevPage) => prevPage + 1);
     }
   };
 

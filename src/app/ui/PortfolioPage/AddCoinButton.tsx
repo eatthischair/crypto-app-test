@@ -18,7 +18,9 @@ import { useQuery } from '@tanstack/react-query';
 //fix later
 // import coinsList from '../../../data/coinsList.json';
 
-export const AddCoinButton = ({ coins, setCoins, coinsList }) => {
+export const AddCoinButton = ({ setCoins, coinsList, coinsData }) => {
+  console.log('coins in addcoins', coinsData);
+
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');
@@ -42,8 +44,8 @@ export const AddCoinButton = ({ coins, setCoins, coinsList }) => {
       ...coinData,
       ...apiData,
     };
-    localStorage.setItem('coins', JSON.stringify([...coins, mergedObj]));
-    setCoins([...coins, mergedObj]);
+    localStorage.setItem('coins', JSON.stringify([...coinsData, mergedObj]));
+    setCoins([...coinsData, mergedObj]);
   };
 
   const fetchCoinData = async (coinName) => {

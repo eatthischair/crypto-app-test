@@ -6,7 +6,8 @@ import { CurrencySwitch } from './CurrencySwitch';
 import { useAppDispatch } from '@/app/hooks';
 import { exchangeRatesSwitch } from '@/app/features/exchangeRatesSlice';
 import { useEffect, useState } from 'react';
-
+import { getExchangeRates } from '@/app/api/getExchangeRates';
+import { getCoinsList } from '@/app/api/route';
 export const NavBar = () => {
   const [coinsList, setCoinsList] = useState(null);
 
@@ -17,32 +18,13 @@ export const NavBar = () => {
     async function fetchData() {
       try {
         // First fetch for exchange rates
-        const exchangeResponse = await fetch(
-          'https://api.coingecko.com/api/v3/exchange_rates',
-          {
-            method: 'GET',
-            headers: {
-              accept: 'application/json',
-              'x-cg-demo-api-key': 'CG-tLCRhygcvpcYho3BrWGp8J7m',
-            },
-            next: { revalidate: 36000 },
-          }
-        );
-        const exchangeData = await exchangeResponse.json();
+        const exchangeRates = await getExchangeRates();
+        const exchangeData = await exchangeRates;
         dispatch(exchangeRatesSwitch(exchangeData));
 
         // Second fetch for coins list
-        const coins = await fetch(
-          'https://api.coingecko.com/api/v3/coins/list',
-          {
-            method: 'GET',
-            headers: {
-              accept: 'application/json',
-            },
-            next: { revalidate: 36000 },
-          }
-        );
-        const coinsListData = await coins.json();
+        const coins = await getCoinsList();
+        const coinsListData = await coins;
         setCoinsList(coinsListData);
       } catch (error) {
         console.error('Failed to fetch data:', error);

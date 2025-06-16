@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { AddCoinButton } from '@/app/ui/PortfolioPage/AddCoinButton';
 import { CoinCard } from '@/app/ui/PortfolioPage/CoinCard';
+import { getPortfolioCoinData } from '@/app/api/getPortfolioCoinData';
 
 export default function Page2({ coinsList }) {
   const [coins, setCoins] = useState([]);
@@ -11,12 +12,10 @@ export default function Page2({ coinsList }) {
     const fetchData = async () => {
       const coins = JSON.parse(localStorage.getItem('coins')) || [];
       const coinNames = coins.map((coin) => coin.coinName);
-
-      const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinNames}&per_page=${coinNames.length}&page=1&sparkline=false&price_change_percentage=24h`;
+      console.log('coins in portfolio', coins);
       try {
-        const coinData = await fetch(url);
-        const coinResponse = await coinData.json();
-
+        const coinData = await getPortfolioCoinData(coinNames);
+        const coinResponse = await coinData;
         const combinedData = coins.map((data) => {
           //find current price, price change 24h
           //then compute price change and amount value
@@ -31,6 +30,7 @@ export default function Page2({ coinsList }) {
             ...data,
           };
         });
+        console.log('coins in portfolio 2', combinedData);
         setCoinsData(combinedData);
       } catch (error) {
         console.error('Error fetching data: in getData', error);
@@ -41,14 +41,14 @@ export default function Page2({ coinsList }) {
 
   return (
     <>
-      <div>
+      <div className="grid justify-items-end p-4">
         <AddCoinButton
-          coins={coins}
+          coinsData={coinsData}
           setCoins={setCoins}
           coinsList={coinsList}
         />
       </div>
-      <div className="w-full pt-16">
+      <div className="w-full pt-16 mb-12">
         {coinsData
           ? coinsData.map((coin, index) => {
               return (
