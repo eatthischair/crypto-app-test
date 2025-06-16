@@ -22,6 +22,7 @@ export const Grid = ({ coin, allPrices }) => {
   ) {
     return <div>Loading...</div>;
   }
+
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   return (

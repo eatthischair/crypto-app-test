@@ -1,8 +1,8 @@
 'use server';
 import { fetchData } from './fetchData';
 
-export async function getCoinPriceHistory(coinNames) {
-  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinNames}&per_page=${coinNames.length}&page=1&sparkline=false&price_change_percentage=24h`;
+export async function getCoinPriceHistory(slug) {
+  const url = `https://api.coingecko.com/api/v3/coins/${slug}/market_chart?vs_currency=usd&days=180&interval=daily`;
   const response = await fetchData(url);
   return response.body;
 }

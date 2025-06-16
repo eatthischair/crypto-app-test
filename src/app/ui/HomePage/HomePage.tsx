@@ -12,9 +12,17 @@ export async function HomePage() {
       <h2 className="flex w-full gap-8 p-4 justify-center flex-grow">
         Your Overview
       </h2>
-      <div className="flex w-full h-3/5 gap-8 p-4 justify-center flex-grow">
+      {/* <div className="flex w-full h-3/5 gap-8 p-4 justify-center flex-grow">
         <LineChart pricesData={chartData} />
         <BarChart pricesData={chartData} />
+      </div> */}
+      <div className="w-full grid grid-cols-1 grid-rows-2 gap-6 p-4 sm:flex sm:gap-8 sm:h-3/5 sm:justify-center">
+        <div className="w-full h-64 sm:h-auto">
+          <LineChart pricesData={chartData} />
+        </div>
+        <div className="w-full h-64 sm:h-auto">
+          <BarChart pricesData={chartData} />
+        </div>
       </div>
       <div>
         <CoinTable />

@@ -7,7 +7,7 @@ import { useAppDispatch } from '@/app/hooks';
 import { exchangeRatesSwitch } from '@/app/features/exchangeRatesSlice';
 import { useEffect, useState } from 'react';
 import { getExchangeRates } from '@/app/api/getExchangeRates';
-import { getCoinsList } from '@/app/api/route';
+import { getCoinsList } from '@/app/api/getCoinsList';
 export const NavBar = () => {
   const [coinsList, setCoinsList] = useState(null);
 

@@ -12,7 +12,6 @@ export default function Page2({ coinsList }) {
     const fetchData = async () => {
       const coins = JSON.parse(localStorage.getItem('coins')) || [];
       const coinNames = coins.map((coin) => coin.coinName);
-      console.log('coins in portfolio', coins);
       try {
         const coinData = await getPortfolioCoinData(coinNames);
         const coinResponse = await coinData;
@@ -30,7 +29,6 @@ export default function Page2({ coinsList }) {
             ...data,
           };
         });
-        console.log('coins in portfolio 2', combinedData);
         setCoinsData(combinedData);
       } catch (error) {
         console.error('Error fetching data: in getData', error);

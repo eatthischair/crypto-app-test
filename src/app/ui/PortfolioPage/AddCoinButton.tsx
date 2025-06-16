@@ -15,12 +15,7 @@ import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-//fix later
-// import coinsList from '../../../data/coinsList.json';
-
 export const AddCoinButton = ({ setCoins, coinsList, coinsData }) => {
-  console.log('coins in addcoins', coinsData);
-
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');

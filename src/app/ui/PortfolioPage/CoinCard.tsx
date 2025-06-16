@@ -1,8 +1,6 @@
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import React from 'react';
-import { formatPriceChange, numToPrice } from '@/lib/utils';
+import { formatPriceChange } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
-import { formatPrice } from '@/lib/utils';
 import { useSelector } from 'react-redux';
 import { convert } from '../HeaderComponents/NavBar/convert';
 import { formatNum } from '@/lib/utils';
@@ -21,7 +19,6 @@ export const CoinCard = ({ coin, data }) => {
     exchangeRateObj,
     exchangeRates.rates.usd
   );
-  console.log('unit', unit);
 
   const amtValue = formatNum(
     convert(data.currentPriceToday, exchangeRateObj, exchangeRates.rates.usd)
