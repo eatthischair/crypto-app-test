@@ -105,10 +105,10 @@ export function BarChart({ pricesData }) {
   };
 
   return (
-    <div className="w-[40%] sm:w-full">
+    <div className="w-full sm:w-[90%]">
       <div className="absolute m-4 text-foreground p-4">
-        <h4 className="text-sm ">Volume 24h</h4>
-        <h2 className="sm:text-sm text-4xl font-bold">{latestVolume}</h2>
+        <h4 className="text-xs sm:text-sm">Volume 24h</h4>
+        <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>
         <div className="text-sm">Apr 01 2025</div>
       </div>
       <Bar options={options} data={data} height={500} width={800} />

@@ -100,11 +100,12 @@ export function LineChart({ pricesData }) {
       },
     },
   };
+
   return (
-    <div className="w-[40%] ">
+    <div className="w-full sm:w-[90%]">
       <div className="absolute m-4 text-foreground p-4">
-        <h4 className="text-sm">Bitcoin</h4>
-        <h2 className="text-4xl font-bold">{latestPrice}</h2>
+        <h4 className="text-xs sm:text-sm">Bitcoin</h4>
+        <h2 className=" text-sm sm:text-4xl font-bold">{latestPrice}</h2>
         <div className="text-sm">Apr 01 2025</div>
       </div>
       <Line options={options} data={data} height={500} width={800} />
