@@ -13,10 +13,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
-//fix later
-import coinsList from '../../../data/coinsList.json';
+import { useQuery } from '@tanstack/react-query';
 
-export const AddCoinButton = ({ coins, setCoins }) => {
+export const AddCoinButton = ({ setCoins, coinsList, coinsData }) => {
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');
@@ -40,8 +39,8 @@ export const AddCoinButton = ({ coins, setCoins }) => {
       ...coinData,
       ...apiData,
     };
-    localStorage.setItem('coins', JSON.stringify([...coins, mergedObj]));
-    setCoins([...coins, mergedObj]);
+    localStorage.setItem('coins', JSON.stringify([...coinsData, mergedObj]));
+    setCoins([...coinsData, mergedObj]);
   };
 
   const fetchCoinData = async (coinName) => {
@@ -54,7 +53,6 @@ export const AddCoinButton = ({ coins, setCoins }) => {
       return coinResponse[0];
     } catch (error) {
       console.error('Error fetching data: in getData', error);
-      Alert.alert;
     }
   };
 

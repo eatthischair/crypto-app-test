@@ -4,7 +4,6 @@ import { convert } from '@/app/ui/HeaderComponents/NavBar/convert';
 import { formatNum } from '@/lib/utils';
 import { useSelector } from 'react-redux';
 export const CoinData = ({ coin }) => {
-  console.log('coindata', coin);
   const currency = useSelector((state) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state) => state.exchangeRatesReducer.exchangeRates

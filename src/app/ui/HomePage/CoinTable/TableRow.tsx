@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
+import Skeleton from 'react-loading-skeleton';
+
 export const TableRow = ({ coin, index, ref }) => {
   const currency = useSelector((state) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
@@ -18,7 +20,7 @@ export const TableRow = ({ coin, index, ref }) => {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    return <div>Loading...</div>;
+    return <Skeleton height={70} />;
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 

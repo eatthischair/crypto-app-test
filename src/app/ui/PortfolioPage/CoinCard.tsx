@@ -1,20 +1,32 @@
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import React from 'react';
-import { formatPriceChange, numToPrice } from '@/lib/utils';
+import { formatPriceChange } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
-import { formatPrice } from '@/lib/utils';
-//add stuff later to change price with currency in navbar
+import { useSelector } from 'react-redux';
+import { convert } from '../HeaderComponents/NavBar/convert';
+import { formatNum } from '@/lib/utils';
 
 export const CoinCard = ({ coin, data }) => {
-  if (!data) {
-    return <LoadingSpinner />;
-  }
+  const currency = useSelector((state) => state.currencyReducer.currency);
+  const exchangeRates = useSelector(
+    (state) => state.exchangeRatesReducer.exchangeRates
+  );
+  const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   const amtChangeSincePurchase = coin.currentPriceToday / coin.current_price;
 
+  const { currentPrice, unit } = convert(
+    data.currentPriceToday,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  );
+
+  const amtValue = formatNum(
+    convert(data.currentPriceToday, exchangeRateObj, exchangeRates.rates.usd)
+      .currentPrice * coin.purchasedAmt
+  );
+
   return (
-    <div className="w-full shadow-lg rounded-lg overflow-hidden grid grid-cols-[20%_80%] gap-4 p-4">
-      {/* Left Side: Square Image */}
+    <div className="w-full shadow-lg rounded-lg overflow-hidden grid grid-cols-[20%_80%] gap-4 p-12 mb-12">
       <div className="sm:w-1/3 w-full aspect-square">
         <img
           src={data?.image}
@@ -28,7 +40,7 @@ export const CoinCard = ({ coin, data }) => {
         <div className="text-center sm:text-left">
           <h3 className="text-sm font-semibold">Current Price</h3>
           <span className="text-lg font-bold">
-            {numToPrice(data.currentPriceToday)}
+            {unit} {formatNum(currentPrice)}
           </span>
         </div>
         <div className="text-center sm:text-left">
@@ -65,18 +77,14 @@ export const CoinCard = ({ coin, data }) => {
           </span>
         </div>
 
-        {/* <div className="flex-1 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-4"> */}
-
         <div className="text-center sm:text-left">
           <h3 className="text-sm font-semibold">Coin Amount</h3>
-          <span className="text-lg font-bold">
-            {numToPrice(coin.purchasedAmt)}
-          </span>
+          <span className="text-lg font-bold">{coin.purchasedAmt}</span>
         </div>
         <div className="text-center sm:text-left">
           <h3 className="text-sm font-semibold">Amount Value</h3>
           <span className="text-lg font-bold">
-            {numToPrice(coin.purchasedAmt * data.current_price)}
+            {unit} {amtValue}
           </span>
         </div>
         <div className="text-center sm:text-left">

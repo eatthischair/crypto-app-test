@@ -14,6 +14,8 @@ import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import Skeleton from 'react-loading-skeleton';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -36,7 +38,7 @@ export function BarChart({ pricesData }) {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    return <div>Loading...</div>;
+    return <Skeleton />;
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
@@ -103,10 +105,10 @@ export function BarChart({ pricesData }) {
   };
 
   return (
-    <div className="w-[40%]">
+    <div className="w-full sm:w-[90%]">
       <div className="absolute m-4 text-foreground p-4">
-        <h4 className="text-sm">Volume 24h</h4>
-        <h2 className="text-4xl font-bold">{latestVolume}</h2>
+        <h4 className="text-xs sm:text-sm">Volume 24h</h4>
+        <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>
         <div className="text-sm">Apr 01 2025</div>
       </div>
       <Bar options={options} data={data} height={500} width={800} />
