@@ -19,7 +19,7 @@ export const SearchBar = ({ coinsList }) => {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="sm:relative w-full sm:w-full ">
       <Input
         placeholder="Search..."
         className="flex w-full"

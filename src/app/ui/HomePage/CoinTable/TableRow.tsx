@@ -47,45 +47,56 @@ export const TableRow = ({ coin, index, ref }) => {
   return (
     <div
       ref={ref}
-      className="grid grid-cols-[5%_20%_10%_6%_6%_6%_12%_12%_15%] gap-4 p-4 truncate h-[15vh]
-      hover:bg-[var(--card)] transition-all duration-1000 ease-in-out rounded-lg hover:border-[var(--primary)] hover:border"
+      className="
+    grid grid-cols-[40%_20%_40%] gap-2 p-2 truncate h-[15vh] border
+    sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[15vh]
+    hover:bg-[var(--card)] transition-all duration-1000 ease-in-out rounded-lg hover:border-[var(--primary)] hover:border
+    text-sm sm:text-base"
     >
-      <div>{index + 1}</div>
-      <div className="grid grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal ">
-        <Image src={coin.image} width="30" height="30" alt="Coin Icon" />
+      <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal items-center">
+        <div className="p-1">
+          <Image
+            src={coin.image}
+            width="40"
+            height="40"
+            sizes="(max-width: 500px) 300vw, 300vw (max-width: 1200px) 50vw"
+            alt="Coin Icon"
+          />
+        </div>
         <Link href={`/coin/${coin.id}`}>
-          {coin.name}({coin.symbol.toUpperCase()})
+          {coin.name}
+          {'\n'}({coin.symbol.toUpperCase()})
         </Link>
       </div>
-      <div>
+      <div className="flex items-center">
         {unit} {formatNum(currentPrice)}
       </div>
 
-      <div>
+      <div className="hidden sm:flex sm:items-center">
         {formatPriceChange(coin.price_change_percentage_1h_in_currency)}
       </div>
-      <div>
+      <div className="hidden sm:flex sm:items-center ">
         {formatPriceChange(coin.price_change_percentage_24h_in_currency)}
       </div>
-      <div>
+      <div className="hidden sm:flex sm:items-center">
         {formatPriceChange(coin.price_change_percentage_7d_in_currency)}
       </div>
 
-      <div className="grid grid-cols-2 grid-rows-[25%_75%] m-0 p-0">
-        <div className="m-0 p-0">{formatNum(totalVolume)}</div>
+      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:m-0 sm:p-0">
+        <div className="m-0 p-0 pt-6">{formatNum(totalVolume)}</div>
         <div className="m-0 p-0"></div>
-        <div className="m-0 p-0">{formatNum(marketCap)}</div>
-        <div className="col-span-3 m-0 p-0 py-1">
+        <div className="m-0 p-0 pt-6">{formatNum(marketCap)}</div>
+        <div className="col-span-3 m-0 p-0 py-1 sm:flex sm:items-center">
           <Progress value={progressVolumeMarketCap} />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 grid-rows-[25%_75%] gap-0 m-0 p-0 align-items-center">
-        <div className="m-0 p-0">{formatNum(coin.circulating_supply)}</div>
+      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:gap-0 sm:m-0 sm:p-0 sm:align-items-center">
+        <div className="m-0 p-0 pt-6">{formatNum(coin.circulating_supply)}</div>
         <div></div>
-        <div className="m-0 p-0">{formatNum(coin.total_supply)}</div>
+        <div className="m-0 p-0 pt-6">{formatNum(coin.total_supply)}</div>
 
-        <div className="col-span-3 gap-0 h-full py-1">
+        <div className="col-span-3 gap-0 h-full py-1 sm:flex sm:items-center">
           <Progress value={circulatingTotalSupply} />
         </div>
       </div>

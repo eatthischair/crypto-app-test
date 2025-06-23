@@ -5,7 +5,7 @@ import Skeleton from 'react-loading-skeleton';
 import { getGlobalData } from '@/app/api/getGlobalData';
 
 export function HeaderComponents() {
-  const { isPending, error, data, isFetching } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ['dataBar'],
     queryFn: async () => {
       const response = await fetch('https://api.coingecko.com/api/v3/global');

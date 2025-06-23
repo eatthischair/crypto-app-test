@@ -7,7 +7,8 @@ export const fetchData = async (url) => {
       accept: 'application/json',
       'x-cg-demo-api-key': process.env.REACT_APP_COINGECKO_API_KEY,
     },
-    cache: 'force-cache',
+    // cache: 'force-cache',
+    next: { revalidate: 3600 },
   };
 
   const response = await fetch(url, options);

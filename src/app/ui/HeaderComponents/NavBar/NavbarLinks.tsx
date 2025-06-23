@@ -18,7 +18,7 @@ export const NavBarLinks = ({
       href={href}
       className={cn(
         buttonVariants({ variant: color }),
-        'text-xl p-4 w-[90%] h-[80%]'
+        'flex h-[8vh] flex-grow sm:text-xl p-4 sm:w-[90%] sm:h-[80%]'
       )}
     >
       {title}

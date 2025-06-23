@@ -11,7 +11,7 @@ export const Table = ({ coinsSorted, getData, hasMore }) => {
       loader={<CoinTableSkeleton />}
       scrollThreshold={1}
       endMessage={<p style={{ textAlign: 'center' }}>The end</p>}
-      className="grid auto-cols-auto overscroll-none"
+      className="grid auto-cols-auto overscroll-none sm:p-0 p-2"
     >
       {coinsSorted.map((row, index) => {
         return <TableRow coin={row} index={index} key={row.id} />;

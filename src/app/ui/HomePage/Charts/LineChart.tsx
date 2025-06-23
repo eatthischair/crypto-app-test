@@ -25,7 +25,7 @@ ChartJS.register(
   Legend
 );
 
-export function LineChart({ pricesData }) {
+export function LineChart({ pricesData, formattedDate }) {
   const prices = pricesData?.prices;
   const labels = prices?.map((item) => new Date(item[0]).getDate());
 
@@ -106,7 +106,7 @@ export function LineChart({ pricesData }) {
       <div className="absolute m-4 text-foreground p-4">
         <h4 className="text-xs sm:text-sm">Bitcoin</h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestPrice}</h2>
-        <div className="text-sm">Apr 01 2025</div>
+        <div className="text-sm">{formattedDate}</div>
       </div>
       <Line options={options} data={data} height={500} width={800} />
     </div>

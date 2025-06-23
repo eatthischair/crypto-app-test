@@ -25,7 +25,7 @@ ChartJS.register(
   Legend
 );
 
-export function BarChart({ pricesData }) {
+export function BarChart({ pricesData, formattedDate }) {
   const currency = useSelector((state) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state) => state.exchangeRatesReducer.exchangeRates
@@ -109,7 +109,7 @@ export function BarChart({ pricesData }) {
       <div className="absolute m-4 text-foreground p-4">
         <h4 className="text-xs sm:text-sm">Volume 24h</h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>
-        <div className="text-sm">Apr 01 2025</div>
+        <div className="text-sm">{formattedDate}</div>
       </div>
       <Bar options={options} data={data} height={500} width={800} />
     </div>

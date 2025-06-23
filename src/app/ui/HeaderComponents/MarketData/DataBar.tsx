@@ -37,10 +37,10 @@ export function DataBar({ data }) {
   ).currentPrice;
 
   return (
-    <span className="flex m-auto my-4 h-[10%] w-[60%] items-center justify-center gap-4 text-xs z-0">
-      <div className="p-8">Coins {data.active_cryptocurrencies}</div>
-      <div className="p-8">Exchange {data.markets} </div>
-      <div className="p-8">{formatNum(marketCap)}</div>
+    <span className="max-w-[90%] flex m-auto my-4 h-[10%] sm:w-[60%] items-center justify-center gap-4 text-xs z-0 ">
+      <div className="p-2 sm:p-8">Coins {data.active_cryptocurrencies}</div>
+      <div className="p-2 sm:p-8">Exchange {data.markets} </div>
+      <div className="p-2 sm:p-8">{formatNum(marketCap)}</div>
       <div className="flex flex-grow flex-nowrap items-center gap-2">
         {formatNum(totalVolume)}
         <Progress className="w-[50%] m-0" value={Math.trunc(totalVolume)} />

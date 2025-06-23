@@ -34,7 +34,7 @@ export const CurrencySwitch = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>{currency.toUpperCase()}</DropdownMenuTrigger>
-      <DropdownMenuContent className="max-h-60">
+      <DropdownMenuContent className="sm:max-h-60">
         {Object.keys(currencies.rates).map((cur) => {
           return (
             <DropdownMenuItem

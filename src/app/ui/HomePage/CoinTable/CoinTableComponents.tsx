@@ -50,7 +50,7 @@ export const CoinTableComponents = ({ coinTable }) => {
   };
 
   return (
-    <div className="overflow-y-auto">
+    <div className="overflow-y-auto sm:w-full">
       <div className="grid">
         <TableHeader toggleState={toggleState} filterCoins={filterCoins} />
       </div>

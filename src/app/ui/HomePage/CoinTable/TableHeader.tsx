@@ -1,7 +1,6 @@
 import { HeaderButton } from './HeaderButton';
 export const TableHeader = ({ toggleState, filterCoins }) => {
   const colsArr = [
-    '#',
     'Name',
     'Price',
     '1h%',
@@ -12,7 +11,7 @@ export const TableHeader = ({ toggleState, filterCoins }) => {
     'Last 7d',
   ];
   return (
-    <div className="grid grid-cols-[5%_20%_10%_6%_6%_6%_12%_12%_15%] gap-4">
+    <div className="hidden sm:grid sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:text-base sm:w-full sm:overscroll-x-none ">
       {colsArr.map((text, index) => {
         return (
           <HeaderButton
