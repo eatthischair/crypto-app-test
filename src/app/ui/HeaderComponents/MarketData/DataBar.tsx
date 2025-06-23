@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { convert } from '../NavBar/convert';
 import { formatNum } from '@/lib/utils';
 import { DataBarSkeleton } from './DataBarSkeleton';
+import Image from 'next/image';
 
 export function DataBar({ data }) {
   // if (!data) return <DataBarSkeleton />;
@@ -30,6 +31,7 @@ export function DataBar({ data }) {
     exchangeRateObj,
     exchangeRates.rates.usd
   ).currentPrice;
+  console.log('totalvolume', totalVolume, data.total_volume.btc);
   const marketCap = convert(
     data.total_market_cap.btc,
     exchangeRateObj,
@@ -46,6 +48,7 @@ export function DataBar({ data }) {
         <Progress className="w-[50%] m-0" value={Math.trunc(totalVolume)} />
       </div>
       <div className="flex flex-grow flex-nowrap items-center gap-2">
+        <Image src="/icons/bitcoin.svg" width={20} height={20} alt="btc logo" />
         {Math.trunc(data.market_cap_percentage.btc)}%
         <Progress
           className="w-[50%] m-0"
@@ -53,6 +56,12 @@ export function DataBar({ data }) {
         />
       </div>
       <div className="flex flex-grow flex-nowrap items-center gap-2">
+        <Image
+          src="/icons/ethereum.svg"
+          width={20}
+          height={20}
+          alt="eth logo"
+        />
         {Math.trunc(data.market_cap_percentage.eth)}%{' '}
         <Progress className="w-[50%] m-0" value={8} />
       </div>
