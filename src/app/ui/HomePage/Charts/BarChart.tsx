@@ -26,9 +26,9 @@ ChartJS.register(
 );
 
 export function BarChart({ pricesData, formattedDate }) {
-  const currency = useSelector((state) => state.currencyReducer.currency);
+  const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
-    (state) => state.exchangeRatesReducer.exchangeRates
+    (state: any) => state.exchangeRatesReducer.exchangeRates
   );
 
   if (

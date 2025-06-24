@@ -8,9 +8,9 @@ import { convert } from '../../HeaderComponents/NavBar/convert';
 import Skeleton from 'react-loading-skeleton';
 
 export const TableRow = ({ coin, index, ref }) => {
-  const currency = useSelector((state) => state.currencyReducer.currency);
+  const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
-    (state) => state.exchangeRatesReducer.exchangeRates
+    (state: any) => state.exchangeRatesReducer.exchangeRates
   );
 
   if (

@@ -10,7 +10,7 @@ export const NavBarLinks = ({
   href: string;
   title: string;
 }) => {
-  const nightMode = useSelector((state) => state.themeReducer.nightMode);
+  const nightMode = useSelector((state: any) => state.themeReducer.nightMode);
   const color = nightMode ? 'outline' : 'secondary';
 
   return (

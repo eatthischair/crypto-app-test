@@ -10,9 +10,9 @@ import Image from 'next/image';
 export function DataBar({ data }) {
   // if (!data) return <DataBarSkeleton />;
 
-  const currency = useSelector((state) => state.currencyReducer.currency);
+  const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
-    (state) => state.exchangeRatesReducer.exchangeRates
+    (state: any) => state.exchangeRatesReducer.exchangeRates
   );
 
   if (
@@ -31,7 +31,6 @@ export function DataBar({ data }) {
     exchangeRateObj,
     exchangeRates.rates.usd
   ).currentPrice;
-  console.log('totalvolume', totalVolume, data.total_volume.btc);
   const marketCap = convert(
     data.total_market_cap.btc,
     exchangeRateObj,
