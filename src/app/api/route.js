@@ -52,4 +52,4 @@ export const dynamic = 'force-static';
 //     console.error('Error fetching data:', error.message);
 //   }
 // }
-export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+// export const fetcher = (...args) => fetch(...args).then((res) => res.json());
