@@ -17,10 +17,24 @@ export const fetchData = async (url) => {
   };
 
   const response = await fetch(url, options);
-  if (!response.ok) {
-    throw new Error('Failed to connect to CoinGecko API', response.status);
+  // if (!response.ok) {
+  //   throw new Error('Failed to connect to CoinGecko API', response.status);
+  // }
+
+    if (!response.ok) {
+      console.error(`Fetch failed: ${response.status} ${response.statusText}`);
+      return null; // or fallback data
+    }
+
+    const body = await response.json();
+    return { status: response.status, body };
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return null; // or fallback data
   }
-  const body = await response.json();
-  console.log('RESPONSE', body);
-  return { status: response.status, body };
-};
+
+
+  // const body = await response.json();
+  // console.log('RESPONSE', body);
+  // return { status: response.status, body };
+// };
