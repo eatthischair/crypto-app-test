@@ -1,4 +1,4 @@
-import { getCoinsList } from '@/app/api/route';
+import { getCoinsList } from '@/app/api/getCoinsList';
 import Page2 from './page2';
 import Skeleton from 'react-loading-skeleton';
 

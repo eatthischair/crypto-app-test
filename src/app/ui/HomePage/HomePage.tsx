@@ -3,6 +3,8 @@ import { BarChart } from './Charts/BarChart';
 import { CoinTable } from './CoinTable/CoinTable';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
+import { Suspense } from 'react';
+
 export async function HomePage() {
   const chartData = await getChartData('bitcoin');
   if (!chartData) return <LoadingSpinner />;
@@ -27,7 +29,9 @@ export async function HomePage() {
         </div>
       </div>
       <div>
-        <CoinTable />
+        <Suspense>
+          <CoinTable />
+        </Suspense>
       </div>
     </>
   );
