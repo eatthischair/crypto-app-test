@@ -4,7 +4,7 @@ import { CoinTable } from './CoinTable/CoinTable';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
-
+import TestFetch from './TestFetch';
 export async function HomePage() {
   const chartData = await getChartData('bitcoin');
   if (!chartData) return <LoadingSpinner />;
@@ -20,6 +20,7 @@ export async function HomePage() {
       <h2 className="flex w-full gap-8 p-4 justify-center flex-grow">
         Your Overview
       </h2>
+      <TestFetch />
       <div className="w-full grid grid-cols-1 grid-rows-2 gap-6 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
         <div className="sm:h-3/5 w-full h-64">
           <LineChart pricesData={chartData} formattedDate={formattedDate} />
