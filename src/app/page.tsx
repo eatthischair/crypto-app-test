@@ -1,4 +1,5 @@
 import { HomePage } from './ui/HomePage/HomePage';
 export default async function Home() {
-  return <HomePage />;
+  // return <HomePage />;
+  return <div>penis</div>;
 }
