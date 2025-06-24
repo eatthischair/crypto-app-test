@@ -1,5 +1,5 @@
 import { CoinTableComponents } from './CoinTableComponents';
-import { getCoinTableData } from '../../../api/route';
+import { getCoinTableData } from '../../../api/getCoinTableData';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 export async function CoinTable() {
   const coinTable = await getCoinTableData(1);
