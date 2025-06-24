@@ -29,9 +29,9 @@ export async function HomePage() {
         </div>
       </div>
       <div>
-        <Suspense>
-          <CoinTable />
-        </Suspense>
+        {/* <Suspense> */}
+        <CoinTable />
+        {/* </Suspense> */}
       </div>
     </>
   );
