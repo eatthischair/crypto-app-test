@@ -1,3 +1,4 @@
+'use client';
 import { NavBar } from './NavBar/Navbar';
 import { DataBar } from './MarketData/DataBar';
 import { useQuery } from '@tanstack/react-query';

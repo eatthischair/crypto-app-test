@@ -14,7 +14,7 @@ import { useState, useEffect } from 'react';
 
 export const CurrencySwitch = () => {
   const dispatch = useAppDispatch();
-  dispatch(currencySwitch);
+  // dispatch(currencySwitch);
 
   const [currency, setCurrency] = useState('usd');
   const stateCurrency = useSelector(
