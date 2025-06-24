@@ -29,9 +29,9 @@ export function LineChart({ pricesData, formattedDate }) {
   const prices = pricesData?.prices;
   const labels = prices?.map((item) => new Date(item[0]).getDate());
 
-  const currency = useSelector((state) => state.currencyReducer.currency);
+  const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
-    (state) => state.exchangeRatesReducer.exchangeRates
+    (state: any) => state.exchangeRatesReducer.exchangeRates
   );
 
   if (

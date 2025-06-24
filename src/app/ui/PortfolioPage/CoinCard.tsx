@@ -6,9 +6,9 @@ import { convert } from '../HeaderComponents/NavBar/convert';
 import { formatNum } from '@/lib/utils';
 
 export const CoinCard = ({ coin, data }) => {
-  const currency = useSelector((state) => state.currencyReducer.currency);
+  const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
-    (state) => state.exchangeRatesReducer.exchangeRates
+    (state: any) => state.exchangeRatesReducer.exchangeRates
   );
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 

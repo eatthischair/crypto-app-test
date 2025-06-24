@@ -17,9 +17,11 @@ export const CurrencySwitch = () => {
   dispatch(currencySwitch);
 
   const [currency, setCurrency] = useState('usd');
-  const stateCurrency = useSelector((state) => state.currencyReducer.currency);
+  const stateCurrency = useSelector(
+    (state: any) => state.currencyReducer.currency
+  );
   const exchangeRates = useSelector(
-    (state) => state.exchangeRatesReducer.exchangeRates
+    (state: any) => state.exchangeRatesReducer.exchangeRates
   );
   useEffect(() => {
     const localStorageCur = localStorage.getItem('currency');
@@ -32,10 +34,9 @@ export const CurrencySwitch = () => {
     localStorage.setItem('currency', cur);
   };
 
-  console.log('eee', currencies);
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>{currency.toUpperCase()}</DropdownMenuTrigger>
+      <DropdownMenuTrigger>{currency?.toUpperCase()}</DropdownMenuTrigger>
       <DropdownMenuContent className="sm:max-h-60">
         {Object.keys(currencies.rates).map((cur) => {
           return (
