@@ -20,7 +20,6 @@ export const fetchData = async (url) => {
   // if (!response.ok) {
   //   throw new Error('Failed to connect to CoinGecko API', response.status);
   // }
-
     if (!response.ok) {
       console.error(`Fetch failed: ${response.status} ${response.statusText}`);
       return null; // or fallback data
@@ -28,10 +27,12 @@ export const fetchData = async (url) => {
 
     const body = await response.json();
     return { status: response.status, body };
-  } catch (error) {
+
+  catch (error) {
     console.error('Fetch error:', error);
     return null; // or fallback data
   }
+}
 
 
   // const body = await response.json();
