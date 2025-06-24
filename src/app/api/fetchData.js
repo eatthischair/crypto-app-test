@@ -1,6 +1,10 @@
 'use server';
 
 export const fetchData = async (url) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('API KEY:', process.env.COINGECKO_API_KEY);
+  }
+
   const options = {
     method: 'GET',
     headers: {
