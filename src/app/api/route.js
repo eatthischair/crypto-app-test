@@ -1,22 +1,22 @@
 export const dynamic = 'force-static';
 
-export async function GetChartData(coin) {
-  try {
-    const res = await fetch(
-      `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=180&interval=daily`,
-      { next: { revalidate: 3600 } }
-    );
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+// export async function GetChartData(coin) {
+//   try {
+//     const res = await fetch(
+//       `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=180&interval=daily`,
+//       { next: { revalidate: 3600 } }
+//     );
+//     if (!res.ok) {
+//       throw new Error(`HTTP error! status: ${res.status}`);
+//     }
 
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Database Error:', error);
-  }
-}
+//     const data = await res.json();
+//     return data;
+//   } catch (error) {
+//     // eslint-disable-next-line no-console
+//     console.error('Database Error:', error);
+//   }
+// }
 
 export async function getCoinTableData(page) {
   try {
