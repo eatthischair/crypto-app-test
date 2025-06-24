@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 export const Grid = ({ coin, allPrices }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
-    (state) => state.exchangeRatesReducer.exchangeRates
+    (state: any) => state.exchangeRatesReducer.exchangeRates
   );
 
   if (
