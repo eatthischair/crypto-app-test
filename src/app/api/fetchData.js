@@ -13,7 +13,7 @@ export const fetchData = async (url) => {
 
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error('Failed to connect to CoinGecko API');
+    throw new Error('Failed to connect to CoinGecko API', response);
   }
   const body = await response.json();
 
