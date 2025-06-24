@@ -13,9 +13,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
-export const AddCoinButton = ({ setCoins, coinsList, coinsData }) => {
+export const AddCoinButton = ({ setCoinsData, coinsList, coinsData }) => {
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');
@@ -40,7 +39,7 @@ export const AddCoinButton = ({ setCoins, coinsList, coinsData }) => {
       ...apiData,
     };
     localStorage.setItem('coins', JSON.stringify([...coinsData, mergedObj]));
-    setCoins([...coinsData, mergedObj]);
+    setCoinsData([...coinsData, mergedObj]);
   };
 
   const fetchCoinData = async (coinName) => {

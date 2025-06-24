@@ -5,6 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+
 import currencies from '../../../../data/exchangeRates.json';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/app/hooks';
@@ -31,6 +32,7 @@ export const CurrencySwitch = () => {
     localStorage.setItem('currency', cur);
   };
 
+  console.log('eee', currencies);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>{currency.toUpperCase()}</DropdownMenuTrigger>

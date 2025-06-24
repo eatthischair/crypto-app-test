@@ -5,7 +5,6 @@ import { CoinCard } from '@/app/ui/PortfolioPage/CoinCard';
 import { getPortfolioCoinData } from '@/app/api/getPortfolioCoinData';
 
 export default function Page2({ coinsList }) {
-  const [coins, setCoins] = useState([]);
   const [coinsData, setCoinsData] = useState([]);
 
   useEffect(() => {
@@ -42,8 +41,8 @@ export default function Page2({ coinsList }) {
       <div className="grid justify-items-end p-4 pt-0">
         <AddCoinButton
           coinsData={coinsData}
-          setCoins={setCoins}
           coinsList={coinsList}
+          setCoinsData={setCoinsData}
         />
       </div>
       <div className="w-full pt-16 mb-12 text-sm sm:text-base">

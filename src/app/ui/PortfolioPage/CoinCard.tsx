@@ -48,7 +48,9 @@ export const CoinCard = ({ coin, data }) => {
             Price Change 24h
           </h3>
           <span className="sm:text-lg text-base font-bold">
-            {formatPriceChange(data.priceChangeToday)}
+            {formatPriceChange(data.priceChangeToday) || (
+              <div className="font-normal text-base">Data Not Available</div>
+            )}
           </span>
         </div>
 
