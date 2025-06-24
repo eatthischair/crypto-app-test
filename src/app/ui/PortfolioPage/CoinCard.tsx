@@ -26,78 +26,110 @@ export const CoinCard = ({ coin, data }) => {
   );
 
   return (
-    <div className="w-full shadow-lg rounded-lg overflow-hidden grid grid-cols-[20%_80%] gap-4 p-12 mb-12">
-      <div className="sm:w-1/3 w-full aspect-square">
+    <div className="h-full sm:w-full shadow-lg rounded-lg overflow-hidden sm:grid sm:grid-cols-[20%_80%] sm:gap-4 sm:p-12 mb-12 bg-[var(--card)]">
+      <div className="flex flex-col items-center justify-start h-[20vh] sm:h-1/2 sm:w-1/2 w-full aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
         <img
           src={data?.image}
           alt="Coin Icon"
-          className="w-full h-full object-cover"
+          className="w-1/4 sm:w-full h-auto sm:h-full object-cover sm:pt-0"
         />
-        <div className="justify-center items-center">{coin.coinName}</div>
+        <div className="mt-2 text-left">{coin.coinName}</div>
       </div>
 
-      <div className="grid grid-cols-4 grid-rows-2">
-        <div className="text-center sm:text-left">
-          <h3 className="text-sm font-semibold">Current Price</h3>
-          <span className="text-lg font-bold">
+      <div className="grid grid-cols-2 p-2 m-2 items-stretch sm:grid-cols-4 sm:grid-rows-2">
+        <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">Current Price</h3>
+          <span className="sm:text-lg text-base font-bold">
             {unit} {formatNum(currentPrice)}
           </span>
         </div>
-        <div className="text-center sm:text-left">
-          <h3 className="text-sm font-semibold">Price Change 24h</h3>
-          <span className="text-lg font-bold">
+        <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">
+            Price Change 24h
+          </h3>
+          <span className="sm:text-lg text-base font-bold">
             {formatPriceChange(data.priceChangeToday)}
           </span>
         </div>
-        <div className="text-left ">
-          <h3 className="text-sm font-semibold">Market Cap vs Volume</h3>
 
-          {data.market_cap && data.total_volume ? (
-            <span className="">
-              <Progress
-                className="w-32 mt-2"
-                value={data.market_cap / data.total_volume}
-              />
-            </span>
-          ) : (
-            <div>Data Not Available</div>
-          )}
-        </div>
-        <div className="text-left">
-          <h3 className="text-sm font-semibold">Circ Supply vs Max Supply</h3>
-          <span className="">
+        <div className="hidden sm:grid sm:text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">
+            Market Cap vs Volume
+          </h3>
+          <span className="mt-auto">
             {data.market_cap && data.total_volume ? (
-              <Progress
-                className="w-32 mt-2"
-                value={100 * (data.circulating_supply / data.total_supply)}
-              />
+              <>
+                <div>
+                  {Math.ceil((data.total_volume / data.market_cap) * 100)}
+                  {'%'}
+                </div>
+                <Progress
+                  className="sm:w-32 w-24"
+                  value={Math.ceil((data.total_volume / data.market_cap) * 100)}
+                />
+              </>
             ) : (
-              <div>Data Not Available</div>
+              <div className="mt-auto">Data Not Available</div>
             )}
           </span>
         </div>
 
-        <div className="text-center sm:text-left">
-          <h3 className="text-sm font-semibold">Coin Amount</h3>
-          <span className="text-lg font-bold">{coin.purchasedAmt}</span>
+        <div className="hidden sm:grid sm:text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">
+            Circ Supply vs Max Supply
+          </h3>
+          <span className="mt-auto">
+            {data.market_cap && data.total_volume ? (
+              <>
+                <div>
+                  {Math.ceil((data.circulating_supply / data.max_supply) * 100)}
+                  {'%'}
+                </div>
+                <Progress
+                  className="sm:w-32 w-24"
+                  value={Math.ceil(
+                    (data.circulating_supply / data.max_supply) * 100
+                  )}
+                />
+              </>
+            ) : (
+              <div className="mt-auto">Data Not Available</div>
+            )}
+          </span>
         </div>
-        <div className="text-center sm:text-left">
-          <h3 className="text-sm font-semibold">Amount Value</h3>
-          <span className="text-lg font-bold">
+
+        <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">Coin Amount</h3>
+          <span className="sm:text-lg text-base font-bold">
+            {coin.purchasedAmt}
+          </span>
+        </div>
+
+        <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">Amount Value</h3>
+          <span className="sm:text-lg text-base font-bold">
             {unit} {amtValue}
           </span>
         </div>
-        <div className="text-center sm:text-left">
-          <h3 className="text-sm font-semibold">
+
+        <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">
             Amount Price Change since Purchase
           </h3>
-          <span className="text-lg font-bold">
+          <span className="sm:text-lg text-base font-bold">
             {formatPriceChange(amtChangeSincePurchase - 1)}
           </span>
         </div>
-        <div className="text-center sm:text-left">
-          <h3 className="text-sm font-semibold">Purchase Date</h3>
-          <span className="text-lg font-bold">{coin.purchasedDate}</span>
+
+        <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">Purchase Date</h3>
+          <span className="sm:text-lg text-base font-bold">
+            {new Date(coin.purchasedDate).toLocaleDateString('en-US', {
+              month: 'short',
+              day: '2-digit',
+              year: 'numeric',
+            })}
+          </span>
         </div>
       </div>
     </div>

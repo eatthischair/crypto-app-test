@@ -4,7 +4,7 @@ import { CopyButton } from './CopyButton';
 export const LinksRow = ({ coin }) => {
   return (
     <>
-      <div className="flex justify-between items-center gap-2 px-2 bg-[var(--card)] rounded-sm">
+      <div className="flex justify-between items-center gap-2 py-2 px-2 bg-[var(--card)] rounded-sm">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -17,7 +17,7 @@ export const LinksRow = ({ coin }) => {
 
         <CopyButton textToCopy={coin.links.blockchain_site[0]} />
       </div>
-      <div className="flex justify-between items-center gap-2 px-2 bg-[var(--card)] rounded-sm">
+      <div className="flex justify-between items-center gap-2 py-2 px-2 bg-[var(--card)] rounded-sm">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -29,7 +29,7 @@ export const LinksRow = ({ coin }) => {
         <div className="truncate">{coin.links.blockchain_site[1]}</div>
         <CopyButton textToCopy={coin.links.blockchain_site[1]} />
       </div>
-      <div className="flex justify-between items-center gap-2 px-2 bg-[var(--card)] rounded-sm">
+      <div className="flex justify-between items-center gap-2 py-2 px-2 bg-[var(--card)] rounded-sm">
         <a
           target="_blank"
           rel="noopener noreferrer"

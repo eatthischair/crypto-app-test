@@ -39,14 +39,14 @@ export default function Page2({ coinsList }) {
 
   return (
     <>
-      <div className="grid justify-items-end p-4">
+      <div className="grid justify-items-end p-4 pt-0">
         <AddCoinButton
           coinsData={coinsData}
           setCoins={setCoins}
           coinsList={coinsList}
         />
       </div>
-      <div className="w-full pt-16 mb-12">
+      <div className="w-full pt-16 mb-12 text-sm sm:text-base">
         {coinsData
           ? coinsData.map((coin, index) => {
               return (

@@ -48,24 +48,27 @@ export const ConvertCurrency = ({
   };
 
   return (
-    <div className="flex flex-grow-1 justify-center items-center gap-12 p-8 text-lg h-[30%]">
-      <div className="relative flex items-center bg-[var(--card)] rounded-sm max-w-[30%]">
+    <div className="grid grid-cols-1 grid-rows-3 gap-4 p-4 text-base h-auto sm:flex sm:flex-grow-1 sm:justify-center sm:items-center sm:gap-12 sm:p-8 sm:text-lg sm:h-[30%]">
+      <div className="relative flex items-center bg-[var(--card)] rounded-sm py-2 h-full sm:max-w-[30%]">
         <span className="pl-4 ml-0 mr-0 pr-2">{symbolArr[0]}</span>
         <Input
           placeholder="1.00"
-          className="w-full text-xl border-none"
+          className="w-full text-sm border-none sm:text-xl"
           onChange={(e) => convertCurToCrypto(e.target.value)}
           value={firstVal}
         />
       </div>
-      <div onClick={switchVals}>
-        <IoMdSwap size={24} />
+      <div
+        className="flex sm:bg-none justify-center h-full"
+        onClick={switchVals}
+      >
+        <IoMdSwap size={24} className="place-self-center" />
       </div>
-      <div className="relative flex items-center bg-[var(--card)] rounded-sm max-w-[30%] ">
+      <div className="relative flex items-center bg-[var(--card)] rounded-sm py-2 h-full sm:max-w-[30%]">
         <span className="pl-4 ml-0 mr-0 pr-2">{symbolArr[1]}</span>
         <Input
           disabled
-          className="w-full text-xl border-none disabled:opacity-100"
+          className="w-full text-sm border-none disabled:opacity-100 sm:text-xl"
           value={formatPrice(secondVal)}
         />
       </div>

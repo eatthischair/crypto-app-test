@@ -11,8 +11,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-//refactor to toggle once local storage implemented
-
 export function ThemeButton() {
   const { setTheme } = useTheme();
 

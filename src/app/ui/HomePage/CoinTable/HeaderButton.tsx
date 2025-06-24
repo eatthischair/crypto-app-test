@@ -8,11 +8,11 @@ export const HeaderButton = ({ text, index, toggleState, filterCoins }) => {
   const updateToggleState = () => {
     setToggled(!toggled);
     const newToggleState = Array(5).fill(null);
-    newToggleState[index - 1] = toggled === null ? false : !toggled;
+    newToggleState[index] = toggled === null ? false : !toggled;
     filterCoins(newToggleState);
   };
 
-  if (index >= 1 && index <= 5) {
+  if (index >= 0 && index <= 4) {
     return (
       <div>
         <button
@@ -26,7 +26,5 @@ export const HeaderButton = ({ text, index, toggleState, filterCoins }) => {
         </button>
       </div>
     );
-  } else if (index === 0 || index === 1) {
-    return <div className="ml-4 ">{text}</div>;
   } else return <div className="">{text}</div>;
 };

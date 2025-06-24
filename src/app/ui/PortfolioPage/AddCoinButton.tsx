@@ -64,7 +64,7 @@ export const AddCoinButton = ({ setCoins, coinsList, coinsData }) => {
       <DialogContent className="">
         <DialogHeader>
           <DialogTitle>Add Coin</DialogTitle>
-          <DialogDescription>Search for a coin to add, bitch</DialogDescription>
+          <DialogDescription>Search for a coin to add</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">

@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
 export const Grid = ({ coin, allPrices }) => {
-  // if (!data) return <LoadingSpinner />;
   const currency = useSelector((state) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state) => state.exchangeRatesReducer.exchangeRates
@@ -27,15 +26,16 @@ export const Grid = ({ coin, allPrices }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 grid-rows-[80%_20%] h-[40vh] gap-8 p-8 ">
-        <div className="flex flex-col justify-center items-center p-4 place-content-center bg-[var(--card)] rounded-sm">
+      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:grid-rows-[80%_20%] sm:h-[40vh] sm:gap-8 sm:p-8">
+        <div className="flex flex-col justify-center items-center p-4 bg-[var(--card)] rounded-sm sm:flex sm:flex-col sm:justify-center sm:items-center sm:p-4 sm:place-content-center">
           <Image
-            height="100"
-            width="100"
+            height="80"
+            width="80"
             src={coin.image?.large}
             alt="Coin symbol"
+            className="w-20 h-20 sm:w-[100px] sm:h-[100px]"
           />
-          <div className="w-36 flex place-content-center m-0 p-2 gap-0 ">
+          <div className="w-full flex justify-center m-0 p-2 gap-0 text-center sm:w-36 sm:place-content-center">
             {coin.name}({coin.symbol.toUpperCase()})
           </div>
         </div>
@@ -44,13 +44,13 @@ export const Grid = ({ coin, allPrices }) => {
           href={coin.links.homepage}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex place-content-center flex-nowrap truncate overflow-hidden text-overflow-ellipsis items-center  bg-[var(--card)] rounded-sm"
+          className="flex justify-center items-center truncate overflow-hidden text-ellipsis bg-[var(--card)] rounded-sm px-4 py-2 sm:flex sm:place-content-center sm:flex-nowrap"
         >
           {coin.links.homepage}
         </a>
       </div>
-      <div className="grid grid-cols-3 grid-rows-[80%_20%] h-[50vh] gap-4 p-8 ">
-        <div className="col-span-3 overflow-ellipsis overflow-scroll p-8 bg-[var(--card)] rounded-sm">
+      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:grid-rows-[80%_20%] sm:h-[50vh] sm:gap-4 sm:p-8">
+        <div className="col-span-1 overflow-ellipsis overflow-y-auto p-4 bg-[var(--card)] rounded-sm sm:col-span-3 sm:p-8">
           {coin.description.en}
         </div>
         <LinksRow coin={coin} />
@@ -64,7 +64,7 @@ export const Grid = ({ coin, allPrices }) => {
       {allPrices && allPrices.prices ? (
         <BottomChart allPrices={allPrices.prices} />
       ) : (
-        <div className="flex justify-center items-center h-[50vh]">
+        <div className="flex justify-center items-center h-[40vh] w-full">
           Chart data Not Available
         </div>
       )}
