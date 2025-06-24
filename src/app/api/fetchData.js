@@ -9,33 +9,29 @@ export const fetchData = async (url) => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      // 'x-cg-demo-api-key': process.env.REACT_APP_COINGECKO_API_KEY,
       'x-cg-demo-api-key': 'CG-tLCRhygcvpcYho3BrWGp8J7m',
     },
-    // cache: 'force-cache',
     next: { revalidate: 3600 },
   };
 
   const response = await fetch(url, options);
-  // if (!response.ok) {
-  //   throw new Error('Failed to connect to CoinGecko API', response.status);
-  // }
-    if (!response.ok) {
-      console.error(`Fetch failed: ${response.status} ${response.statusText}`);
-      return null; // or fallback data
-    }
 
-    const body = await response.json();
-    return { status: response.status, body };
-
-  catch (error) {
-    console.error('Fetch error:', error);
+  if (!response.ok) {
+    console.error(`Fetch failed: ${response.status} ${response.statusText}`);
     return null; // or fallback data
   }
-}
 
+  const body = await response.json();
+  return { status: response.status, body };
 
-  // const body = await response.json();
-  // console.log('RESPONSE', body);
-  // return { status: response.status, body };
+  //   catch (error) {
+  //     console.error('Fetch error:', error);
+  //     return null; // or fallback data
+  //   }
+  // }
+};
+
+// const body = await response.json();
+// console.log('RESPONSE', body);
+// return { status: response.status, body };
 // };
