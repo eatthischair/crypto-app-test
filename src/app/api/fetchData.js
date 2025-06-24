@@ -5,7 +5,8 @@ export const fetchData = async (url) => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      'x-cg-demo-api-key': process.env.REACT_APP_COINGECKO_API_KEY,
+      // 'x-cg-demo-api-key': process.env.REACT_APP_COINGECKO_API_KEY,
+      'x-cg-demo-api-key': CG - tLCRhygcvpcYho3BrWGp8J7m,
     },
     // cache: 'force-cache',
     next: { revalidate: 3600 },
