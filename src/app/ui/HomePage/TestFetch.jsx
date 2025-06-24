@@ -6,7 +6,7 @@ export default function TestFetch() {
     fetch('https://api.coingecko.com/api/v3/ping', {
       headers: {
         accept: 'application/json',
-        'x-cg-demo-api-key': 'YOUR_API_KEY',
+        'x-cg-demo-api-key': 'CG-tLCRhygcvpcYho3BrWGp8J7m',
         'User-Agent': 'Mozilla/5.0',
       },
     })
