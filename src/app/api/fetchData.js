@@ -37,7 +37,7 @@
 // // };
 'use server';
 
-export const fetchData = async (url: string) => {
+export const fetchData = async (url) => {
   try {
     if (process.env.NODE_ENV === 'development') {
       console.log('API KEY:', process.env.COINGECKO_API_KEY);
