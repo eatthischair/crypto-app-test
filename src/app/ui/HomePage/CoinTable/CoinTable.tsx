@@ -1,4 +1,4 @@
-'use clien';
+'use client';
 import { CoinTableComponents } from './CoinTableComponents';
 import { getCoinTableData } from '../../../api/getCoinTableData';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
@@ -16,6 +16,7 @@ export function CoinTable() {
     }
     updateTable();
   }, []);
+
   if (!coinTable) return <LoadingSpinner />;
   return (
     // <Suspense>
