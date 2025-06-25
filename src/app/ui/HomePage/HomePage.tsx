@@ -6,7 +6,7 @@ import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
-export async function HomePage() {
+export function HomePage() {
   // const chartData = await getChartData('bitcoin');
   // if (!chartData) return <LoadingSpinner />;
   const [chartData, setChartData] = useState<any>(null);
@@ -44,7 +44,7 @@ export async function HomePage() {
       </div>
       <div>
         {/* <Suspense> */}
-        <CoinTable />
+        {/* <CoinTable /> */}
         {/* </Suspense> */}
       </div>
     </>
