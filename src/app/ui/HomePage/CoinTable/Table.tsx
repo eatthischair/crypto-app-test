@@ -26,6 +26,11 @@ export const Table = ({ coinsSorted, getData, hasMore }) => {
           return <TableRow coin={row} index={index} key={row.id} />;
         })}
       </InfiniteScroll> */}
+      <div>
+        {coinsSorted.map((row, index) => {
+          return <TableRow coin={row} index={index} key={row.id} />;
+        })}
+      </div>
     </>
   );
 };
