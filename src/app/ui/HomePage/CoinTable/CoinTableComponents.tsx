@@ -12,17 +12,6 @@ import {
 import { getCoins } from '@/app/api/getCoins';
 import { getCoinTableData } from '@/app/api/getCoinTableData';
 export const CoinTableComponents = ({ coinTable }) => {
-  // export const CoinTableComponents = () => {
-  // const [coinTable, setCoinTable] = useState(null);
-
-  // useEffect(() => {
-  //   async function updateTable() {
-  //     const data = await getCoinTableData(1);
-  //     setCoinTable(data);
-  //   }
-  //   updateTable();
-  // }, []);
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
