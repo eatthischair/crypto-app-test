@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 export function HomePage() {
   // const chartData = await getChartData('bitcoin');
   // if (!chartData) return <LoadingSpinner />;
-  const [chartData, setChartData] = useState<any>(null);
+  const [chartData, setChartData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export function HomePage() {
     };
 
     fetchData();
+    console.log('chartdata', chartData);
   }, []);
 
   if (loading) return <LoadingSpinner />;
@@ -31,6 +32,7 @@ export function HomePage() {
   });
   return (
     <>
+      <div>{JSON.stringify(chartData)}</div>
       <h2 className="flex w-full gap-8 p-4 justify-center flex-grow">
         Your Overview
       </h2>
