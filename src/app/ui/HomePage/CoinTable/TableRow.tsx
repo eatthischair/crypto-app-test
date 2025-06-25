@@ -14,15 +14,16 @@ export const TableRow = ({ coin, index, ref }) => {
     (state: any) => state.exchangeRatesReducer.exchangeRates
   );
 
-  // if (
-  //   !currency ||
-  //   !exchangeRates ||
-  //   !exchangeRates.rates ||
-  //   !exchangeRates.rates[currency] ||
-  //   !exchangeRates.rates.usd
-  // ) {
-  //   return <Skeleton height={70} />;
-  // }
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    // return <Skeleton height={70} />;
+    return <div>penis</div>;
+  }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   const progressVolumeMarketCap = (coin.total_volume / coin.market_cap) * 100;
