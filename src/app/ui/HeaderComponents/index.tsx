@@ -4,27 +4,32 @@ import { DataBar } from './MarketData/DataBar';
 import { useQuery } from '@tanstack/react-query';
 import Skeleton from 'react-loading-skeleton';
 import { getGlobalData } from '@/app/api/getGlobalData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 export function HeaderComponents() {
-  // const { isPending, error, data } = useQuery({
-  //   queryKey: ['dataBar'],
-  //   queryFn: async () => {
-  //     const response = await fetch('https://api.coingecko.com/api/v3/global');
-  //     return await response.json();
-  //   },
-  // });
+  // const [data, setData] = useState({});
 
-  const [data, setData] = useState({});
-  const fetchStuff = async () => {
-    const data = await getGlobalData();
-    setData(data);
-  };
-  fetchStuff();
+  const { isPending, error, data } = useQuery({
+    queryKey: ['dataBar'],
+    queryFn: async () => {
+      const response = await fetch('https://api.coingecko.com/api/v3/global');
+      return await response.json();
+    },
+  });
+
+  // useEffect(() => {
+  //   const fetchStuff = async () => {
+  //     const data = await getGlobalData();
+  //     setData(data);
+  //   };
+  //   fetchStuff(); // ✅ run once on mount
+  // }, []); // ✅ empty dependency array = run only once
+
+  console.log('DATA');
   return (
     <>
       <NavBar />
-      {!data ? <Skeleton /> : <DataBar data={data.data} />}
-      {/* <DataBar data={data?.data} /> */}
+      {!data ? <Skeleton /> : <DataBar data={data?.data} />}
+      {/* <DataBar data={data} /> */}
     </>
   );
 }
