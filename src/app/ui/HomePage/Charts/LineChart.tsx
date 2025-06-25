@@ -27,6 +27,7 @@ ChartJS.register(
 
 export function LineChart({ pricesData, formattedDate }) {
   const prices = pricesData?.prices;
+  const priceValues = prices.map((item) => item[1]);
   const labels = prices?.map((item) => new Date(item[0]).getDate());
 
   const currency = useSelector((state: any) => state.currencyReducer.currency);
@@ -80,8 +81,8 @@ export function LineChart({ pricesData, formattedDate }) {
         grid: {
           display: false,
         },
-        suggestedMin: Math.min(prices),
-        suggestedMax: Math.max(prices),
+        suggestedMin: Math.min(...priceValues),
+        suggestedMax: Math.max(...priceValues),
       },
       x: {
         min: 0,
