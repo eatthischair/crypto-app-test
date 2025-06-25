@@ -15,7 +15,7 @@ export function CoinTable() {
       setCoinTable(data);
     }
     updateTable();
-  });
+  }, []);
   if (!coinTable) return <LoadingSpinner />;
   return (
     // <Suspense>

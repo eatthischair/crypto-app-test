@@ -6,7 +6,8 @@ import CoinTableSkeleton from './CoinTableSkeleton';
 export const Table = ({ coinsSorted, getData, hasMore }) => {
   return (
     <>
-      {/* <InfiniteScroll
+      <div>{JSON.stringify(coinsSorted)}</div>
+      <InfiniteScroll
         dataLength={coinsSorted?.length}
         next={getData}
         hasMore={hasMore}
@@ -18,12 +19,7 @@ export const Table = ({ coinsSorted, getData, hasMore }) => {
         {coinsSorted.map((row, index) => {
           return <TableRow coin={row} index={index} key={row.id} />;
         })}
-      </InfiniteScroll> */}
-      <div>
-        {coinsSorted.map((coin) => {
-          return <div>{coin}penis</div>;
-        })}
-      </div>
+      </InfiniteScroll>
     </>
   );
 };
