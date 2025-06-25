@@ -1,9 +1,15 @@
 'use client';
-import InfiniteScroll from 'react-infinite-scroll-component';
+// import InfiniteScroll from 'react-infinite-scroll-component';
 import { TableRow } from './TableRow';
 import CoinTableSkeleton from './CoinTableSkeleton';
+import dynamic from 'next/dynamic';
 
 export const Table = ({ coinsSorted, getData, hasMore }) => {
+  const InfiniteScroll = dynamic(
+    () => import('react-infinite-scroll-component'),
+    { ssr: false }
+  );
+
   return (
     <>
       <div>{JSON.stringify(coinsSorted)}</div>
