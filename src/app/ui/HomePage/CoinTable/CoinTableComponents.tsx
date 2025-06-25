@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Table } from './Table';
@@ -10,8 +10,19 @@ import {
   sortCoins,
 } from './coinTableUtils';
 import { getCoins } from '@/app/api/getCoins';
-
+import { getCoinTableData } from '@/app/api/getCoinTableData';
 export const CoinTableComponents = ({ coinTable }) => {
+  // export const CoinTableComponents = () => {
+  // const [coinTable, setCoinTable] = useState(null);
+
+  // useEffect(() => {
+  //   async function updateTable() {
+  //     const data = await getCoinTableData(1);
+  //     setCoinTable(data);
+  //   }
+  //   updateTable();
+  // }, []);
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -49,6 +60,7 @@ export const CoinTableComponents = ({ coinTable }) => {
     }
   };
 
+  if (!coinTable) return;
   return (
     <div className="overflow-y-auto sm:w-full">
       <div className="grid">

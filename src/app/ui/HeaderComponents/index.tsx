@@ -11,9 +11,9 @@ export function HeaderComponents() {
   const { isPending, error, data } = useQuery({
     queryKey: ['dataBar'],
     queryFn: async () => {
-      // const response = await fetch('https://api.coingecko.com/api/v3/global');
-      // return await response.json();
-      return getGlobalData();
+      const response = await fetch('https://api.coingecko.com/api/v3/global');
+      return await response.json();
+      // return getGlobalData();
     },
   });
 
@@ -25,7 +25,7 @@ export function HeaderComponents() {
   //   fetchStuff(); // ✅ run once on mount
   // }, []); // ✅ empty dependency array = run only once
 
-  console.log('DATA');
+  // console.log('DATA');
   return (
     <>
       <NavBar />

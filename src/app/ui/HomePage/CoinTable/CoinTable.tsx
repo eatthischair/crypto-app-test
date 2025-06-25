@@ -1,10 +1,21 @@
+'use clien';
 import { CoinTableComponents } from './CoinTableComponents';
 import { getCoinTableData } from '../../../api/getCoinTableData';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { Suspense } from 'react';
-export async function CoinTable() {
-  const coinTable = await getCoinTableData(1);
-  console.log('cointable', coinTable);
+import { useEffect, useState } from 'react';
+export function CoinTable() {
+  // const coinTable = await getCoinTableData(1);
+  // console.log('cointable', coinTable);
+  const [coinTable, setCoinTable] = useState(null);
+
+  useEffect(() => {
+    async function updateTable() {
+      const data = await getCoinTableData(1);
+      setCoinTable(data);
+    }
+    updateTable();
+  }, []);
   if (!coinTable) return <LoadingSpinner />;
   return (
     <Suspense>

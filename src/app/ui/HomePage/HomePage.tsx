@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 import { LineChart } from './Charts/LineChart';
 import { BarChart } from './Charts/BarChart';
 import { CoinTable } from './CoinTable/CoinTable';
@@ -6,9 +6,10 @@ import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
-export async function HomePage() {
-  const chartData = await getChartData('bitcoin');
-  if (!chartData) return <LoadingSpinner />;
+import { CoinTableComponents } from './CoinTable/CoinTableComponents';
+export function HomePage() {
+  // const chartData = await getChartData('bitcoin');
+  // if (!chartData) return <LoadingSpinner />;
 
   // const [chartData, setChartData] = useState(null);
   // const [loading, setLoading] = useState(true);
@@ -49,6 +50,7 @@ export async function HomePage() {
       <div>
         {/* <Suspense> */}
         <CoinTable />
+        {/* <CoinTableComponents /> */}
         {/* </Suspense> */}
       </div>
     </>
