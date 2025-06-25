@@ -11,8 +11,9 @@ export function HeaderComponents() {
   const { isPending, error, data } = useQuery({
     queryKey: ['dataBar'],
     queryFn: async () => {
-      const response = await fetch('https://api.coingecko.com/api/v3/global');
-      return await response.json();
+      // const response = await fetch('https://api.coingecko.com/api/v3/global');
+      // return await response.json();
+      return getGlobalData();
     },
   });
 

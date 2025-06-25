@@ -1,14 +1,28 @@
+'use client';
 import { LineChart } from './Charts/LineChart';
 import { BarChart } from './Charts/BarChart';
 import { CoinTable } from './CoinTable/CoinTable';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
-
+import { useEffect, useState } from 'react';
 export async function HomePage() {
-  const chartData = await getChartData('bitcoin');
-  if (!chartData) return <LoadingSpinner />;
+  // const chartData = await getChartData('bitcoin');
+  // if (!chartData) return <LoadingSpinner />;
+  const [chartData, setChartData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getChartData('bitcoin');
+      setChartData(data);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <LoadingSpinner />;
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', {
     month: 'short',
