@@ -1,3 +1,4 @@
+'use client';
 import { Progress } from '@/components/ui/progress';
 import { CoinTableLineChart } from './CoinTableLineChart';
 import { formatNum, formatPriceChange } from '../../../../lib/utils';
