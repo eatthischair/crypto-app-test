@@ -39,9 +39,9 @@
 
 export const fetchData = async (url) => {
   try {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('API KEY:', process.env.COINGECKO_API_KEY);
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //   console.log('API KEY:', process.env.COINGECKO_API_KEY);
+    // }
 
     const options = {
       method: 'GET',
@@ -63,7 +63,7 @@ export const fetchData = async (url) => {
     }
 
     const body = await response.json();
-    console.log(`✅ Success [${url}]:`, body); // Optional: limit or remove in prod
+    // console.log(`✅ Success [${url}]:`, body); // Optional: limit or remove in prod
     return { status: response.status, body };
   } catch (error) {
     console.error(`❌ Fetch error for ${url}:`, error);

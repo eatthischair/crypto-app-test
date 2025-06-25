@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import { LineChart } from './Charts/LineChart';
 import { BarChart } from './Charts/BarChart';
 import { CoinTable } from './CoinTable/CoinTable';
@@ -6,24 +6,25 @@ import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
-export function HomePage() {
-  // const chartData = await getChartData('bitcoin');
-  // if (!chartData) return <LoadingSpinner />;
-  const [chartData, setChartData] = useState(null);
-  const [loading, setLoading] = useState(true);
+export async function HomePage() {
+  const chartData = await getChartData('bitcoin');
+  if (!chartData) return <LoadingSpinner />;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getChartData('bitcoin');
-      setChartData(data);
-      setLoading(false);
-    };
+  // const [chartData, setChartData] = useState(null);
+  // const [loading, setLoading] = useState(true);
 
-    fetchData();
-    console.log('chartdata', chartData);
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getChartData('bitcoin');
+  //     setChartData(data);
+  //     setLoading(false);
+  //   };
 
-  if (loading) return <LoadingSpinner />;
+  //   fetchData();
+  //   console.log('chartdata', chartData);
+  // }, []);
+
+  // if (loading) return <LoadingSpinner />;
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', {
     month: 'short',

@@ -24,8 +24,11 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+import { use } from 'react';
 
 export function LineChart({ pricesData, formattedDate }) {
+  pricesData = use(pricesData);
+
   const prices = pricesData?.prices;
   const priceValues = prices.map((item) => item[1]);
   const labels = prices?.map((item) => new Date(item[0]).getDate());
