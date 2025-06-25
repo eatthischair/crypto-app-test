@@ -18,8 +18,8 @@ export function CoinTable() {
   });
   if (!coinTable) return <LoadingSpinner />;
   return (
-    <Suspense>
-      <CoinTableComponents coinTable={coinTable} />
-    </Suspense>
+    // <Suspense>
+    <CoinTableComponents coinTable={coinTable} />
+    // </Suspense>
   );
 }
