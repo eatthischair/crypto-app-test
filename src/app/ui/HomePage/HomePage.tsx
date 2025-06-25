@@ -31,6 +31,7 @@ export async function HomePage() {
     day: '2-digit',
     year: 'numeric',
   });
+
   return (
     <>
       <div>{JSON.stringify(chartData)}</div>
