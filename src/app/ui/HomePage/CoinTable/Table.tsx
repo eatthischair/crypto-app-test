@@ -6,7 +6,6 @@ import CoinTableSkeleton from './CoinTableSkeleton';
 export const Table = ({ coinsSorted, getData, hasMore }) => {
   return (
     <>
-      <div>{JSON.stringify(coinsSorted)}</div>
       <InfiniteScroll
         dataLength={coinsSorted?.length}
         next={getData}

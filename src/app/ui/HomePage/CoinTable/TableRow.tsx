@@ -14,15 +14,15 @@ export const TableRow = ({ coin, index, ref }) => {
     (state: any) => state.exchangeRatesReducer.exchangeRates
   );
 
-  if (
-    !currency ||
-    !exchangeRates ||
-    !exchangeRates.rates ||
-    !exchangeRates.rates[currency] ||
-    !exchangeRates.rates.usd
-  ) {
-    return <Skeleton height={70} />;
-  }
+  // if (
+  //   !currency ||
+  //   !exchangeRates ||
+  //   !exchangeRates.rates ||
+  //   !exchangeRates.rates[currency] ||
+  //   !exchangeRates.rates.usd
+  // ) {
+  //   return <Skeleton height={70} />;
+  // }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   const progressVolumeMarketCap = (coin.total_volume / coin.market_cap) * 100;
@@ -47,7 +47,7 @@ export const TableRow = ({ coin, index, ref }) => {
 
   return (
     <div
-      ref={ref}
+      ref={index}
       className="grid grid-cols-[40%_20%_40%] gap-2 p-2 truncate h-[15vh] border
     sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[15vh]
     hover:bg-[var(--card)] transition-all duration-1000 ease-in-out rounded-lg hover:border-[var(--primary)] hover:border
