@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 import Skeleton from 'react-loading-skeleton';
 import { useRef } from 'react';
+import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 export const TableRow = ({ coin, index }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
@@ -21,8 +22,7 @@ export const TableRow = ({ coin, index }) => {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    // return <Skeleton height={70} />;
-    return <div>penis</div>;
+    return <LoadingSpinner />;
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 

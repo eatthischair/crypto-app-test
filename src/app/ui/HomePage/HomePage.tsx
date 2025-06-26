@@ -9,23 +9,6 @@ import { useEffect, useState } from 'react';
 import { CoinTableComponents } from './CoinTable/CoinTableComponents';
 export async function HomePage() {
   const chartData = await getChartData('bitcoin');
-  // if (!chartData) return <LoadingSpinner />;
-
-  // const [chartData, setChartData] = useState(null);
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const data = await getChartData('bitcoin');
-  //     setChartData(data);
-  //     setLoading(false);
-  //   };
-
-  //   fetchData();
-  //   console.log('chartdata', chartData);
-  // }, []);
-
-  // if (loading) return <LoadingSpinner />;
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', {
     month: 'short',
@@ -49,7 +32,6 @@ export async function HomePage() {
       <div>
         <Suspense fallback={<LoadingSpinner />}>
           <CoinTable />
-          {/* <CoinTableComponents /> */}
         </Suspense>
       </div>
     </>

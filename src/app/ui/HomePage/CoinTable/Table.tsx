@@ -2,8 +2,6 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { TableRow } from './TableRow';
 import CoinTableSkeleton from './CoinTableSkeleton';
-import dynamic from 'next/dynamic';
-import { useRef } from 'react';
 
 export const Table = ({ coinsSorted, getData, hasMore }) => {
   return (

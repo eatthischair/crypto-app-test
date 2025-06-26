@@ -1,9 +1,12 @@
+'use client';
 import React from 'react';
 import { formatPriceChange } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { useSelector } from 'react-redux';
 import { convert } from '../HeaderComponents/NavBar/convert';
 import { formatNum } from '@/lib/utils';
+import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import { useEffect, useState } from 'react';
 
 export const CoinCard = ({ coin, data }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
@@ -11,6 +14,29 @@ export const CoinCard = ({ coin, data }) => {
     (state: any) => state.exchangeRatesReducer.exchangeRates
   );
   const exchangeRateObj = exchangeRates?.rates?.[currency];
+
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (currency && exchangeRates && exchangeRates.rates) {
+      setReady(true);
+    }
+  }, [currency, exchangeRates]);
+
+  if (!ready) {
+    return <div>Loading...</div>;
+  }
+  // if (
+  //   !currency ||
+  //   !exchangeRates ||
+  //   !exchangeRates.rates ||
+  //   !exchangeRateObj ||
+  //   !exchangeRateObj.rates
+  // ) {
+  //   return <LoadingSpinner />;
+  // }
+
+  // console.log('STATES LOADED BOSS', currency, exchangeRates, exchangeRateObj);
 
   const amtChangeSincePurchase = coin.currentPriceToday / coin.current_price;
 
