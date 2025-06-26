@@ -12,8 +12,7 @@ export const Table = ({ coinsSorted, getData, hasMore }) => {
 
   return (
     <>
-      <div>{JSON.stringify(coinsSorted)}</div>
-      {/* <InfiniteScroll
+      <InfiniteScroll
         dataLength={coinsSorted?.length}
         next={getData}
         hasMore={hasMore}
@@ -25,12 +24,12 @@ export const Table = ({ coinsSorted, getData, hasMore }) => {
         {coinsSorted.map((row, index) => {
           return <TableRow coin={row} index={index} key={row.id} />;
         })}
-      </InfiniteScroll> */}
-      <div>
+      </InfiniteScroll>
+      {/* <div>
         {coinsSorted.map((row, index) => {
           return <TableRow coin={row} index={index} key={row.id} />;
         })}
-      </div>
+      </div> */}
     </>
   );
 };
