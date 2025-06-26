@@ -24,7 +24,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-//
 export function LineChart({ pricesData, formattedDate }) {
   const prices = pricesData?.prices;
   const priceValues = prices.map((item) => item[1]);

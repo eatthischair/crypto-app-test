@@ -26,17 +26,6 @@ export const CoinCard = ({ coin, data }) => {
   if (!ready) {
     return <div>Loading...</div>;
   }
-  // if (
-  //   !currency ||
-  //   !exchangeRates ||
-  //   !exchangeRates.rates ||
-  //   !exchangeRateObj ||
-  //   !exchangeRateObj.rates
-  // ) {
-  //   return <LoadingSpinner />;
-  // }
-
-  // console.log('STATES LOADED BOSS', currency, exchangeRates, exchangeRateObj);
 
   const amtChangeSincePurchase = coin.currentPriceToday / coin.current_price;
 
