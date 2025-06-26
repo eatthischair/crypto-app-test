@@ -1,18 +1,24 @@
 'use server';
 
 export const fetchData = async (url) => {
+  const apiKey = process.env.NEXT_PUBLIC_COINGECKO_API_KEY;
+
+  console.log('Server action running', apiKey);
+
   try {
     const options = {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        'x-cg-demo-api-key': process.env.COINGECKO_API_KEY,
-        'User-Agent': 'Mozilla/5.0 (Vercel)',
+        'x-cg-demo-api-key': process.env.NEXT_PUBLIC_COINGECKO_API_KEY,
+        // 'User-Agent': 'Mozilla/5.0 (Vercel)',
       },
-      next: { revalidate: 3600 },
+      // next: { revalidate: 3600 },
     };
 
     const response = await fetch(url, options);
+    // const res = await response.text();
+    // console.log('reponse', response);
 
     if (!response.ok) {
       console.error(
@@ -22,6 +28,7 @@ export const fetchData = async (url) => {
     }
 
     const body = await response.json();
+    // console.log('BODY', body);
     return { status: response.status, body };
   } catch (error) {
     console.error(`❌ Fetch error for ${url}:`, error);

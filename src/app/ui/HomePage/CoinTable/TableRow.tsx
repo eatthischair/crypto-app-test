@@ -9,6 +9,7 @@ import { convert } from '../../HeaderComponents/NavBar/convert';
 import Skeleton from 'react-loading-skeleton';
 import { useRef } from 'react';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+
 export const TableRow = ({ coin, index }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
