@@ -29,7 +29,7 @@ export function HeaderComponents() {
   return (
     <>
       <NavBar />
-      {/* {!data ? <Skeleton /> : <DataBar data={data?.data} />} */}
+      {isPending ? <Skeleton /> : <DataBar data={data?.data} />}
       {/* <DataBar data={data.data} /> */}
     </>
   );

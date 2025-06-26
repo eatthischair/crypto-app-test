@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { ThemeProvider } from './ui/Components/theme-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 
 const queryClient = new QueryClient();
 
@@ -28,7 +30,9 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
-                <HeaderComponents />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <HeaderComponents />
+                </Suspense>
                 {children}
               </ThemeProvider>
             </Provider>
