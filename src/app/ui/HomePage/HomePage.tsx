@@ -48,10 +48,10 @@ export function HomePage() {
         </div> */}
       </div>
       <div>
-        {/* <Suspense> */}
-        <CoinTable />
-        {/* <CoinTableComponents /> */}
-        {/* </Suspense> */}
+        <Suspense fallback={<LoadingSpinner />}>
+          <CoinTable />
+          {/* <CoinTableComponents /> */}
+        </Suspense>
       </div>
     </>
   );

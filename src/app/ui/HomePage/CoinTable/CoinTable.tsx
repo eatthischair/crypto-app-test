@@ -5,8 +5,6 @@ import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 export function CoinTable() {
-  // const coinTable = await getCoinTableData(1);
-  // console.log('cointable', coinTable);
   const [coinTable, setCoinTable] = useState(null);
 
   useEffect(() => {

@@ -7,13 +7,13 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 import Skeleton from 'react-loading-skeleton';
-
-export const TableRow = ({ coin, index, ref }) => {
+import { useRef } from 'react';
+export const TableRow = ({ coin, index }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
   );
-
+  const ref = useRef(null);
   if (
     !currency ||
     !exchangeRates ||
@@ -48,7 +48,7 @@ export const TableRow = ({ coin, index, ref }) => {
 
   return (
     <div
-      // ref={index}
+      // ref={ref}
       className="grid grid-cols-[40%_20%_40%] gap-2 p-2 truncate h-[15vh] border
     sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[15vh]
     hover:bg-[var(--card)] transition-all duration-1000 ease-in-out rounded-lg hover:border-[var(--primary)] hover:border

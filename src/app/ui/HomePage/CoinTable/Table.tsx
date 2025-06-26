@@ -1,14 +1,16 @@
 'use client';
-// import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { TableRow } from './TableRow';
 import CoinTableSkeleton from './CoinTableSkeleton';
 import dynamic from 'next/dynamic';
+import { useRef } from 'react';
 
 export const Table = ({ coinsSorted, getData, hasMore }) => {
-  const InfiniteScroll = dynamic(
-    () => import('react-infinite-scroll-component'),
-    { ssr: false }
-  );
+  // const InfiniteScroll = dynamic(
+  //   () => import('react-infinite-scroll-component'),
+  //   { ssr: false }
+  // );
+  // const ref = useRef(null);
 
   return (
     <>
@@ -25,11 +27,6 @@ export const Table = ({ coinsSorted, getData, hasMore }) => {
           return <TableRow coin={row} index={index} key={row.id} />;
         })}
       </InfiniteScroll>
-      {/* <div>
-        {coinsSorted.map((row, index) => {
-          return <TableRow coin={row} index={index} key={row.id} />;
-        })}
-      </div> */}
     </>
   );
 };
