@@ -6,7 +6,7 @@ export const fetchData = async (url) => {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        'x-cg-demo-api-key': 'CG-tLCRhygcvpcYho3BrWGp8J7m',
+        'x-cg-demo-api-key': process.env.COINGECKO_API_KEY,
         'User-Agent': 'Mozilla/5.0 (Vercel)',
       },
       next: { revalidate: 3600 },
