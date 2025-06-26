@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import { LineChart } from './Charts/LineChart';
 import { BarChart } from './Charts/BarChart';
 import { CoinTable } from './CoinTable/CoinTable';
@@ -7,8 +7,8 @@ import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import { CoinTableComponents } from './CoinTable/CoinTableComponents';
-export function HomePage() {
-  // const chartData = await getChartData('bitcoin');
+export async function HomePage() {
+  const chartData = await getChartData('bitcoin');
   // if (!chartData) return <LoadingSpinner />;
 
   // const [chartData, setChartData] = useState(null);
@@ -35,17 +35,16 @@ export function HomePage() {
 
   return (
     <>
-      {/* <div>{JSON.stringify(chartData)}</div> */}
       <h2 className="flex w-full gap-8 p-4 justify-center flex-grow">
         Your Overview
       </h2>
       <div className="w-full grid grid-cols-1 grid-rows-2 gap-6 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
-        {/* <div className="sm:h-3/5 w-full h-64">
+        <div className="sm:h-3/5 w-full h-64">
           <LineChart pricesData={chartData} formattedDate={formattedDate} />
         </div>
         <div className="sm:h-3/5 w-full h-64">
           <BarChart pricesData={chartData} formattedDate={formattedDate} />
-        </div> */}
+        </div>
       </div>
       <div>
         <Suspense fallback={<LoadingSpinner />}>

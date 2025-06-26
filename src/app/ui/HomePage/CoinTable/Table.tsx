@@ -6,12 +6,6 @@ import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 
 export const Table = ({ coinsSorted, getData, hasMore }) => {
-  // const InfiniteScroll = dynamic(
-  //   () => import('react-infinite-scroll-component'),
-  //   { ssr: false }
-  // );
-  // const ref = useRef(null);
-
   return (
     <>
       <InfiniteScroll
