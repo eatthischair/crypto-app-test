@@ -4,12 +4,10 @@ import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { useSelector } from 'react-redux';
 import { convert } from '../NavBar/convert';
 import { formatNum } from '@/lib/utils';
-import { DataBarSkeleton } from './DataBarSkeleton';
+import Skeleton from 'react-loading-skeleton';
 import Image from 'next/image';
 
 export function DataBar({ data }) {
-  // if (!data) return <DataBarSkeleton />;
-
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
@@ -22,7 +20,11 @@ export function DataBar({ data }) {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    return <LoadingSpinner />;
+    return (
+      <div className="w-screen h-screen">
+        <Skeleton count={20} />
+      </div>
+    );
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 

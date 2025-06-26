@@ -7,6 +7,7 @@ import { convert } from '../HeaderComponents/NavBar/convert';
 import { formatNum } from '@/lib/utils';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 export const CoinCard = ({ coin, data }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
@@ -24,7 +25,7 @@ export const CoinCard = ({ coin, data }) => {
   }, [currency, exchangeRates]);
 
   if (!ready) {
-    return <div>Loading...</div>;
+    return <Skeleton count={50} />;
   }
 
   const amtChangeSincePurchase = coin.currentPriceToday / coin.current_price;

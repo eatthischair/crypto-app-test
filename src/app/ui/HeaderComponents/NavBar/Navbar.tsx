@@ -12,7 +12,6 @@ export const NavBar = () => {
   const [coinsList, setCoinsList] = useState(null);
 
   const dispatch = useAppDispatch();
-  // dispatch(exchangeRatesSwitch);
 
   useEffect(() => {
     async function fetchData() {

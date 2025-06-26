@@ -8,6 +8,7 @@ import { ThemeProvider } from './ui/Components/theme-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 const queryClient = new QueryClient();
 
@@ -30,10 +31,12 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
-                <Suspense fallback={<LoadingSpinner />}>
-                  <HeaderComponents />
-                </Suspense>
-                {children}
+                <SkeletonTheme baseColor="var(--card)">
+                  <Suspense fallback={<Skeleton count={5} />}>
+                    <HeaderComponents />
+                  </Suspense>
+                  {children}
+                </SkeletonTheme>
               </ThemeProvider>
             </Provider>
           </QueryClientProvider>

@@ -15,6 +15,7 @@ export const TableRow = ({ coin, index }) => {
     (state: any) => state.exchangeRatesReducer.exchangeRates
   );
   const ref = useRef(null);
+
   if (
     !currency ||
     !exchangeRates ||
@@ -22,7 +23,11 @@ export const TableRow = ({ coin, index }) => {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    return <LoadingSpinner />;
+    return (
+      <div className="w-full h-full">
+        <Skeleton count={20} />
+      </div>
+    );
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 

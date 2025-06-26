@@ -1,11 +1,10 @@
-// 'use client';
 import { LineChart } from './Charts/LineChart';
 import { BarChart } from './Charts/BarChart';
 import { CoinTable } from './CoinTable/CoinTable';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
-import { useEffect, useState } from 'react';
+
 import { CoinTableComponents } from './CoinTable/CoinTableComponents';
 export async function HomePage() {
   const chartData = await getChartData('bitcoin');

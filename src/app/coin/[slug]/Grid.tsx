@@ -5,6 +5,7 @@ import { BottomChart } from '@/app/ui/CoinPage/BottomChart';
 import { CoinData } from '@/app/ui/CoinPage/CoinData';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
 
 export const Grid = ({ coin, allPrices }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
@@ -19,7 +20,11 @@ export const Grid = ({ coin, allPrices }) => {
     !exchangeRates.rates[currency] ||
     !exchangeRates.rates.usd
   ) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-full">
+        <Skeleton count={20} />
+      </div>
+    );
   }
 
   const exchangeRateObj = exchangeRates?.rates?.[currency];

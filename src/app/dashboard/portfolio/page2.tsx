@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { AddCoinButton } from '@/app/ui/PortfolioPage/AddCoinButton';
 import { CoinCard } from '@/app/ui/PortfolioPage/CoinCard';
 import { getPortfolioCoinData } from '@/app/api/getPortfolioCoinData';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Page2({ coinsList }) {
   const [coinsData, setCoinsData] = useState([]);
@@ -46,17 +48,23 @@ export default function Page2({ coinsList }) {
         />
       </div>
       <div className="w-full pt-16 mb-12 text-sm sm:text-base">
-        {coinsData
-          ? coinsData.map((coin, index) => {
-              return (
-                <CoinCard
-                  key={coin.coinName}
-                  coin={coin}
-                  data={coinsData[index]}
-                />
-              );
-            })
-          : ''}
+        {coinsData ? (
+          coinsData.map((coin, index) => {
+            return (
+              <CoinCard
+                key={coin.coinName}
+                coin={coin}
+                data={coinsData[index]}
+              />
+            );
+          })
+        ) : (
+          <>
+            <Skeleton count={5} />
+            <Skeleton count={5} />
+            <Skeleton count={5} />
+          </>
+        )}
       </div>
     </>
   );
