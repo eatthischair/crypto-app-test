@@ -36,6 +36,14 @@ export const CoinCard = ({ coin, data }) => {
     exchangeRates.rates.usd
   );
 
+  console.log(
+    'redux vals',
+    currentPrice,
+    data.currentPriceToday,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  );
+
   const amtValue = formatNum(
     convert(data.currentPriceToday, exchangeRateObj, exchangeRates.rates.usd)
       .currentPrice * coin.purchasedAmt

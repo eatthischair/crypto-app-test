@@ -14,7 +14,12 @@ import { Label } from '@/components/ui/label';
 import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
 
-export const AddCoinButton = ({ setCoinsData, coinsList, coinsData }) => {
+export const AddCoinButton = ({
+  setCoinsData,
+  coinsList,
+  coinsData,
+  updateCoins,
+}) => {
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');
@@ -26,6 +31,7 @@ export const AddCoinButton = ({ setCoinsData, coinsList, coinsData }) => {
     setCoinName(searchTerm);
     setIsDropdownOpen(searchTerm.length > 0);
   };
+
   const filteredCoins = coinsList?.filter((coin) =>
     coin.id.toLowerCase().startsWith(coinName.toLowerCase())
   );
@@ -40,6 +46,7 @@ export const AddCoinButton = ({ setCoinsData, coinsList, coinsData }) => {
     };
     localStorage.setItem('coins', JSON.stringify([...coinsData, mergedObj]));
     setCoinsData([...coinsData, mergedObj]);
+    updateCoins();
   };
 
   const fetchCoinData = async (coinName) => {

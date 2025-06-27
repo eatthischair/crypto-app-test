@@ -22,6 +22,17 @@ export const CurrencySwitch = () => {
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
   );
+
+  //initialize localstorage
+  useEffect(() => {
+    const localStorageCur = localStorage.getItem('currency');
+    console.log('localstorageCur', localStorageCur);
+    if (!localStorageCur) {
+      localStorage.setItem('currency', 'usd');
+      dispatch(currencySwitch('usd'));
+    }
+  }, []);
+
   useEffect(() => {
     const localStorageCur = localStorage.getItem('currency') || 'usd';
     setCurrency(localStorageCur);
