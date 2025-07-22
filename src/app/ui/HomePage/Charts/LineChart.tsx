@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 import { Line } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,

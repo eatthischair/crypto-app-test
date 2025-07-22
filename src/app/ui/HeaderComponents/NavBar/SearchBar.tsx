@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { SearchDropDown } from './SearchDropDown';
+import { Search } from 'lucide-react';
 
 export const SearchBar = ({ coinsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,10 +18,13 @@ export const SearchBar = ({ coinsList }) => {
   };
 
   return (
-    <div className="sm:relative w-full sm:w-full ">
+    <div className="sm:relative w-full sm:w-full h-full ">
+      <div className="absolute mt-5 ml-4 bg-transparent">
+        <Search size={18} strokeWidth={2.5} />
+      </div>
       <Input
         placeholder="Search..."
-        className="flex w-full"
+        className="pl-12 flex w-full h-full bg-[#191926]"
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}

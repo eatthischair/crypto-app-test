@@ -36,7 +36,7 @@ export const formatPriceChange = (num) => {
   num = Number(num).toFixed(2);
   const isPositive = Math.sign(num);
   const formatted = isPositive === 1 ? <FaCaretUp /> : <FaCaretDown />;
-  const color = isPositive === 1 ? 'text-green-500' : 'text-red-500';
+  const color = isPositive === 1 ? 'text-[#00c9be]' : 'text-[#f2015d]';
   num = isPositive === 1 ? num : Math.abs(num);
 
   const classNameString = `flex items-center gap-1 ${color}`;

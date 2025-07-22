@@ -6,6 +6,7 @@ import { CoinData } from '@/app/ui/CoinPage/CoinData';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 
 export const Grid = ({ coin, allPrices }) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
@@ -54,10 +55,12 @@ export const Grid = ({ coin, allPrices }) => {
           {coin.links.homepage}
         </a>
       </div>
-      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:grid-rows-[80%_20%] sm:h-[50vh] sm:gap-4 sm:p-8">
-        <div className="col-span-1 overflow-ellipsis overflow-y-auto p-4 bg-[var(--card)] rounded-sm sm:col-span-3 sm:p-8">
+
+      <div className="mt-12 grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:h-[40vh] sm:gap-4 sm:p-8">
+        <div className="sm:col-span-2 overflow-ellipsis overflow-y-auto p-4 bg-[var(--background)] rounded-sm sm:p-8">
           {coin.description.en}
         </div>
+
         <LinksRow coin={coin} />
       </div>
       <ConvertCurrency

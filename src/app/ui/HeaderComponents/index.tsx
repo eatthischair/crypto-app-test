@@ -18,8 +18,8 @@ export function HeaderComponents() {
 
   return (
     <>
-      <NavBar />
       {isPending ? <Skeleton /> : <DataBar data={data?.data} />}
+      <NavBar />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { getCoinById } from '@/app/api/getCoinById';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 
 export const AddCoinDropDown = ({
@@ -6,12 +7,23 @@ export const AddCoinDropDown = ({
   searchTerm,
   setCoinName,
   setIsDropdownOpen,
+  setCoinImage,
 }) => {
   const handleClick = (coinId) => {
     setCoinName(coinId);
     setIsDropdownOpen(false);
+    const aids = getCoinById(coinId);
+    console.log('aids', aids);
+    getCoinImage(coinId);
   };
 
+  const getCoinImage = async (coinId) => {
+    const coinImg = await getCoinById(coinId);
+    console.log('getcoinimage', coinImg);
+    setCoinImage(coinImg?.image?.large);
+  };
+
+  console.log('addcoindropdown', filteredCoins);
   return (
     <>
       {isDropdownOpen && filteredCoins.length > 0 ? (

@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 export const NavBarLinks = ({
   href,
   title,
+  icon,
 }: {
   href: string;
   title: string;
@@ -18,9 +19,10 @@ export const NavBarLinks = ({
       href={href}
       className={cn(
         buttonVariants({ variant: color }),
-        'flex h-[8vh] flex-grow sm:text-xl p-4 sm:w-[90%] sm:h-[80%]'
+        'flex h-[8vh] sm:text-xl p-4 px-0 sm:w-[90%] sm:h-[80%] border-0'
       )}
     >
+      {icon}
       {title}
     </Link>
   );

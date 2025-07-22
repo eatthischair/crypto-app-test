@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-export function CoinTableLineChart({ coin }) {
+export function CoinTableLineChart({ coin, fillColor }) {
   const sevenDayArr = coin.sparkline_in_7d.price;
   const priceGoingUp = sevenDayArr[sevenDayArr.length - 1] >= sevenDayArr[0];
   const labels = sevenDayArr.map((item) => new Date(item[0]));
@@ -72,8 +72,9 @@ export function CoinTableLineChart({ coin }) {
       {
         label: 'Dataset 1',
         data: sevenDayArr,
-        borderColor: priceGoingUp ? 'green' : 'red',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        // borderColor: priceGoingUp ? 'green' : 'red',
+        borderColor: fillColor,
+        backgroundColor: fillColor,
       },
     ],
   };

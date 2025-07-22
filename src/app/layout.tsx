@@ -31,7 +31,7 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               >
-                <SkeletonTheme baseColor="var(--card)">
+                <SkeletonTheme baseColor="var(--background)">
                   <Suspense fallback={<Skeleton count={5} />}>
                     <HeaderComponents />
                   </Suspense>

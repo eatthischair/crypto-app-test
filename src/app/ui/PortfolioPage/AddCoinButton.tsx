@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
+import Image from 'next/image';
 
 export const AddCoinButton = ({
   setCoinsData,
@@ -23,6 +24,7 @@ export const AddCoinButton = ({
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');
+  const [coinImage, setCoinImage] = useState('');
   const today = new Date().toISOString().split('T')[0];
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -67,56 +69,64 @@ export const AddCoinButton = ({
       <DialogTrigger asChild>
         <Button variant="outline">Add Coin</Button>
       </DialogTrigger>
-      <DialogContent className="">
+      <DialogContent className="w-full rounded-sm bg-[var(--background)]">
         <DialogHeader>
           <DialogTitle>Add Coin</DialogTitle>
           <DialogDescription>Search for a coin to add</DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Coin
-            </Label>
-            <div className="relative col-span-3">
-              <Input
-                id="name"
-                onChange={(e) => handleInput(e.target.value)}
-                value={coinName}
-                className="col-span-3"
-              />
-              {coinName && (
-                <AddCoinDropDown
-                  filteredCoins={filteredCoins}
-                  isDropdownOpen={isDropdownOpen}
-                  setIsDropdownOpen={setIsDropdownOpen}
-                  searchTerm={coinName}
-                  setCoinName={setCoinName}
+        <div className="grid grid-cols-[40%_60%] w-full bg-[var(--background)]">
+          {coinImage ? (
+            <Image
+              src={coinImage}
+              width={400}
+              height={400}
+              alt="Selected Coin Logo"
+              className="p-4"
+            />
+          ) : (
+            <div className="w-full"></div>
+          )}
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <div className="relative col-span-4">
+                <Input
+                  id="name"
+                  onChange={(e) => handleInput(e.target.value)}
+                  value={coinName}
+                  className="col-span-4 rounded-xs"
+                  placeholder="Select Coin"
                 />
-              )}
+                {coinName && (
+                  <AddCoinDropDown
+                    filteredCoins={filteredCoins}
+                    isDropdownOpen={isDropdownOpen}
+                    setIsDropdownOpen={setIsDropdownOpen}
+                    searchTerm={coinName}
+                    setCoinName={setCoinName}
+                    setCoinImage={setCoinImage}
+                  />
+                )}
+              </div>
             </div>
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="amt" className="text-right">
-              Purchased Amt
-            </Label>
-            <Input
-              id="amt"
-              type="number"
-              className="col-span-3"
-              onChange={(e) => setPurchasedAmt(e.target.value)}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="date" className="text-right">
-              Purchase Date
-            </Label>
-            <Input
-              id="date"
-              type="date"
-              className="col-span-3"
-              onChange={(e) => setPurchasedDate(e.target.value)}
-              max={today}
-            />
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Input
+                id="amt"
+                type="number"
+                className="col-span-4 rounded-xs"
+                onChange={(e) => setPurchasedAmt(e.target.value)}
+                placeholder="Purchased Amt"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Input
+                id="date"
+                type="date"
+                className="col-span-4 rounded-xs"
+                onChange={(e) => setPurchasedDate(e.target.value)}
+                max={today}
+                placeholder="Purchased Date"
+              />
+            </div>
           </div>
         </div>
         <DialogFooter>
@@ -126,6 +136,7 @@ export const AddCoinButton = ({
               variant="secondary"
               onClick={saveCoin}
               disabled={!(coinName && purchasedAmt > 0 && purchasedDate)}
+              className="bg-[#3a397c]"
             >
               Save Changes
             </Button>

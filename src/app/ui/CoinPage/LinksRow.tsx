@@ -3,45 +3,19 @@ import { CopyButton } from './CopyButton';
 
 export const LinksRow = ({ coin }) => {
   return (
-    <>
-      <div className="flex justify-between items-center gap-2 py-2 px-2 bg-[var(--card)] rounded-sm">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={coin.links.blockchain_site[0]}
-          title={coin.links.blockchain_site[0]}
+    <div className=" content-center">
+      {coin.links.blockchain_site.slice(0, 3).map((link, idx) => (
+        <div
+          key={idx}
+          className="flex justify-between items-center gap-2 p-4 bg-[var(--card)] rounded-sm mt-8 first:mt-2"
         >
-          <FaLink />
-        </a>
-        <div className="truncate">{coin.links.blockchain_site[0]}</div>
-
-        <CopyButton textToCopy={coin.links.blockchain_site[0]} />
-      </div>
-      <div className="flex justify-between items-center gap-2 py-2 px-2 bg-[var(--card)] rounded-sm">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={coin.links.blockchain_site[1]}
-          title={coin.links.blockchain_site[1]}
-        >
-          <FaLink />
-        </a>
-        <div className="truncate">{coin.links.blockchain_site[1]}</div>
-        <CopyButton textToCopy={coin.links.blockchain_site[1]} />
-      </div>
-      <div className="flex justify-between items-center gap-2 py-2 px-2 bg-[var(--card)] rounded-sm">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={coin.links.blockchain_site[2]}
-          title={coin.links.blockchain_site[2]}
-        >
-          {' '}
-          <FaLink />
-        </a>
-        <div className="truncate">{coin.links.blockchain_site[2]}</div>
-        <CopyButton textToCopy={coin.links.blockchain_site[2]} />
-      </div>
-    </>
+          <a target="_blank" rel="noopener noreferrer" href={link} title={link}>
+            <FaLink />
+          </a>
+          <div className="truncate">{link}</div>
+          <CopyButton textToCopy={link} />
+        </div>
+      ))}
+    </div>
   );
 };

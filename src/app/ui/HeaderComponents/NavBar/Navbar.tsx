@@ -8,6 +8,9 @@ import { exchangeRatesSwitch } from '@/app/features/exchangeRatesSlice';
 import { useEffect, useState } from 'react';
 import { getExchangeRates } from '@/app/api/getExchangeRates';
 import { getCoinsList } from '@/app/api/getCoinsList';
+import Image from 'next/image';
+import { House, Layers } from 'lucide-react';
+
 export const NavBar = () => {
   const [coinsList, setCoinsList] = useState(null);
 
@@ -34,17 +37,34 @@ export const NavBar = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-full flex-shrink h-[20%] grid grid-cols-1 grid-rows-2 gap-3 p-2 items-center  sm:flex sm:flex-row sm:gap-3 sm:p-0 sm:h-[10%]">
-      <div className="flex gap-4 sm:justify-start sm:flex-shrink">
-        <NavBarLinks href="/" title={'Coins'} />
-        <NavBarLinks href="/dashboard/portfolio" title={'Portfolio'} />
+    <div className="w-full min-h-[20%] grid grid-cols-1 gap-3 p-2 sm:grid-cols-[auto_auto_auto_1fr_2fr_auto_auto] sm:gap-4 sm:p-0 sm:min-h-[20%] sm:items-center">
+      <div className="col-start-1 flex gap-4 px-3 sm:justify-self-start">
+        <Image
+          src={'/images/logo.png'}
+          width={220}
+          height={60}
+          alt="Company Logo"
+        />
       </div>
-      <div className="flex justify-between items-center gap-2 p-2 w-full sm:flex sm:items-center sm:justify-start sm:flex-grow sm:ml-[50%] sm:mr-5 sm:h-[90%] sm:gap-4">
+      <div className="col-start-2 justify-self-start">
+        <NavBarLinks href="/" title={'Coins'} icon={<House size={26} />} />
+      </div>
+      <div className="col-start-3 justify-self-start">
+        <NavBarLinks
+          href="/dashboard/portfolio"
+          title={'Portfolio'}
+          icon={<Layers />}
+        />
+      </div>
+
+      <div className="col-start-5 justify-self-end w-full h-full">
         <SearchBar coinsList={coinsList} />
-        <span className="flex justify-end gap-2 p-2 sm:gap-4">
-          <CurrencySwitch />
-          <ThemeButton />
-        </span>
+      </div>
+      <div className="col-start-6 justify-self-end">
+        <CurrencySwitch />
+      </div>
+      <div className="col-start-7 justify-self-end">
+        <ThemeButton />
       </div>
     </div>
   );
