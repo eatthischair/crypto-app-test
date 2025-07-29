@@ -63,8 +63,6 @@ export const CoinData = ({ coin }) => {
     (coin.market_data.circulating_supply / coin.market_data.max_supply) * 100
   );
 
-  console.log('coin', coin);
-
   return (
     <>
       <div className="row-span-2 p-4 bg-[var(--card)] rounded-sm border-red-200 border justify-center">

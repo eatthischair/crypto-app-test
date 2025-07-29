@@ -80,7 +80,7 @@ export function BarChart({ pricesData, formattedDate }) {
         suggestedMin: Math.min(volume),
         suggestedMax: Math.max(volume),
         ticks: {
-          stepSize: 5,
+          // stepSize: 500,
           display: false,
         },
         grid: {

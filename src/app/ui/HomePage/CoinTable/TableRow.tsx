@@ -65,7 +65,7 @@ export const TableRow = ({ coin, index }) => {
     tableRowProgressColors[index % tableRowProgressColors.length][1]
   }]`;
   const titleColor = 'm-0 p-0 pt-6 text-[' + fillColor + ']';
-  console.log('progressbackgroundcolor', progressBackgroundColor);
+  // console.log('progressbackgroundcolor', progressBackgroundColor);
 
   return (
     <div

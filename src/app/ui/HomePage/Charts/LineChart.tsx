@@ -25,7 +25,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-export function LineChart({ pricesData, formattedDate }) {
+export function LineChart({ pricesData, formattedDate, coinName }) {
   const prices = pricesData?.prices;
   const priceValues = prices.map((item) => item[1]);
   const labels = prices?.map((item) => new Date(item[0]).getDate());
@@ -83,6 +83,8 @@ export function LineChart({ pricesData, formattedDate }) {
         },
         suggestedMin: Math.min(...priceValues),
         suggestedMax: Math.max(...priceValues),
+        // min: Math.min(...priceValues),
+        // max: Math.max(...priceValues),
       },
       x: {
         min: 0,
@@ -94,7 +96,7 @@ export function LineChart({ pricesData, formattedDate }) {
     },
     elements: {
       line: {
-        tension: 0.1,
+        tension: 0.2,
       },
       point: {
         pointRadius: 1,
@@ -105,7 +107,9 @@ export function LineChart({ pricesData, formattedDate }) {
   return (
     <div className="w-full sm:w-[90%]">
       <div className="absolute m-4 text-foreground p-4">
-        <h4 className="text-xs sm:text-sm">Bitcoin</h4>
+        <h4 className="text-xs sm:text-sm">
+          {coinName.charAt(0).toUpperCase() + coinName.slice(1)}
+        </h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestPrice}</h2>
         <div className="text-sm">{formattedDate}</div>
       </div>

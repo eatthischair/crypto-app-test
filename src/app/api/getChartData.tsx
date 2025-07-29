@@ -1,8 +1,8 @@
 'use server';
 import { fetchData } from './fetchData';
 
-export async function getChartData(coin) {
-  const url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=180&interval=daily`;
+export async function getChartData(coin, days = 365) {
+  const url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${days}`;
 
   const response = await fetchData(url);
   return response.body;

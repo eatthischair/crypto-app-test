@@ -5,7 +5,7 @@ import Skeleton from 'react-loading-skeleton';
 export default async function Page() {
   const coinslist = await getCoinsList();
   if (!coinslist) return <Skeleton />;
-  console.log('coinslist in page', coinslist);
+  // console.log('coinslist in page', coinslist);
   return (
     <>
       <section className="p-12 flex flex-col gap-4 relative">

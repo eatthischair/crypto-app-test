@@ -142,7 +142,7 @@
 } */
 
 .dark {
-  --background: #15141f;
+  --background: #13121b;
   --foreground: oklch(0.985 0 0);
   /* --card: oklch(0.21 0.006 285.885); */
   --card: #1f1934;
