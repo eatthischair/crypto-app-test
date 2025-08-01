@@ -1,5 +1,7 @@
 'use client';
 import React from 'react';
+import { Colors } from 'chart.js';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,10 +24,11 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Colors
 );
 
-export function BarChart({ pricesData, formattedDate }) {
+export function BarChart({ pricesData, formattedDate, secondChartData }) {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
@@ -42,7 +45,11 @@ export function BarChart({ pricesData, formattedDate }) {
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
-  const volume = pricesData.total_volumes;
+  const volume = pricesData?.total_volumes;
+  const secondChartVolume = secondChartData?.total_volumes;
+
+  //strip unix timestamps
+  const secondChartDayVolume = secondChartVolume?.map((item) => item[1]);
   const dayVolume = volume.map((item) => item[1]);
   const labels = volume.map((item) => new Date(item[0]).getDate());
 
@@ -63,6 +70,14 @@ export function BarChart({ pricesData, formattedDate }) {
         backgroundColor: 'blue',
         color: 'white',
       },
+      {
+        label: 'Dataset 2',
+        data: secondChartDayVolume,
+        borderColor: 'rgb(66, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        yAxisID: 'y2',
+        fill: true,
+      },
     ],
   };
 
@@ -73,8 +88,21 @@ export function BarChart({ pricesData, formattedDate }) {
         position: 'top' as const,
         display: false,
       },
+      colors: {
+        forceOverride: true,
+      },
     },
     scales: {
+      y1: {
+        type: 'linear',
+        position: 'left', // Left Y-axis for Dataset 1
+        display: false, // Hide the entire Y-axis (labels, ticks, grid)
+      },
+      y2: {
+        type: 'linear',
+        position: 'right', // Right Y-axis for Dataset 2
+        display: false, // Hide the entire Y-axis (labels, ticks, grid)
+      },
       y: {
         beginAtZero: true,
         suggestedMin: Math.min(volume),
@@ -94,7 +122,7 @@ export function BarChart({ pricesData, formattedDate }) {
         min: 0,
         max: 30,
         ticks: {
-          display: true,
+          display: false,
           stepSize: 5000,
         },
         grid: {

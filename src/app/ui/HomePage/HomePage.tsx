@@ -10,13 +10,19 @@ import { CoinTableComponents } from './CoinTable/CoinTableComponents';
 import { getCoinTableData } from '@/app/api/getCoinTableData';
 import { ChartButtons } from './ChartOptions/ChartButtons';
 import { ChartTimeline } from './ChartOptions/ChartTimeline';
+import { CompareButton } from './ChartOptions/CompareButton';
 import { useState, useEffect } from 'react';
 
 export function HomePage() {
   const [chartData, setChartData] = useState('');
+  const [secondChartData, setSecondChartData] = useState('');
   const [coinTableData, setCoinTableData] = useState('');
+
   const [coinName, setCoinName] = useState('bitcoin');
+  const [secondChartCoinName, setSecondChartCoinName] = useState('');
+
   const [days, setDays] = useState(30);
+  const [compareToggled, setCompareToggled] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -27,6 +33,13 @@ export function HomePage() {
     };
     getData();
   }, []);
+
+  useEffect(() => {
+    if (!compareToggled) {
+      setSecondChartCoinName('');
+      setSecondChartData('');
+    }
+  }, [compareToggled]);
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', {
@@ -43,10 +56,22 @@ export function HomePage() {
     setCoinName(coinName);
   };
 
+  const changeChartForCompare = async (coinName) => {
+    const chartData = await getChartData(coinName, days);
+    console.log('days', days);
+    setSecondChartData(chartData);
+    setSecondChartCoinName(coinName);
+  };
+
   const setChartTimeline = async (days) => {
     const chartData = await getChartData(coinName, days);
     setChartData(chartData);
     setDays(days);
+  };
+
+  const setChartTimelineForSecondChart = async (days) => {
+    const secondChartData = await getChartData(secondChartCoinName, days);
+    setSecondChartData(secondChartData);
   };
 
   return (
@@ -54,11 +79,20 @@ export function HomePage() {
       <div className="w-full col-span-1 flex flex-shrink">
         <ConverterSwitch />
       </div>
-      <div className="">
+      <div className="border-red-200">
+        <CompareButton
+          compareToggled={compareToggled}
+          setCompareToggled={setCompareToggled}
+        />
+      </div>
+      <div className="mx-2">
         <ChartButtons
           coinTableData={coinTableData}
           changeChart={changeChart}
           coinName={coinName}
+          compareToggled={compareToggled}
+          changeChartForCompare={changeChartForCompare}
+          secondChartCoinName={secondChartCoinName}
         />
       </div>
       <div className="w-full grid grid-cols-1 grid-rows-2 gap-6 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
@@ -67,17 +101,27 @@ export function HomePage() {
             pricesData={chartData}
             formattedDate={formattedDate}
             coinName={coinName}
+            secondChartData={secondChartData}
           />
         </div>
         <div className="sm:h-3/5 w-full h-64">
-          <BarChart pricesData={chartData} formattedDate={formattedDate} />
+          <BarChart
+            pricesData={chartData}
+            formattedDate={formattedDate}
+            secondChartData={secondChartData}
+          />
         </div>
       </div>
       <div
         className="w-[40%] m-2 grid-cols-5 bg-[#232337]
       flex justify-between p-1 rounded "
       >
-        <ChartTimeline setChartTimeline={setChartTimeline} days={days} />
+        <ChartTimeline
+          setChartTimeline={setChartTimeline}
+          days={days}
+          setChartTimelineForSecondChart={setChartTimelineForSecondChart}
+          compareToggled={compareToggled}
+        />
       </div>
       <div>
         <Suspense fallback={<LoadingSpinner />}>

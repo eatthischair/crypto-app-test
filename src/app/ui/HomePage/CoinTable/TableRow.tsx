@@ -1,5 +1,4 @@
 'use client';
-import { Progress } from '@/components/ui/progress';
 import { CoinTableLineChart } from './CoinTableLineChart';
 import { formatNum, formatPriceChange } from '../../../../lib/utils';
 import Image from 'next/image';
@@ -11,11 +10,12 @@ import { useRef } from 'react';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { tableRowProgressColors } from '../CoinTable/tableRowProgressColors';
 import clsx from 'clsx';
-
+import './tableRow.css';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { title } from 'process';
 
 export const TableRow = ({ coin, index }) => {
+  console.log('index', index, index % 8, tableRowProgressColors[index % 8][1]);
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
@@ -37,7 +37,9 @@ export const TableRow = ({ coin, index }) => {
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
-  const progressVolumeMarketCap = (coin.total_volume / coin.market_cap) * 100;
+  const progressVolumeMarketCap = Math.ceil(
+    (coin.total_volume / coin.market_cap) * 100
+  );
   const circulatingTotalSupply =
     (coin.circulating_supply / coin.total_supply) * 100;
 
@@ -61,11 +63,6 @@ export const TableRow = ({ coin, index }) => {
     tableRowProgressColors[index % tableRowProgressColors.length][0];
 
   const progressColor = `w-full bg-[${fillColor}]`;
-  const progressBackgroundColor = `rounded-sm bg-[${
-    tableRowProgressColors[index % tableRowProgressColors.length][1]
-  }]`;
-  const titleColor = 'm-0 p-0 pt-6 text-[' + fillColor + ']';
-  // console.log('progressbackgroundcolor', progressBackgroundColor);
 
   return (
     <div
@@ -119,12 +116,13 @@ export const TableRow = ({ coin, index }) => {
         <div className="col-span-3 m-0 p-0 py-1 sm:flex sm:items-center">
           <ProgressBar
             completed={progressVolumeMarketCap}
-            maxCompleted={80}
+            maxCompleted={100}
             height={'6px'}
             bgColor={tableRowProgressColors[index % 8][0]}
             customLabel=" "
             className={progressColor}
-            barContainerClassName={progressBackgroundColor}
+            barContainerClassName={`rounded-sm
+              tableRowProgressColors${[index % 8]}`}
           />
         </div>
       </div>
@@ -151,7 +149,8 @@ export const TableRow = ({ coin, index }) => {
             bgColor={tableRowProgressColors[index % 8][0]}
             customLabel=" "
             className={progressColor}
-            barContainerClassName={progressBackgroundColor}
+            barContainerClassName={`rounded-sm
+              tableRowProgressColors${[index % 8]}`}
           />
         </div>
       </div>

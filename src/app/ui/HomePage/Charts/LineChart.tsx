@@ -25,8 +25,17 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-export function LineChart({ pricesData, formattedDate, coinName }) {
+export function LineChart({
+  pricesData,
+  formattedDate,
+  coinName,
+  secondChartData,
+}) {
+  console.log('secondchart', secondChartData);
+
   const prices = pricesData?.prices;
+  const prices2 = secondChartData?.prices;
+
   const priceValues = prices.map((item) => item[1]);
   const labels = prices?.map((item) => new Date(item[0]).getDate());
 
@@ -63,11 +72,24 @@ export function LineChart({ pricesData, formattedDate, coinName }) {
         data: prices,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        yAxisID: 'y1',
+        fill: true,
+      },
+      {
+        label: 'Dataset 2',
+        data: prices2,
+        borderColor: 'rgb(66, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        yAxisID: 'y2',
+        fill: true,
       },
     ],
   };
 
   const options = {
+    // animation: false,
+    // spanGaps: true, // enable for all datasets
+
     responsive: true,
     plugins: {
       legend: {
@@ -76,6 +98,16 @@ export function LineChart({ pricesData, formattedDate, coinName }) {
       },
     },
     scales: {
+      y1: {
+        type: 'linear',
+        position: 'left', // Left Y-axis for Dataset 1
+        display: false, // Hide the entire Y-axis (labels, ticks, grid)
+      },
+      y2: {
+        type: 'linear',
+        position: 'right', // Right Y-axis for Dataset 2
+        display: false, // Hide the entire Y-axis (labels, ticks, grid)
+      },
       y: {
         display: false,
         grid: {
@@ -83,12 +115,13 @@ export function LineChart({ pricesData, formattedDate, coinName }) {
         },
         suggestedMin: Math.min(...priceValues),
         suggestedMax: Math.max(...priceValues),
-        // min: Math.min(...priceValues),
-        // max: Math.max(...priceValues),
       },
       x: {
         min: 0,
         max: 30,
+        ticks: {
+          display: false,
+        },
         grid: {
           display: false,
         },
@@ -98,8 +131,11 @@ export function LineChart({ pricesData, formattedDate, coinName }) {
       line: {
         tension: 0.2,
       },
+      // stepped: false,
+      // borderDash: [],
       point: {
         pointRadius: 1,
+        // radius: 0,
       },
     },
   };

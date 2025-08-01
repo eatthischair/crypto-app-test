@@ -11,6 +11,7 @@ export const BottomChart = ({ allPrices }) => {
   useEffect(() => {
     setPrices(changeChartTimeline(allPrices, radioSelect));
   }, [radioSelect, allPrices]);
+
   return (
     <>
       <RadioGroupForChart setRadioSelect={setRadioSelect} />
