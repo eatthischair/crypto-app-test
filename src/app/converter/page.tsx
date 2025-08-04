@@ -4,7 +4,7 @@ import { Repeat } from 'lucide-react';
 import { ConvertCard } from '../ui/ConverterPage/ConvertCard';
 import { useState } from 'react';
 
-const Converter = async () => {
+const Converter = () => {
   const [coin1CurPrice, setCoin1CurPrice] = useState(0);
   const [coin2CurPrice, setCoin2CurPrice] = useState(0);
 
@@ -19,7 +19,10 @@ const Converter = async () => {
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-5 md:gap-8 relative">
-        <ConvertCard setCoin1CurPrice={setCoin1CurPrice} />
+        <ConvertCard
+          setCoin1CurPrice={setCoin1CurPrice}
+          coin1CurPrice={coin1CurPrice}
+        />
         <button
           // onClick={handleSwitchCurrency}
           className="p-3 md:p-4 bg-indigo-800 dark:bg-white text-sm absolute rounded-full rotate-90 translate-x-1/2 top-1/2 right-1/2 -translate-y-1/2 dark:border-4 dark:border-gray-800 hover:opacity-75 active:opacity-50 text-white dark:text-indigo-800"

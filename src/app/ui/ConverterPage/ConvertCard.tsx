@@ -1,4 +1,3 @@
-'use client';
 import { ChevronDown } from 'lucide-react';
 import { convert } from '../HeaderComponents/NavBar/convert';
 import {
@@ -7,21 +6,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
-import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/app/hooks';
-import { currencySwitch } from '@/app/features/currencySlice';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import currencies from '../../../data/exchangeRates.json';
-import { getCoinById } from '@/app/api/getCoinById';
 
-export const ConvertCard = ({}) => {
+export const ConvertCard = ({ setCoin1CurPrice, coin1CurPrice }) => {
   const isFromCurrency = true;
 
   const dispatch = useAppDispatch();
 
-  const [currency, setCurrency] = useState('usd');
+  const [currency, setCurrency] = useState(null);
   const [quantity, setQuantity] = useState(0);
 
   const stateCurrency = useSelector(
@@ -32,22 +27,15 @@ export const ConvertCard = ({}) => {
   );
 
   const exchangeRateObj = exchangeRates?.rates?.[currency];
-  // const { currentPrice, unit } = convert(
-  //   coin.market_data.current_price.usd,
-  //   exchangeRateObj,
-  //   exchangeRates.rates.usd
-  // );
 
-  useEffect(() => {
-    const getData = async () => {
-      console.log('useffect getdata', currency);
-      // const coinData = await getCoinById(currency);
-      // console.log('coindata', coinData);
-    };
-    getData();
-  }, []);
+  console.log('exchangerateobj', exchangeRates, exchangeRates.rates, currency);
 
-  //get current price of both coins
+  const handleClick = (cur, value) => {
+    setCurrency(value.name);
+    setCoin1CurPrice(value.value);
+    console.log('handleclick', cur, value.value);
+  };
+
   return (
     <div
       className={`text-indigo-900 dark:text-white bg-white rounded-md md:rounded-lg lg:rounded-xl xl:rounded-2xl p-3 md:flex-1 md:p-6 dark:bg-indigo-900/30`}
@@ -68,9 +56,9 @@ export const ConvertCard = ({}) => {
               return (
                 <DropdownMenuItem
                   key={cur}
-                  onClick={() => setCurrency(value.name)}
+                  onClick={() => handleClick(cur, value)}
                 >
-                  {value.name || cur} ({cur.toUpperCase()})
+                  {value.name} ({cur.toUpperCase()})
                 </DropdownMenuItem>
               );
             })}
@@ -89,6 +77,10 @@ export const ConvertCard = ({}) => {
             {quantity || 'Quantity'}
           </p>
         )}
+      </div>
+      <div>
+        {' '}
+        1 {currency} = ${1 / coin1CurPrice}
       </div>
     </div>
   );
