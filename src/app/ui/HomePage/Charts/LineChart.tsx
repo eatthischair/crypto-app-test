@@ -73,7 +73,7 @@ export function LineChart({
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         yAxisID: 'y1',
-        fill: true,
+        fill: false,
       },
       {
         label: 'Dataset 2',
@@ -118,7 +118,7 @@ export function LineChart({
       },
       x: {
         min: 0,
-        max: 30,
+        // max: 30,
         ticks: {
           display: false,
         },

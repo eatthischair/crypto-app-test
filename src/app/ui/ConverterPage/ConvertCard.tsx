@@ -6,35 +6,83 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useState, useEffect } from 'react';
+import { getCoinTableData } from '@/app/api/getCoinTableData';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '@/app/hooks';
-import { useState } from 'react';
-import currencies from '../../../data/exchangeRates.json';
 
-export const ConvertCard = ({ setCoin1CurPrice, coin1CurPrice }) => {
-  const isFromCurrency = true;
-
-  const dispatch = useAppDispatch();
-
-  const [currency, setCurrency] = useState(null);
+export const ConvertCard = ({
+  setCoin1CurPrice,
+  coin1CurPrice,
+  setCoin2CurPrice,
+  coin2CurPrice,
+  setAmtToConvert,
+  convertedAmt,
+  setCoin1Id,
+  setCoin2Id,
+  setCoin1Name,
+  setCoin2Name,
+  coin1Name,
+  coin2Name,
+  setCoin1Symbol,
+  setCoin2Symbol,
+}) => {
+  const isFromCurrency = !!setCoin1CurPrice;
   const [quantity, setQuantity] = useState(0);
+  const [coins, setCoins] = useState([]);
 
-  const stateCurrency = useSelector(
-    (state: any) => state.currencyReducer.currency
-  );
+  const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
   );
-
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
-  console.log('exchangerateobj', exchangeRates, exchangeRates.rates, currency);
+  useEffect(() => {
+    const getData = async () => {
+      const coinData = await getCoinTableData(1);
+      setCoins(coinData);
+    };
+    getData();
+  }, []);
 
-  const handleClick = (cur, value) => {
-    setCurrency(value.name);
-    setCoin1CurPrice(value.value);
-    console.log('handleclick', cur, value.value);
+  if (
+    !currency ||
+    !exchangeRates ||
+    !exchangeRates.rates ||
+    !exchangeRates.rates[currency] ||
+    !exchangeRates.rates.usd
+  ) {
+    return <div>Loading...</div>;
+  }
+
+  const handleClick = (cur) => {
+    if (setCoin1CurPrice) {
+      setCoin1CurPrice(cur.current_price);
+      setCoin1Id(cur.id);
+      setCoin1Name(cur.name);
+      setCoin1Symbol(cur.symbol);
+    } else {
+      setCoin2CurPrice(cur.current_price);
+      setCoin2Id(cur.id);
+      setCoin2Name(cur.name);
+      setCoin2Symbol(cur.symbol);
+    }
   };
+
+  const handleInput = (q) => {
+    setQuantity(q);
+    if (setCoin1CurPrice) {
+      setAmtToConvert(q * coin1CurPrice);
+    }
+  };
+
+  const displayName = coin1Name ? coin1Name : coin2Name;
+  const exchangeRate = coin1CurPrice ? coin1CurPrice : coin2CurPrice;
+
+  const { currentPrice, unit } = convert(
+    exchangeRate,
+    exchangeRateObj,
+    exchangeRates.rates.usd
+  );
 
   return (
     <div
@@ -47,18 +95,23 @@ export const ConvertCard = ({ setCoin1CurPrice, coin1CurPrice }) => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <div className="flex">
-              {currency || 'Select Currency'}
+              {displayName || 'Select Currency'}
               <ChevronDown />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="sm:max-h-60 flex-col flex-shrink ml-16 dark:bg-indigo-950 border ">
-            {Object.entries(currencies.rates).map(([cur, value]) => {
+            {/* {coins.map((cur) => {
               return (
-                <DropdownMenuItem
-                  key={cur}
-                  onClick={() => handleClick(cur, value)}
-                >
-                  {value.name} ({cur.toUpperCase()})
+                <DropdownMenuItem key={cur.id} onClick={() => handleClick(cur)}>
+                  {cur.id} ({cur.symbol.toUpperCase()})
+                </DropdownMenuItem>
+              );
+            })} */}
+            {coins.map((cur) => {
+              return (
+                <DropdownMenuItem key={cur.id} onClick={() => handleClick(cur)}>
+                  {cur.id.charAt(0).toUpperCase() + cur.id.slice(1)} (
+                  {cur.symbol.toUpperCase()})
                 </DropdownMenuItem>
               );
             })}
@@ -70,17 +123,23 @@ export const ConvertCard = ({ setCoin1CurPrice, coin1CurPrice }) => {
             className="bg-transparent outline-none text-right w-2/ hover:opacity-75 active:opacity-50"
             placeholder="Quantity"
             value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+            onChange={(e) => handleInput(e.target.value)}
           />
         ) : (
           <p className="text-right w-2/5 lg:text-lg">
-            {quantity || 'Quantity'}
+            {convertedAmt || 'Quanity'}
           </p>
         )}
       </div>
       <div>
-        {' '}
-        1 {currency} = ${1 / coin1CurPrice}
+        {coin1Name || coin2Name ? (
+          <div>
+            1 {coin1Name || coin2Name} = {unit}
+            {currentPrice}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

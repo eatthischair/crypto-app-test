@@ -120,7 +120,7 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
       },
       x: {
         min: 0,
-        max: 30,
+        // max: 30,
         ticks: {
           display: false,
           stepSize: 5000,
