@@ -17,7 +17,12 @@ export const NavBar = () => {
   const dispatch = useAppDispatch();
 
   const { theme } = useTheme();
-  const logoClassName = theme === 'dark' ? '' : 'invert hue-rotate-180';
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true); // Set flag after client-side mount
+  }, []);
+  const logoClassName =
+    mounted && theme === 'light' ? 'invert hue-rotate-180' : '';
 
   useEffect(() => {
     async function fetchData() {

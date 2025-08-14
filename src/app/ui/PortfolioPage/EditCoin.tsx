@@ -83,10 +83,12 @@ export const EditCoin = ({
           size={20}
         />
       </DialogTrigger>
-      <DialogContent className="w-full rounded-sm bg-[var(--background)]">
+      <DialogContent className="w-full rounded-sm bg-white dark:bg-[var(--background)]">
         <DialogHeader>
           <DialogTitle>Add Coin</DialogTitle>
-          <DialogDescription>Search for a coin to add</DialogDescription>
+          <DialogDescription>
+            Edit your portfolio for this coin
+          </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-[40%_60%] w-full bg-[var(--background)]">
           {coinImage ? (

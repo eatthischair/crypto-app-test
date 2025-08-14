@@ -62,12 +62,151 @@ export const CoinCard = ({
   );
 
   return (
-    <div
-      className="h-full sm:w-full shadow-lg rounded-lg overflow-hidden sm:grid sm:grid-cols-[20%_80%]
-    sm:gap-4 sm:p-12 mb-12
-    bg-[var(--card)]"
-    >
-      <div className="flex flex-col items-center justify-start h-[20vh] sm:h-1/2 sm:w-1/2 w-full aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
+    // <div
+    //   className="h-full sm:w-full shadow-lg rounded-lg overflow-hidden sm:grid sm:grid-cols-[20%_80%]
+    // sm:gap-4 sm:p-12 mb-12
+    // bg-[var(--card)]"
+    // >
+    //   <div className="flex flex-col items-center justify-start h-[20vh] sm:h-1/2 sm:w-1/2 w-full aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
+    //     <img
+    //       src={data?.image}
+    //       alt="Coin Icon"
+    //       className="w-1/4 sm:w-full h-auto sm:h-full object-cover sm:pt-0"
+    //     />
+    //     <div className="mt-2 text-left">
+    //       {coin.coinName} ({coin.symbol.toUpperCase()})
+    //     </div>
+    //   </div>
+
+    //   <div className="sm:hidden col-span-2 sm:col-span-4 flex justify-end items-start p-2">
+    //     <EditCoin
+    //       coin={coin}
+    //       coinsData={coinsData}
+    //       coinsList={coinsList}
+    //       setCoinsData={setCoinsData}
+    //       updateCoins={updateCoins}
+    //     />
+    //   </div>
+
+    //   <div className="grid grid-cols-3 p-2 m-2 items-stretch sm:grid-cols-4 sm:grid-rows-[auto_repeat(2,_1fr)] relative">
+    //     <div className="hidden col-span-2 sm:col-span-4 sm:flex justify-end items-start p-2">
+    //       <EditCoin
+    //         coin={coin}
+    //         coinsData={coinsData}
+    //         coinsList={coinsList}
+    //         setCoinsData={setCoinsData}
+    //         updateCoins={updateCoins}
+    //       />
+    //     </div>
+    //     <div className="text-left m-2 p-2 flex flex-col justify-between h-full ">
+    //       <h3 className="sm:text-base text-sm font-semibold ">Current Price</h3>
+    //       <span className="sm:text-lg  text-[#00c9be] font-bold">
+    //         {unit} {formatNum(currentPrice)}
+    //       </span>
+    //     </div>
+    //     <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+    //       <h3 className="sm:text-base text-sm font-semibold">
+    //         Price Change 24h
+    //       </h3>
+    //       <span className="sm:text-lg text-base font-bold">
+    //         {formatPriceChange(data.priceChangeToday) || (
+    //           <div className="font-normal text-base">Data Not Available</div>
+    //         )}
+    //       </span>
+    //     </div>
+
+    //     <div className="hidden sm:grid sm:text-left m-2 p-2 flex flex-col justify-between h-full">
+    //       <h3 className="sm:text-base text-sm font-semibold">
+    //         Market Cap vs Volume
+    //       </h3>
+    //       <span className="mt-auto ">
+    //         {data.market_cap && data.total_volume ? (
+    //           <div className="grid grid-cols-[20%_80%]">
+    //             <div>
+    //               {capVsVolume}
+    //               {'%'}
+    //             </div>
+    //             <ProgressBar
+    //               // label={Math.trunc(data.market_cap_percentage.btc)'%'}
+    //               isLabelVisible={false}
+    //               completed={capVsVolume}
+    //               maxCompleted={100}
+    //               height="7px"
+    //               barContainerClassName="bg-gray-300/80 w-[90%] rounded-md mt-2"
+    //               bgColor={'#00c9be'}
+    //             />
+    //           </div>
+    //         ) : (
+    //           <div className="mt-auto">Data Not Available</div>
+    //         )}
+    //       </span>
+    //     </div>
+
+    //     <div className="hidden sm:grid sm:text-left m-2 p-2 flex flex-col justify-between h-full ">
+    //       <h3 className="sm:text-base text-sm font-semibold">
+    //         Circ Supply vs Max Supply
+    //       </h3>
+    //       <span className="mt-auto">
+    //         {data.market_cap && data.total_volume ? (
+    //           <div className="grid grid-cols-[20%_80%]">
+    //             <div>
+    //               {circVsMax}
+    //               {'%'}
+    //             </div>
+    //             <ProgressBar
+    //               // label={Math.trunc(data.market_cap_percentage.btc)'%'}
+    //               isLabelVisible={false}
+    //               completed={circVsMax}
+    //               maxCompleted={100}
+    //               height="7px"
+    //               barContainerClassName="bg-gray-300/80 w-[90%] ml-2 rounded-md mt-2"
+    //               bgColor={'#00c9be'}
+    //             />
+    //           </div>
+    //         ) : (
+    //           <div className="mt-auto">Data Not Available</div>
+    //         )}
+    //       </span>
+    //     </div>
+
+    //     <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+    //       <h3 className="sm:text-base text-sm font-semibold">Coin Amount</h3>
+    //       <span className="sm:text-lg text-[#00c9be] font-bold">
+    //         {coin.purchasedAmt}
+    //       </span>
+    //     </div>
+
+    //     <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+    //       <h3 className="sm:text-base text-sm font-semibold">Amount Value</h3>
+    //       <span className="sm:text-lg text-[#00c9be] font-bold">
+    //         {unit} {amtValue}
+    //       </span>
+    //     </div>
+
+    //     <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+    //       <h3 className="sm:text-base text-sm font-semibold">
+    //         Amount Price Change since Purchase
+    //       </h3>
+    //       <span className="sm:text-lg text-base font-bold">
+    //         {formatPriceChange(amtChangeSincePurchase - 1)}
+    //       </span>
+    //     </div>
+
+    //     <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+    //       <h3 className="sm:text-base text-sm font-semibold">Purchase Date</h3>
+    //       <span className="sm:text-lg text-[#00c9be] font-bold">
+    //         {new Date(coin.purchasedDate).toLocaleDateString('en-US', {
+    //           month: 'short',
+    //           day: '2-digit',
+    //           year: 'numeric',
+    //         })}
+    //       </span>
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="h-full w-full shadow-lg rounded-lg overflow-hidden bg-[var(--card)] sm:grid sm:grid-cols-[20%_80%] sm:gap-4 sm:p-12 mb-12 relative">
+      {/* Image and Name Section */}
+      <div className="flex flex-col items-center justify-start h-[20vh] sm:h-1/2 sm:w-full w-full aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
         <img
           src={data?.image}
           alt="Coin Icon"
@@ -78,8 +217,10 @@ export const CoinCard = ({
         </div>
       </div>
 
+      {/* Grid for Data and EditCoin */}
       <div className="grid grid-cols-3 p-2 m-2 items-stretch sm:grid-cols-4 sm:grid-rows-[auto_repeat(2,_1fr)] relative">
-        <div className="col-span-2 sm:col-span-4 flex justify-end items-start p-2">
+        {/* EditCoin: Positioned top-right on both mobile and web */}
+        <div className="absolute top-2 right-2 sm:static sm:col-span-4 sm:flex sm:justify-end sm:items-start sm:p-2">
           <EditCoin
             coin={coin}
             coinsData={coinsData}
@@ -88,12 +229,16 @@ export const CoinCard = ({
             updateCoins={updateCoins}
           />
         </div>
-        <div className="text-left m-2 p-2 flex flex-col justify-between h-full ">
-          <h3 className="sm:text-base text-sm font-semibold ">Current Price</h3>
-          <span className="sm:text-lg  text-[#00c9be] font-bold">
+
+        {/* Current Price */}
+        <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
+          <h3 className="sm:text-base text-sm font-semibold">Current Price</h3>
+          <span className="sm:text-lg text-[#00c9be] font-bold">
             {unit} {formatNum(currentPrice)}
           </span>
         </div>
+
+        {/* Price Change 24h */}
         <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
           <h3 className="sm:text-base text-sm font-semibold">
             Price Change 24h
@@ -105,11 +250,12 @@ export const CoinCard = ({
           </span>
         </div>
 
+        {/* Market Cap vs Volume (Web Only) */}
         <div className="hidden sm:grid sm:text-left m-2 p-2 flex flex-col justify-between h-full">
           <h3 className="sm:text-base text-sm font-semibold">
             Market Cap vs Volume
           </h3>
-          <span className="mt-auto ">
+          <span className="mt-auto">
             {data.market_cap && data.total_volume ? (
               <div className="grid grid-cols-[20%_80%]">
                 <div>
@@ -117,7 +263,6 @@ export const CoinCard = ({
                   {'%'}
                 </div>
                 <ProgressBar
-                  // label={Math.trunc(data.market_cap_percentage.btc)'%'}
                   isLabelVisible={false}
                   completed={capVsVolume}
                   maxCompleted={100}
@@ -132,7 +277,8 @@ export const CoinCard = ({
           </span>
         </div>
 
-        <div className="hidden sm:grid sm:text-left m-2 p-2 flex flex-col justify-between h-full ">
+        {/* Circ Supply vs Max Supply (Web Only) */}
+        <div className="hidden sm:grid sm:text-left m-2 p-2 flex flex-col justify-between h-full">
           <h3 className="sm:text-base text-sm font-semibold">
             Circ Supply vs Max Supply
           </h3>
@@ -144,7 +290,6 @@ export const CoinCard = ({
                   {'%'}
                 </div>
                 <ProgressBar
-                  // label={Math.trunc(data.market_cap_percentage.btc)'%'}
                   isLabelVisible={false}
                   completed={circVsMax}
                   maxCompleted={100}
@@ -159,6 +304,7 @@ export const CoinCard = ({
           </span>
         </div>
 
+        {/* Coin Amount */}
         <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
           <h3 className="sm:text-base text-sm font-semibold">Coin Amount</h3>
           <span className="sm:text-lg text-[#00c9be] font-bold">
@@ -166,6 +312,7 @@ export const CoinCard = ({
           </span>
         </div>
 
+        {/* Amount Value */}
         <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
           <h3 className="sm:text-base text-sm font-semibold">Amount Value</h3>
           <span className="sm:text-lg text-[#00c9be] font-bold">
@@ -173,6 +320,7 @@ export const CoinCard = ({
           </span>
         </div>
 
+        {/* Amount Price Change since Purchase */}
         <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
           <h3 className="sm:text-base text-sm font-semibold">
             Amount Price Change since Purchase
@@ -182,6 +330,7 @@ export const CoinCard = ({
           </span>
         </div>
 
+        {/* Purchase Date */}
         <div className="text-left m-2 p-2 flex flex-col justify-between h-full">
           <h3 className="sm:text-base text-sm font-semibold">Purchase Date</h3>
           <span className="sm:text-lg text-[#00c9be] font-bold">

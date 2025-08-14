@@ -69,7 +69,7 @@ export const AddCoinButton = ({
       <DialogTrigger asChild>
         <Button variant="outline">Add Coin</Button>
       </DialogTrigger>
-      <DialogContent className="w-full rounded-sm bg-[var(--background)]">
+      <DialogContent className="w-full rounded-sm bg-white dark:bg-[var(--background)]">
         <DialogHeader>
           <DialogTitle>Add Coin</DialogTitle>
           <DialogDescription>Search for a coin to add</DialogDescription>

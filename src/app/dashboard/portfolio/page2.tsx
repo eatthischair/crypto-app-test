@@ -11,7 +11,6 @@ export default function Page2({ coinsList }) {
 
   const updateCoins = async () => {
     const coins = JSON.parse(localStorage.getItem('coins')) || [];
-    console.log('UPDATECOINS', coins);
     const coinNames = coins.map((coin) => coin.coinName);
     try {
       const coinData = await getPortfolioCoinData(coinNames);

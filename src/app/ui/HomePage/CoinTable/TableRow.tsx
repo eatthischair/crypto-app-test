@@ -12,6 +12,7 @@ import { tableRowProgressColorsLightMode } from '../CoinTable/tableRowProgressCo
 import './tableRow.css';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useTheme } from 'next-themes';
+
 export const TableRow = ({ coin, index }) => {
   const { theme } = useTheme();
 
