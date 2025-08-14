@@ -7,15 +7,17 @@ import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 import Skeleton from 'react-loading-skeleton';
 import { useRef } from 'react';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { tableRowProgressColors } from '../CoinTable/tableRowProgressColors';
-import clsx from 'clsx';
+import { tableRowProgressColorsLightMode } from '../CoinTable/tableRowProgressColorsLightMode';
 import './tableRow.css';
 import ProgressBar from '@ramonak/react-progress-bar';
-import { title } from 'process';
-
+import { useTheme } from 'next-themes';
 export const TableRow = ({ coin, index }) => {
-  console.log('index', index, index % 8, tableRowProgressColors[index % 8][1]);
+  const { theme } = useTheme();
+
+  const colors =
+    theme === 'dark' ? tableRowProgressColors : tableRowProgressColorsLightMode;
+
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
@@ -66,19 +68,27 @@ export const TableRow = ({ coin, index }) => {
 
   return (
     <div
-      className="grid grid-cols-[40%_20%_40%] gap-2 p-2 m-1 truncate h-[15vh] border
+      className="grid grid-cols-[40%_20%_40%] gap-2 p-2 m-1 truncate h-full border
     sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[15vh] sm:py-0 sm:my-0
-    bg-[#191926] rounded-lg hover:border
-    text-sm sm:text-base"
+    bg-[var(--card)] rounded-lg hover:border
+     sm:text-base"
     >
+      {/* <div
+      className="flex items-center gap-3 p-2 m-1 truncate h-[15vh] border
+    sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[15vh] sm:py-0 sm:my-0
+    bg-[var(--card)] rounded-lg hover:border
+     sm:text-base"
+    > */}
       <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal items-center">
-        <div className="p-1">
+        {/* <div className="flex gap-3 items-center  rounded-md p-3 sm:grid-cols-[15%_85%] m-0 break-words whitespace-normal"> */}
+        <div className="p-1 flex items-center">
           <Image
             src={coin.image}
             width="40"
             height="40"
             sizes="(max-width: 500px) 300vw, 300vw (max-width: 1200px) 50vw"
             alt="Coin Icon"
+            className=""
           />
         </div>
         <Link href={`/coin/${coin.id}`}>

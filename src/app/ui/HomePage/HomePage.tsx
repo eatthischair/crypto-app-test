@@ -58,7 +58,6 @@ export function HomePage() {
 
   const changeChartForCompare = async (coinName) => {
     const chartData = await getChartData(coinName, days);
-    console.log('days', days);
     setSecondChartData(chartData);
     setSecondChartCoinName(coinName);
   };
@@ -79,13 +78,13 @@ export function HomePage() {
       <div className="w-full col-span-1 flex flex-shrink">
         <ConverterSwitch />
       </div>
-      <div className="border-red-200">
+      <div className="">
         <CompareButton
           compareToggled={compareToggled}
           setCompareToggled={setCompareToggled}
         />
       </div>
-      <div className="mx-2">
+      <div className="ml-8 sm:mx-2 ">
         <ChartButtons
           coinTableData={coinTableData}
           changeChart={changeChart}
@@ -95,8 +94,8 @@ export function HomePage() {
           secondChartCoinName={secondChartCoinName}
         />
       </div>
-      <div className="w-full grid grid-cols-1 grid-rows-2 gap-6 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
-        <div className="sm:h-3/5 w-full h-64">
+      <div className="w-full grid grid-cols-1 grid-rows-2 gap-2 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
+        <div className="sm:h-3/5 w-full h-full">
           <LineChart
             pricesData={chartData}
             formattedDate={formattedDate}
@@ -104,7 +103,7 @@ export function HomePage() {
             secondChartData={secondChartData}
           />
         </div>
-        <div className="sm:h-3/5 w-full h-64">
+        <div className="sm:h-3/5 w-full h-full">
           <BarChart
             pricesData={chartData}
             formattedDate={formattedDate}
@@ -113,7 +112,7 @@ export function HomePage() {
         </div>
       </div>
       <div
-        className="w-[40%] m-2 grid-cols-5 bg-[#232337]
+        className="w-[40%] m-2 grid-cols-5 bg-[var(--background)]
       flex justify-between p-1 rounded "
       >
         <ChartTimeline

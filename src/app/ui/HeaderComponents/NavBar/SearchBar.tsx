@@ -19,12 +19,12 @@ export const SearchBar = ({ coinsList }) => {
 
   return (
     <div className="sm:relative w-full sm:w-full h-full ">
-      <div className="absolute mt-5 ml-4 bg-transparent">
+      <div className="absolute mt-4 sm:mt-5 ml-4 bg-transparent flex items-center">
         <Search size={18} strokeWidth={2.5} />
       </div>
       <Input
         placeholder="Search..."
-        className="pl-12 flex w-full h-full bg-[#191926]"
+        className="pl-12 flex w-full h-full bg-[var(--card)]"
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}

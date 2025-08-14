@@ -11,8 +11,16 @@ import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { LuPencil } from 'react-icons/lu';
-
-export const CoinCard = ({ coin, data, editCoin }) => {
+import { EditCoin } from './EditCoin';
+export const CoinCard = ({
+  coin,
+  data,
+  editCoin,
+  coinsData,
+  coinsList,
+  setCoinsData,
+  updateCoins,
+}) => {
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
@@ -44,7 +52,6 @@ export const CoinCard = ({ coin, data, editCoin }) => {
       .currentPrice * coin.purchasedAmt
   );
 
-  //remove 'Infinity%', just cap at 100
   const capVsVolume = Math.min(
     Math.ceil((data.total_volume / data.market_cap) * 100),
     100
@@ -60,7 +67,6 @@ export const CoinCard = ({ coin, data, editCoin }) => {
     sm:gap-4 sm:p-12 mb-12
     bg-[var(--card)]"
     >
-      {/*icon and image*/}
       <div className="flex flex-col items-center justify-start h-[20vh] sm:h-1/2 sm:w-1/2 w-full aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
         <img
           src={data?.image}
@@ -73,12 +79,13 @@ export const CoinCard = ({ coin, data, editCoin }) => {
       </div>
 
       <div className="grid grid-cols-3 p-2 m-2 items-stretch sm:grid-cols-4 sm:grid-rows-[auto_repeat(2,_1fr)] relative">
-        {/* Pencil Icon Row */}
         <div className="col-span-2 sm:col-span-4 flex justify-end items-start p-2">
-          <LuPencil
-            className="text-gray-500 hover:text-blue-500 cursor-pointer"
-            size={20}
-            // onClick={() => }
+          <EditCoin
+            coin={coin}
+            coinsData={coinsData}
+            coinsList={coinsList}
+            setCoinsData={setCoinsData}
+            updateCoins={updateCoins}
           />
         </div>
         <div className="text-left m-2 p-2 flex flex-col justify-between h-full ">

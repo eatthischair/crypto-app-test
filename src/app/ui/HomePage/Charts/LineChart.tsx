@@ -31,8 +31,6 @@ export function LineChart({
   coinName,
   secondChartData,
 }) {
-  console.log('secondchart', secondChartData);
-
   const prices = pricesData?.prices;
   const prices2 = secondChartData?.prices;
 
@@ -87,9 +85,6 @@ export function LineChart({
   };
 
   const options = {
-    // animation: false,
-    // spanGaps: true, // enable for all datasets
-
     responsive: true,
     plugins: {
       legend: {
@@ -143,7 +138,7 @@ export function LineChart({
   return (
     <div className="w-full sm:w-[90%]">
       <div className="absolute m-4 text-foreground p-4">
-        <h4 className="text-xs sm:text-sm">
+        <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}
         </h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestPrice}</h2>

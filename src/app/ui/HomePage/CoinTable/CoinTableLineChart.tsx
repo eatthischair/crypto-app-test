@@ -79,7 +79,7 @@ export function CoinTableLineChart({ coin, fillColor }) {
     ],
   };
   return (
-    <div className="flex items-center sm:p-0 pt-4">
+    <div className="flex h-full items-center sm:p-0 pt-4">
       <Line options={options} data={data} height={50} width={100} />
     </div>
   );

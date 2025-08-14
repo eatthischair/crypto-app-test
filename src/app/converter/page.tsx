@@ -32,7 +32,6 @@ const Converter = () => {
   useEffect(() => {
     const getData = async () => {
       if (coin1Id && coin2Id) {
-        console.log('coinids', coin1Id, coin2Id, coin1Symbol, coin2Symbol);
         const prices1 = await getCoinPriceHistory(coin1Id, coin2Symbol);
         setCoin1Prices(prices1);
         const prices2 = await getCoinPriceHistory(coin2Id);
@@ -44,7 +43,6 @@ const Converter = () => {
     };
     getData();
   }, [coin1Id, coin2Id]);
-  console.log('coin1prices', coin1Prices);
 
   const handleSwitchCurrency = () => {
     const coinPlaceholder = {

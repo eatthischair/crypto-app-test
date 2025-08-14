@@ -65,7 +65,7 @@ export const CoinData = ({ coin }) => {
 
   return (
     <>
-      <div className="row-span-2 p-4 bg-[var(--card)] rounded-sm border-red-200 border justify-center">
+      <div className="row-span-2 p-4 bg-[var(--card)] rounded-sm justify-center">
         <div className="grid grid-rows-3 gap-4 content-center p-4 h-full bg-[var(--card)] rounded-sm">
           <span className="flex text-4xl justify-center gap-2 items-center">
             <small>

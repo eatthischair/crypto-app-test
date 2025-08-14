@@ -31,14 +31,7 @@
 * {
   box-sizing: border-box;
 }
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -51,7 +44,8 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(1 0 0);
+  /* --background: oklch(100% 0.00011 271.152); */
+  --background: rgb(228, 228, 231)
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
@@ -82,9 +76,10 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.645 0.246 16.439);
+  --selected: linear-gradient(180deg, #4338ca, #3730a3);
 }
 
-:root {
+/* :root {
   --background: #fff;
   --foreground: #171717;
   --black-russian: #13121a;
@@ -105,7 +100,7 @@
   --rising-light: #afe5e5;
   --falling: #fe2264;
   --bg-falling: rgba(254, 34, 100, 0.5);
-}
+} */
 
 /* .dark {
   --background: oklch(0.141 0.005 285.823);
@@ -174,6 +169,13 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.645 0.246 16.439);
+  --selected: linear-gradient(180deg, #4338ca, #3730a3);
+}
+
+.selected {
+  background: var(--selected);
+  box-shadow: 0 0 1px #6366f1; /* indigo-500 */
+  border: 1px solid #e5e7eb; /* Default border */
 }
 
 @media (prefers-color-scheme: dark) {

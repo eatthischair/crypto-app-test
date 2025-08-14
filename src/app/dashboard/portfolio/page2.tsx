@@ -11,6 +11,7 @@ export default function Page2({ coinsList }) {
 
   const updateCoins = async () => {
     const coins = JSON.parse(localStorage.getItem('coins')) || [];
+    console.log('UPDATECOINS', coins);
     const coinNames = coins.map((coin) => coin.coinName);
     try {
       const coinData = await getPortfolioCoinData(coinNames);
@@ -27,7 +28,6 @@ export default function Page2({ coinsList }) {
           ...data,
         };
       });
-      console.log('combined data', combinedData);
       setCoinsData(combinedData);
     } catch (error) {
       console.error('Error fetching data: in getData', error);
@@ -56,6 +56,10 @@ export default function Page2({ coinsList }) {
                 key={coin.coinName}
                 coin={coin}
                 data={coinsData[index]}
+                coinsData={coinsData}
+                coinsList={coinsList}
+                setCoinsData={setCoinsData}
+                updateCoins={updateCoins}
               />
             );
           })

@@ -22,7 +22,6 @@ ChartJS.register(
 export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
   if (!coin1Prices) return;
 
-  console.log('coin1prices', coin1Prices);
   const labels = coin1Prices.prices.map((item) => null);
 
   const data = {
