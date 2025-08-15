@@ -47,7 +47,7 @@ export default function Page2({ coinsList }) {
           updateCoins={updateCoins}
         />
       </div>
-      <div className="w-full pt-16 mb-12 text-sm sm:text-base">
+      <div className="w-full pt-16 mb-36 text-sm sm:text-base">
         {coinsData ? (
           coinsData.map((coin, index) => {
             return (

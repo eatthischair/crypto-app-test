@@ -15,7 +15,7 @@ export const ChartTimeline = ({
     theme === 'dark'
       ? 'bg-gradient-to-b from-indigo-700 to-indigo-800'
       : 'bg-gradient-to-b from-indigo-400 to-indigo-500';
-  selectedClassName += 'shadow-indigo-500 shadow-[0_0_1px] border';
+  selectedClassName += 'shadow-indigo-900 shadow-[0_0_1px] border';
 
   const toggleState = (days) => {
     if (compareToggled) {

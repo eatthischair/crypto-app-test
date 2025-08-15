@@ -42,9 +42,20 @@ export const CoinTableComponents = ({ coinTable }) => {
     if (newData.length === 0) {
       setHasMore(false);
     } else {
-      setCoinsSorted((prevItems) =>
-        sortCoins([...prevItems, ...newData], toggleState)
-      );
+      const arr = [...coinsSorted, ...newData];
+      console.log('ALLCOINS', arr);
+      const seen = new Set();
+      const unique = arr.filter((item) => {
+        const key = item.id; // Use the property that defines uniqueness
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+      // setCoinsSorted((prevItems) =>
+      //   sortCoins([...prevItems, ...newData], toggleState)
+      // );
+      setCoinsSorted(sortCoins(unique, toggleState));
       setPage((prevPage) => prevPage + 1);
     }
   };
