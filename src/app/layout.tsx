@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="sm:w-full sm:h-full sm:p-12 sm:m-0 -mr-2">
+        <div className="sm:w-full sm:h-full sm:p-12 sm:m-0 -mr-12 border">
           <QueryClientProvider client={queryClient}>
             <Provider store={store}>
               <ThemeProvider
