@@ -46,7 +46,7 @@ export const ChartButtons = ({
           {coins.map((coin, index) => (
             <CarouselItem
               key={coin.name}
-              className={` flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-sm mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-600 sm:basis-1/6 basis-1/5 text-nowrap overflow-hidden border-2 items-center
+              className={` flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-sm mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-600 sm:basis-1/6 basis-1/3 text-nowrap overflow-hidden border-2 items-center
                 pl-4 ${index === 0 ? 'ml-4' : ''}
                  ${
                    coinName == coin.id.toLowerCase() ||
