@@ -18,13 +18,33 @@ export const SearchBar = ({ coinsList }) => {
   };
 
   return (
-    <div className="sm:relative w-full sm:w-full h-full ">
-      <div className="absolute mt-4 sm:mt-5 ml-4 bg-transparent flex items-center">
+    // <div className="sm:relative w-full sm:w-full h-full ">
+    //   <div className="absolute mt-4 sm:mt-5 ml-4 bg-transparent flex items-center">
+    //     <Search size={18} strokeWidth={2.5} />
+    //   </div>
+    //   <Input
+    //     placeholder="Search..."
+    //     className="pl-12 flex w-full h-full bg-[var(--card)]"
+    //     value={searchTerm}
+    //     onChange={handleInputChange}
+    //     onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}
+    //     onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
+    //   />
+    //   {filteredCoins && (
+    //     <SearchDropDown
+    //       isDropdownOpen={isDropdownOpen}
+    //       filteredCoins={filteredCoins}
+    //       searchTerm={searchTerm}
+    //     />
+    //   )}
+    // </div>
+    <div className="relative w-full h-full">
+      <div className="absolute inset-y-0 left-4 flex items-center justify-center pointer-events-none">
         <Search size={18} strokeWidth={2.5} />
       </div>
       <Input
         placeholder="Search..."
-        className="pl-12 flex w-full h-full bg-[var(--card)]"
+        className="pl-12 w-full h-full bg-[var(--card)]"
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}
