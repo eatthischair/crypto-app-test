@@ -52,9 +52,6 @@ export const CoinTableComponents = ({ coinTable }) => {
         return true;
       });
 
-      // setCoinsSorted((prevItems) =>
-      //   sortCoins([...prevItems, ...newData], toggleState)
-      // );
       setCoinsSorted(sortCoins(unique, toggleState));
       setPage((prevPage) => prevPage + 1);
     }

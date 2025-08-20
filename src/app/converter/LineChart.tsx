@@ -18,9 +18,14 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+import { useTheme } from 'next-themes';
 
 export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
   if (!coin1Prices) return;
+
+  const { theme } = useTheme();
+  const fillColor = theme === 'dark' ? '#191934' : 'rgb(206,206,254)';
+  const lineColor = theme === 'dark' ? '#4e4ea8' : '#8989fe';
 
   const labels = coin1Prices.prices.map((item) => null);
 
@@ -31,10 +36,10 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
         label: 'Dataset 1',
         data: coin1Prices.prices,
         borderColor: 'blue',
-        backgroundColor: 'green', // Color for the fill
+        backgroundColor: fillColor, // Color for the fill
         fill: {
           target: 'origin',
-          above: '#1c1a3b', // Area will be red above the origin
+          above: lineColor, // Area will be red above the origin
           below: 'red',
         },
       },
@@ -88,7 +93,7 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
   };
 
   return (
-    <div className="border w-full h-[40vh]">
+    <div className=" rounded-md w-full h-[40vh] mb-36 mt-12 dark:bg-[#191934]">
       <div>{chartTitle}</div>
       <Line options={options} data={data} height={200} width={2200} />
     </div>

@@ -45,7 +45,7 @@ export function DataBar({ data }) {
   ).currentPrice;
 
   return (
-    <span className="max-w-screen w-screen flex my-4 sm:max-h-[3%] h-[3%] items-center justify-center gap-12 text-xs z-0 bg-[var(--card)] -mt-12 -ml-12 border">
+    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-12 text-xs z-0 bg-[var(--card)] -mt-12 -ml-12 border">
       <div className="p-2 py-0 sm:p-8 flex gap-2 items-center">
         <Zap
           fill="#000"
@@ -65,26 +65,20 @@ export function DataBar({ data }) {
       </div>
       <div className="flex flex-nowrap items-center gap-2">
         Volume {formatNum(totalVolume)}
-        {/* <Progress className="w-[50%] m-0" value={Math.trunc(totalVolume)} /> */}
       </div>
-      <div className="flex flex-nowrap items-center gap-2  w-[10%]">
+      <div className="flex flex-nowrap items-center gap-2 ">
         <Image src="/icons/bitcoin.svg" width={20} height={20} alt="btc logo" />
         {Math.trunc(data.market_cap_percentage.btc)}%
-        {/* <Progress
-          className="w-[50%] m-0"
-          value={Math.trunc(data.market_cap_percentage.btc)}
-        /> */}
         <ProgressBar
-          // label={Math.trunc(data.market_cap_percentage.btc)'%'}
           isLabelVisible={false}
           completed={Math.trunc(data.market_cap_percentage.btc)}
           maxCompleted={100}
           height="7px"
-          barContainerClassName="bg-gray-300/80 w-[1000%] ml-2 rounded-md"
+          barContainerClassName="bg-gray-300/80  ml-2 rounded-md w-[100px]"
           bgColor={'#ff8d00'}
         />
       </div>
-      <div className="flex flex-nowrap items-center gap-2  w-[10%]">
+      <div className="flex flex-nowrap items-center gap-2 ">
         <Image
           src="/icons/ethereum.svg"
           width={20}
@@ -98,7 +92,7 @@ export function DataBar({ data }) {
           completed={Math.trunc(data.market_cap_percentage.eth)}
           maxCompleted={100}
           height="7px"
-          barContainerClassName="bg-gray-300/80 ml-2 text-sm rounded-sm w-[1000%]"
+          barContainerClassName="bg-gray-300/80 ml-2 text-sm rounded-sm w-[100px]"
           bgColor={'#7d9eff'}
         />
       </div>

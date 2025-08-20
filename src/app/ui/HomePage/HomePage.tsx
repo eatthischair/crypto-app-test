@@ -75,7 +75,7 @@ export function HomePage() {
 
   return (
     <>
-      <div className="w-full col-span-1 flex flex-shrink">
+      <div className="w-full max-w-full col-span-1 flex flex-shrink">
         <ConverterSwitch />
       </div>
       <div className="">

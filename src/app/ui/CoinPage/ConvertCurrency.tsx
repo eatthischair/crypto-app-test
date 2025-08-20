@@ -62,7 +62,7 @@ export const ConvertCurrency = ({
         className="flex sm:bg-none justify-center h-full"
         onClick={switchVals}
       >
-        <IoMdSwap size={24} className="place-self-center" />
+        <IoMdSwap size={24} className="place-self-center cursor-pointer" />
       </div>
       <div className="relative flex items-center bg-[var(--card)] rounded-sm py-2 h-full sm:max-w-[30%]">
         <span className="pl-4 ml-0 mr-0 pr-2">{symbolArr[1]}</span>

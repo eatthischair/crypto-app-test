@@ -12,7 +12,7 @@ export const LinksRow = ({ coin }) => {
           <a target="_blank" rel="noopener noreferrer" href={link} title={link}>
             <FaLink />
           </a>
-          <div className="truncate">{link}</div>
+          <div className="truncate ">{link}</div>
           <CopyButton textToCopy={link} />
         </div>
       ))}

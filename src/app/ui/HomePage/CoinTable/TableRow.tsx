@@ -76,7 +76,7 @@ export const TableRow = ({ coin, index }) => {
   return (
     <div
       className="grid grid-cols-[40%_20%_40%] gap-2 p-2 m-1 truncate h-full border
-    sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[15vh] sm:py-0 sm:my-0
+    sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[6rem] sm:py-0 sm:my-0
     bg-[var(--card)] rounded-lg hover:border
      sm:text-base"
     >

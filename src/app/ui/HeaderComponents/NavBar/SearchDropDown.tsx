@@ -15,7 +15,7 @@ export const SearchDropDown = ({
                 key={coin.id}
                 className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary"
               >
-                {coin.id}
+                {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
               </li>
             </Link>
           ))}

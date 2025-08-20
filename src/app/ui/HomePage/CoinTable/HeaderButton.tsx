@@ -16,7 +16,7 @@ export const HeaderButton = ({ text, index, toggleState, filterCoins }) => {
     return (
       <div>
         <button
-          className="pl-2 flex flex-row items-center break-words"
+          className="pl-2 flex flex-row items-center break-words cursor-pointer"
           onClick={updateToggleState}
         >
           <span className="justify-center">{text}</span>

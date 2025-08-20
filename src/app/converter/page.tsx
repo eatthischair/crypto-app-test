@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { convert } from '../ui/HeaderComponents/NavBar/convert';
 import { LineChart } from './LineChart';
 import { getCoinPriceHistory } from '../api/getCoinPriceHistory';
+import { ConverterSwitch } from '../ui/HomePage/Converter/ConverterSwitch';
 
 const Converter = () => {
   const [coin1CurPrice, setCoin1CurPrice] = useState(0);
@@ -67,6 +68,9 @@ const Converter = () => {
 
   return (
     <>
+      <div className="w-full max-w-full col-span-1 flex flex-shrink">
+        <ConverterSwitch />
+      </div>
       <div className="text-start my-5 self-start">
         <h1 className="dark:text-white text-lg mb-1">
           Online Currency Converter

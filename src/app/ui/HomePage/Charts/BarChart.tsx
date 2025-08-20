@@ -10,7 +10,7 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from 'chart.js/auto';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
@@ -67,13 +67,14 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
       {
         label: 'Dataset 1',
         data: dayVolume,
-        backgroundColor: 'blue',
-        color: 'white',
+        borderColor: 'red',
+        backgroundColor: '#543374',
       },
       {
         label: 'Dataset 2',
         data: secondChartDayVolume,
-        borderColor: 'rgb(66, 99, 132)',
+        // borderColor: 'rgb(66, 99, 132)',
+        borderColor: '#ffffff',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         yAxisID: 'y2',
         fill: true,
@@ -133,7 +134,7 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
   };
 
   return (
-    <div className="w-full sm:w-[90%] ">
+    <div className="w-full sm:w-[90%] dark:bg-[#131327] rounded-md">
       <div className="absolute m-4 text-foreground pt-16 sm:p-4">
         <h4 className=" sm:text-sm">Volume 24h</h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>

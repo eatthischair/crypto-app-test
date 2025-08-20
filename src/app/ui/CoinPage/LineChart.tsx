@@ -22,13 +22,18 @@ ChartJS.register(
 export function LineChart({ prices }) {
   const labels = prices.map(() => null);
 
+  const priceIsUp = prices[0][1] < prices[prices.length - 1][1];
+  const lineColor = priceIsUp ? 'green' : 'red';
+
   const data = {
     labels,
     datasets: [
       {
         label: 'Dataset 1',
         data: prices,
-        borderColor: 'rgb(255, 99, 132)',
+        // borderColor: 'rgb(255, 99, 132)',
+        borderColor: lineColor,
+
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
     ],

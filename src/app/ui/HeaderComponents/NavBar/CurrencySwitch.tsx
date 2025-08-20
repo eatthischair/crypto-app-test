@@ -46,10 +46,10 @@ export const CurrencySwitch = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger className="border rounded-md p-3 cursor-pointer">
         {(currency || 'usd').toUpperCase()}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="sm:max-h-60">
+      <DropdownMenuContent className="sm:max-h-60 text-">
         {Object.keys(currencies.rates).map((cur) => {
           return (
             <DropdownMenuItem

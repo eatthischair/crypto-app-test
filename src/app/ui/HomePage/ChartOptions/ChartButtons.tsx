@@ -40,14 +40,14 @@ export const ChartButtons = ({
   };
 
   return (
-    <div className="h-[10vh] px-4 sm:w-full w-[90%]">
+    <div className="px-4 sm:w-full w-[90%]">
       <Carousel>
         <CarouselContent>
           {coins.map((coin, index) => (
             <CarouselItem
               key={coin.name}
-              className={` flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-sm mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-600 sm:basis-1/6 basis-1/3 text-nowrap overflow-hidden border-2 items-center
-                pl-4 ${index === 0 ? 'ml-4' : ''}
+              className={` flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-sm mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-600 sm:basis-1/6 basis-1/4 text-nowrap overflow-hidden border-2 items-center justify-evenly
+                pl-4 cursor-pointer ${index === 0 ? 'ml-4' : ''}
                  ${
                    coinName == coin.id.toLowerCase() ||
                    secondChartCoinName == coin.id.toLowerCase()
@@ -74,7 +74,7 @@ export const ChartButtons = ({
                   </div>
                 </div>
 
-                <div className="sm:hidden visible px-2  mb-0 flex h-full">
+                <div className="sm:hidden visible px-2  mb-0 flex ">
                   {coin.symbol.toUpperCase()}
                 </div>
                 <div className="grid-cols-2 justify-self-start font-xs py-0 hidden sm:grid ">

@@ -9,12 +9,13 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from 'chart.js/auto';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { convert } from '../../HeaderComponents/NavBar/convert';
 import { Line } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
+import { useTheme } from 'next-themes';
 
 ChartJS.register(
   CategoryScale,
@@ -62,22 +63,33 @@ export function LineChart({
 
   const latestPrice = `${unit} ${formatNum(currentPrice)}`;
 
+  const { theme } = useTheme();
+  const fillColor = theme === 'dark' ? '#25254e' : 'rgb(206,206,254)';
+  const lineColor = theme === 'dark' ? '#4e4ea8' : '#8989fe';
+  
   const data = {
     labels,
     datasets: [
       {
         label: 'Dataset 1',
         data: prices,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        // borderColor: '#4e4ea8',
+        borderColor: lineColor,
+        backgroundColor: 'rgb(19, 19, 39)',
+        // backgroundColor: bgColor,
         yAxisID: 'y1',
-        fill: false,
+        fill: {
+          target: 'origin',
+          // above: 'rgb(28, 26, 59)', // Area will be red above the origin
+          above: fillColor,
+          below: 'red',
+        },
       },
       {
         label: 'Dataset 2',
         data: prices2,
         borderColor: 'rgb(66, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgb(19, 19, 39)',
         yAxisID: 'y2',
         fill: true,
       },
@@ -126,17 +138,14 @@ export function LineChart({
       line: {
         tension: 0.2,
       },
-      // stepped: false,
-      // borderDash: [],
       point: {
-        pointRadius: 1,
-        // radius: 0,
+        pointRadius: 0,
       },
     },
   };
 
   return (
-    <div className="w-full sm:w-[90%]">
+    <div className="w-full sm:w-[90%] dark:bg-[#131327] rounded-md">
       <div className="absolute m-4 text-foreground p-4">
         <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}
