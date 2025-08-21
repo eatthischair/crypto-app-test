@@ -75,7 +75,7 @@ export const TableRow = ({ coin, index }) => {
       className="grid grid-cols-[40%_20%_40%] gap-2 p-2 m-1 truncate h-full border
     sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[6rem] sm:py-0 sm:my-0
     bg-[var(--card)] rounded-lg hover:border
-     sm:text-base"
+     sm:text-base touch-auto"
     >
       <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal items-center">
         <div className="p-1 flex items-center">
