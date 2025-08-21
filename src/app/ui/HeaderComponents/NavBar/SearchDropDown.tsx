@@ -15,13 +15,14 @@ export const SearchDropDown = ({
             <Link href={`/coin/${coin.id}`} key={coin.id}>
               <li
                 key={coin.id}
-                className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary flex flex-row gap-2"
+                className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary flex flex-row gap-2 overflow-clip"
               >
                 <Image
                   src={coin.thumb}
                   alt="Coin thumbnail"
                   width={20}
                   height={20}
+                  className="aspect-square max-h-[2rem]"
                 />
                 {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
               </li>
@@ -30,13 +31,13 @@ export const SearchDropDown = ({
         </ul>
       ) : (
         isDropdownOpen && (
-          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 ">
+          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-h-60">
             <LoadingSpinner />
           </ul>
         )
       )}
       {isDropdownOpen && filteredCoins.length === 0 && searchTerm && (
-        <div className="absolute z-10 w-full bg-popver border rounded-md shadow-lg p-4 mt-1">
+        <div className="absolute z-10 w-full bg-popver border rounded-md shadow-lg p-4 mt-1 min-h-60 opacity-100">
           No results found
         </div>
       )}
