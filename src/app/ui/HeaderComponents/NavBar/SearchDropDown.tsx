@@ -31,15 +31,16 @@ export const SearchDropDown = ({
         </ul>
       ) : (
         isDropdownOpen && (
-          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-h-60">
+          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-w-60">
             <LoadingSpinner />
+            <ul></ul>
           </ul>
         )
       )}
       {isDropdownOpen && filteredCoins.length === 0 && searchTerm && (
-        <div className="absolute z-10 w-full bg-popver border rounded-md shadow-lg p-4 mt-1 min-h-60 opacity-100">
+        <ul className="absolute z-10 w-full bg-popver border rounded-md shadow-lg p-4 mt-1 min-w-60 opacity-100">
           No results found
-        </div>
+        </ul>
       )}
     </>
   );

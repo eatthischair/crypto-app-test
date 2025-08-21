@@ -1,5 +1,6 @@
 import { getCoinById } from '@/app/api/getCoinById';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import Image from 'next/image';
 
 export const AddCoinDropDown = ({
   isDropdownOpen,
@@ -27,10 +28,17 @@ export const AddCoinDropDown = ({
           {filteredCoins.map((coin) => (
             <li
               key={coin.id}
-              className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary"
+              className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary flex flex-row gap-2 overflow-clip"
               onClick={() => handleClick(coin.id)}
             >
-              {coin.id}
+              <Image
+                src={coin.thumb}
+                alt="Coin thumbnail"
+                width={20}
+                height={20}
+                className="aspect-square max-h-[2rem]"
+              />
+              {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
             </li>
           ))}
         </ul>

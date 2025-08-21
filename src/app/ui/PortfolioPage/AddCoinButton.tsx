@@ -14,6 +14,9 @@ import { Label } from '@/components/ui/label';
 import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { getSearchResults } from '@/app/api/getSearchResults';
+import { debounce } from 'lodash';
 
 export const AddCoinButton = ({
   setCoinsData,
@@ -29,14 +32,28 @@ export const AddCoinButton = ({
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const [filteredCoins, setFilteredCoins] = useState('');
   const handleInput = (searchTerm) => {
     setCoinName(searchTerm);
     setIsDropdownOpen(searchTerm.length > 0);
   };
 
-  const filteredCoins = coinsList?.filter((coin) =>
-    coin.id.toLowerCase().startsWith(coinName.toLowerCase())
-  );
+  // const filteredCoins = coinsList?.filter((coin) =>
+  //   coin.id.toLowerCase().startsWith(coinName.toLowerCase())
+  // );
+
+  useEffect(() => {
+    const getCoins = async () => {
+      const results = await getSearchResults(coinName);
+      setFilteredCoins(results.coins);
+    };
+    const debouncedGetCoins = debounce(getCoins, 300);
+    debouncedGetCoins();
+
+    return () => {
+      debouncedGetCoins.cancel();
+    };
+  }, [coinName]);
 
   const saveCoin = async () => {
     const coinData = { coinName, purchasedAmt, purchasedDate };
