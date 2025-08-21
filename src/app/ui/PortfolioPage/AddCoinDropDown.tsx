@@ -44,7 +44,7 @@ export const AddCoinDropDown = ({
         </ul>
       ) : (
         isDropdownOpen && (
-          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 ">
+          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 p-32 min-w-60">
             <LoadingSpinner />
           </ul>
         )
