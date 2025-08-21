@@ -1,4 +1,4 @@
 export const tableRowProgressColorsLightMode = [
-  ['#ff0061', '#ffb7d2'],
+  ['#7c86ff', '#615fff'],
   ['#00b4a8', '#9fe7e6'],
 ];

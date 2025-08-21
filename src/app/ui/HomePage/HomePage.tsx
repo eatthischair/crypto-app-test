@@ -94,7 +94,7 @@ export function HomePage() {
           secondChartCoinName={secondChartCoinName}
         />
       </div>
-      <div className="w-full grid grid-cols-1 grid-rows-2 gap-2 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
+      <div className="grid grid-cols-1 grid-rows-2 gap-2 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
         <div className="sm:h-3/5 w-full h-full">
           <LineChart
             pricesData={chartData}

@@ -1,5 +1,7 @@
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import Image from 'next/image';
 import Link from 'next/link';
+
 export const SearchDropDown = ({
   isDropdownOpen,
   filteredCoins,
@@ -13,8 +15,14 @@ export const SearchDropDown = ({
             <Link href={`/coin/${coin.id}`} key={coin.id}>
               <li
                 key={coin.id}
-                className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary"
+                className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary flex flex-row gap-2"
               >
+                <Image
+                  src={coin.thumb}
+                  alt="Coin thumbnail"
+                  width={20}
+                  height={20}
+                />
                 {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
               </li>
             </Link>

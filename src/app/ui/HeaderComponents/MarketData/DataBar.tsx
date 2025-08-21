@@ -45,18 +45,18 @@ export function DataBar({ data }) {
   ).currentPrice;
 
   return (
-    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-12 text-xs z-0 bg-[var(--card)] -mt-12 -ml-12 border">
+    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-12 text-xs z-0 dark:bg-[var(--card)] -mt-12 -ml-12 ">
       <div className="p-2 py-0 sm:p-8 flex gap-2 items-center">
         <Zap
           fill="#000"
           color="#000"
-          size={12}
-          className="rounded-full bg-white w-4 h-4 p-1"
+          size={18}
+          className="rounded-full bg-white  w-4 h-4 p-1 "
         />
         Coins {data.active_cryptocurrencies}
       </div>
       <div className="p-2 sm:p-0 flex gap-2 items-center">
-        <SendToBack fill="#fff" size={18} />
+        <SendToBack fill="#fff" size={16} />
         Exchange {data.markets}{' '}
       </div>
       <div className="p-2 sm:p-0 flex gap-2 items-center">

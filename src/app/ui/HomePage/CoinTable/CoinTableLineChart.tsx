@@ -51,11 +51,16 @@ export function CoinTableLineChart({ coin, fillColor }) {
         grid: {
           display: false,
         },
+        gridLines: {
+          display: false, // Disable grid lines (including bottom border) for X-axis
+          drawBorder: false, // Specifically removes the axis line (bottom border)
+        },
         ticks: {
           display: false,
         },
       },
     },
+
     elements: {
       line: {
         tension: 1,
@@ -79,8 +84,8 @@ export function CoinTableLineChart({ coin, fillColor }) {
     ],
   };
   return (
-    <div className="flex h-full items-center sm:p-0 ">
-      <Line options={options} data={data} height={30} width={100} />
+    <div className="flex h-full items-center sm:p-0 mt-2">
+      <Line options={options} data={data} height={50} width={100} />
     </div>
   );
 }

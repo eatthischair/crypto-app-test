@@ -47,8 +47,8 @@ export const NavBar = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-full max-w-full min-h-[20%] grid grid-cols-1 gap-3 p-2 sm:grid-cols-[auto_auto_auto_1fr_2fr_auto_auto] sm:gap-4 sm:p-0 sm:min-h-[20%] sm:items-center">
-      <div className="col-start-1 flex gap-4 px-3 sm:justify-self-start ">
+    <div className="w-full max-w-[1400px] lg:m-auto min-h-[20%] grid grid-cols-1 gap-3 p-2 sm:grid-cols-[auto_auto_auto_1fr_2fr_auto_auto] sm:gap-4 sm:p-0 sm:min-h-[20%] sm:items-center">
+      <div className="col-start-1 flex gap-4 px-3 sm:justify-self-start">
         <Image
           src={'/images/logo.png'}
           width={220}

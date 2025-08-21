@@ -1,16 +1,29 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { SearchDropDown } from './SearchDropDown';
 import { Search } from 'lucide-react';
+import { getSearchResults } from '@/app/api/getSearchResults';
+import { debounce } from 'lodash';
 
 export const SearchBar = ({ coinsList }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const filteredCoins = coinsList?.filter((coin) =>
-    coin.id.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
+  const [filteredCoins, setFilteredCoins] = useState('');
+
+  useEffect(() => {
+    const getCoins = async () => {
+      const results = await getSearchResults(searchTerm);
+      setFilteredCoins(results.coins);
+    };
+    const debouncedGetCoins = debounce(getCoins, 300);
+    debouncedGetCoins();
+
+    return () => {
+      debouncedGetCoins.cancel();
+    };
+  }, [searchTerm]);
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);

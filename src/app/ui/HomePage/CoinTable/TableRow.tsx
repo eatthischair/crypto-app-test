@@ -19,13 +19,10 @@ export const TableRow = ({ coin, index }) => {
   const colors =
     theme === 'dark' ? tableRowProgressColors : tableRowProgressColorsLightMode;
 
-  //unused. maybe later change coloring in light mode to reflect price up or down like Figma. Too complicated right now and low priority
-  // const priceChangeToClassName = coin.price_change_24h > 0 ? 1 : 0;
-
   const barContainerClassName =
     theme === 'dark'
-      ? `rounded-sm tableRowProgressColors${[index % 8]}`
-      : `rounded-sm tableRowProgressColorsLightMode${[index % 8]}`;
+      ? `rounded-sm tableRowProgressColors${[index % colors.length]}`
+      : `rounded-sm tableRowProgressColorsLightMode${[index % colors.length]}`;
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates

@@ -11,15 +11,14 @@ export function HeaderComponents() {
     queryKey: ['dataBar'],
     queryFn: async () => {
       const response = await fetch('https://api.coingecko.com/api/v3/global');
-      // console.log('running query boss', data, isPending, error);
       return await response.json();
     },
   });
 
   return (
-    <>
+    <div className="">
       {isPending ? <Skeleton /> : <DataBar data={data?.data} />}
       <NavBar />
-    </>
+    </div>
   );
 }

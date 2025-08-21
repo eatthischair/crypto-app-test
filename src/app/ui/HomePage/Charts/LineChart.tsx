@@ -66,7 +66,7 @@ export function LineChart({
   const { theme } = useTheme();
   const fillColor = theme === 'dark' ? '#25254e' : 'rgb(206,206,254)';
   const lineColor = theme === 'dark' ? '#4e4ea8' : '#8989fe';
-  
+
   const data = {
     labels,
     datasets: [
@@ -75,23 +75,23 @@ export function LineChart({
         data: prices,
         // borderColor: '#4e4ea8',
         borderColor: lineColor,
-        backgroundColor: 'rgb(19, 19, 39)',
+        backgroundColor: 'rgba(19, 19, 39, .01)',
         // backgroundColor: bgColor,
         yAxisID: 'y1',
-        fill: {
-          target: 'origin',
-          // above: 'rgb(28, 26, 59)', // Area will be red above the origin
-          above: fillColor,
-          below: 'red',
-        },
+        // fill: {
+        //   target: 'origin',
+        //   // above: 'rgb(28, 26, 59)', // Area will be red above the origin
+        //   above: fillColor,
+        //   below: 'red',
+        // },
       },
       {
         label: 'Dataset 2',
         data: prices2,
         borderColor: 'rgb(66, 99, 132)',
-        backgroundColor: 'rgb(19, 19, 39)',
+        backgroundColor: 'rgba(19, 19, 39, .01)',
         yAxisID: 'y2',
-        fill: true,
+        fill: false,
       },
     ],
   };
@@ -145,7 +145,7 @@ export function LineChart({
   };
 
   return (
-    <div className="w-full sm:w-[90%] dark:bg-[#131327] rounded-md">
+    <div className="w-full max-w-[600px] dark:bg-[#131327] rounded-md">
       <div className="absolute m-4 text-foreground p-4">
         <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}

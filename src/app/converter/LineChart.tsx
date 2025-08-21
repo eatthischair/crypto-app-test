@@ -24,8 +24,9 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
   if (!coin1Prices) return;
 
   const { theme } = useTheme();
-  const fillColor = theme === 'dark' ? '#191934' : 'rgb(206,206,254)';
-  const lineColor = theme === 'dark' ? '#4e4ea8' : '#8989fe';
+  console.log('THEME', theme);
+  const lineColor = theme === 'dark' ? '#8c9ce9' : 'rgb(206,206,254)';
+  const fillColor = theme === 'dark' ? '#8c9ce9' : '#8989fe';
 
   const labels = coin1Prices.prices.map((item) => null);
 
@@ -93,7 +94,7 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
   };
 
   return (
-    <div className=" rounded-md w-full h-[40vh] mb-36 mt-12 dark:bg-[#191934]">
+    <div className=" rounded-md w-full max-h-[300px] mb-36 mt-12 dark:bg-[#191934]">
       <div>{chartTitle}</div>
       <Line options={options} data={data} height={200} width={2200} />
     </div>
