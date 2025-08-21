@@ -93,7 +93,7 @@ export const TableRow = ({ coin, index }) => {
           {'\n'}({coin.symbol.toUpperCase()})
         </Link>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center overflow-clip">
         {unit} {formatNum(currentPrice)}
       </div>
 

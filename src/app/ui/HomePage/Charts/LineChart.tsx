@@ -146,7 +146,7 @@ export function LineChart({
 
   return (
     <div className="w-full max-w-[600px] dark:bg-[#131327] rounded-md">
-      <div className="absolute m-4 text-foreground p-4">
+      <div className="absolute m-4 text-foreground">
         <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}
         </h4>

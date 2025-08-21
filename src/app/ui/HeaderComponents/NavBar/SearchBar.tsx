@@ -31,13 +31,13 @@ export const SearchBar = ({ coinsList }) => {
   };
 
   return (
-    <div className="relative w-full h-full focus:ring-0 focus:border-none">
+    <div className="relative ml-8 sm:ml-0 w-[20px] sm:w-full h-full focus:ring-0 focus:border-none sm:py-1 py-0 border-[var(--background)]">
       <div className="absolute inset-y-0 left-4 flex items-center justify-center pointer-events-none">
         <Search size={18} strokeWidth={2.5} />
       </div>
       <Input
         placeholder="Search..."
-        className="pl-12 w-full h-full bg-[var(--card)] focus:ring-0 focus:border-white"
+        className="pl-12 h-full bg-[var(--card)] focus:ring-0 focus:border-white"
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}

@@ -134,8 +134,8 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
   };
 
   return (
-    <div className="w-full max-w-[600px] dark:bg-[#131327] rounded-md ">
-      <div className="absolute m-4 text-foreground pt-16 sm:p-4">
+    <div className="w-full max-w-[600px] dark:bg-[#131327] rounded-md">
+      <div className="absolute m-4 text-foreground ">
         <h4 className=" sm:text-sm">Volume 24h</h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>
         <div className="text-sm">{formattedDate}</div>

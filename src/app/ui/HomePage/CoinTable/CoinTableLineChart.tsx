@@ -80,6 +80,12 @@ export function CoinTableLineChart({ coin, fillColor }) {
         // borderColor: priceGoingUp ? 'green' : 'red',
         borderColor: fillColor,
         backgroundColor: fillColor,
+        fill: {
+          target: 'origin',
+          // above: 'rgb(28, 26, 59)', // Area will be red above the origin
+          above: fillColor,
+          below: 'red',
+        },
       },
     ],
   };
