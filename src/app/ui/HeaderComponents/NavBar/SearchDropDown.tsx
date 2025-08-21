@@ -15,14 +15,14 @@ export const SearchDropDown = ({
             <Link href={`/coin/${coin.id}`} key={coin.id}>
               <li
                 key={coin.id}
-                className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary flex flex-row gap-2 overflow-clip"
+                className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary flex flex-row gap-2 overflow-hidden text-nowrap border-2"
               >
                 <Image
                   src={coin.thumb}
                   alt="Coin thumbnail"
                   width={20}
                   height={20}
-                  className="aspect-square max-h-[2rem]"
+                  className="aspect-square max-h-[1.2rem] w-auto h-auto"
                 />
                 {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
               </li>
@@ -31,7 +31,7 @@ export const SearchDropDown = ({
         </ul>
       ) : (
         isDropdownOpen && (
-          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-w-60">
+          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-w-60 p-32">
             <LoadingSpinner />
             <ul></ul>
           </ul>
