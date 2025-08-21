@@ -43,7 +43,6 @@ export const CoinTableComponents = ({ coinTable }) => {
       setHasMore(false);
     } else {
       const arr = [...coinsSorted, ...newData];
-      console.log('ALLCOINS', arr);
       const seen = new Set();
       const unique = arr.filter((item) => {
         const key = item.id; // Use the property that defines uniqueness

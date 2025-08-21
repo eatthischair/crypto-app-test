@@ -3,8 +3,6 @@
 export const fetchData = async (url) => {
   const apiKey = process.env.COINGECKO_API_KEY;
 
-  console.log('Server action running', apiKey);
-
   try {
     const options = {
       method: 'GET',
@@ -26,7 +24,6 @@ export const fetchData = async (url) => {
     }
 
     const body = await response.json();
-    // console.log('BODY', body);
     return { status: response.status, body };
   } catch (error) {
     console.error(`❌ Fetch error for ${url}:`, error);

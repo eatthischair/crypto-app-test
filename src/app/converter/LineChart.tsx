@@ -24,7 +24,6 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
   if (!coin1Prices) return;
 
   const { theme } = useTheme();
-  console.log('THEME', theme);
   const lineColor = theme === 'dark' ? '#8c9ce9' : 'rgb(206,206,254)';
   const fillColor = theme === 'dark' ? '#8c9ce9' : '#8989fe';
 

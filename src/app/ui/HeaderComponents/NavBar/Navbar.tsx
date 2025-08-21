@@ -37,7 +37,6 @@ export const NavBar = () => {
         // Second fetch for coins list
         const coins = await getCoinsList();
         const coinsListData = await coins;
-        console.log('coinslistData', coinsListData);
         setCoinsList(coinsListData);
       } catch (error) {
         console.error('Failed to fetch data:', error);
