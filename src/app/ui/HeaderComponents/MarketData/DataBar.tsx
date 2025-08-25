@@ -45,8 +45,8 @@ export function DataBar({ data }) {
   ).currentPrice;
 
   return (
-    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-12 text-xs z-0 dark:bg-[var(--card)] -mt-12 -ml-12 ">
-      <div className="p-2 py-0 sm:p-8 flex gap-2 items-center">
+    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-4 py-4 border-y sm:py-0 sm:gap-12 text-xs z-0 dark:bg-[var(--card)] sm:-mt-12 sm:-ml-12 ">
+      <div className="p-2 py-0 sm:p-8 hidden sm:flex gap-2 items-center">
         <Zap
           fill="#000"
           color="#000"
@@ -55,11 +55,11 @@ export function DataBar({ data }) {
         />
         Coins {data.active_cryptocurrencies}
       </div>
-      <div className="p-2 sm:p-0 flex gap-2 items-center">
+      <div className="p-2 sm:p-0 hidden sm:flex gap-2 items-center">
         <SendToBack fill="#fff" size={16} />
         Exchange {data.markets}{' '}
       </div>
-      <div className="p-2 sm:p-0 flex gap-2 items-center">
+      <div className="p-2 sm:p-0 hidden sm:flex gap-2 items-center">
         <ChevronUp className="text-cyan-500" size={16} />
         {formatNum(marketCap)}
       </div>
@@ -74,7 +74,7 @@ export function DataBar({ data }) {
           completed={Math.trunc(data.market_cap_percentage.btc)}
           maxCompleted={100}
           height="7px"
-          barContainerClassName="bg-gray-300/80  ml-2 rounded-md w-[100px]"
+          barContainerClassName="bg-gray-300/80 rounded-md w-[50px] sm:w-[100px]"
           bgColor={'#ff8d00'}
         />
       </div>
@@ -92,7 +92,7 @@ export function DataBar({ data }) {
           completed={Math.trunc(data.market_cap_percentage.eth)}
           maxCompleted={100}
           height="7px"
-          barContainerClassName="bg-gray-300/80 ml-2 text-sm rounded-sm w-[100px]"
+          barContainerClassName="bg-gray-300/80 text-sm rounded-sm w-[50px] sm:w-[100px]"
           bgColor={'#7d9eff'}
         />
       </div>

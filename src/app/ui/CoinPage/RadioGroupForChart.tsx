@@ -3,9 +3,9 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 export const RadioGroupForChart = ({ setRadioSelect }) => {
   return (
-    <div className="flex flex-shrink justify-center gap-2 w-full flex-nowrap p-4">
+    <div className="flex justify-center gap-2 flex-nowrap p-4 ">
       <RadioGroup defaultValue="option-3">
-        <span className="flex space-x-2 ">
+        <span className="flex space-x-2">
           <RadioGroupItem
             value="option-1"
             id="option-1"
@@ -44,14 +44,6 @@ export const RadioGroupForChart = ({ setRadioSelect }) => {
             onClick={() => setRadioSelect(5)}
           />
           <Label htmlFor="option-5">1y</Label>
-        </span>
-        <span className="flex space-x-2">
-          <RadioGroupItem
-            value="option-6"
-            id="option-6"
-            onClick={() => setRadioSelect(6)}
-          />
-          <Label htmlFor="option-6">Max</Label>
         </span>
       </RadioGroup>
     </div>

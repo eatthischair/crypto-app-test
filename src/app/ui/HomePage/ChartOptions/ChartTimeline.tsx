@@ -30,7 +30,7 @@ export const ChartTimeline = ({
       {timelineArr.map((option, index) => (
         <Button
           key={option}
-          className={`cursor-pointer flex-grow h-full text-[var(--foreground)] rounded-sm bg-opacity-0 hover:bg-indigo-200  mx-1 ${
+          className={`cursor-pointer flex-grow h-full text-[var(--foreground)] rounded-sm bg-opacity-0 hover:bg-indigo-200 dark:hover:bg-indigo-600 mx-1 ${
             days == timelineInDays[index]
               ? // ? 'bg-gradient-to-b from-indigo-700 to-indigo-800 shadow-indigo-500 shadow-[0_0_1px] border'
                 selectedClassName

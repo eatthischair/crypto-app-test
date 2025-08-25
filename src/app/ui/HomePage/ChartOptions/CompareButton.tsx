@@ -5,7 +5,7 @@ export const CompareButton = ({ compareToggled, setCompareToggled }) => {
   const handleToggle = () => {};
   return (
     <div className="grid grid-cols-2 my-2 mx-6 h-full py-2 ">
-      <a className="p-2 m-2 mt-2 pt-4 -ml-1 flex items-end font-xs text-gray-400 mb-0 pb-0">
+      <a className="p-2 m-2 mt-2 pt-4 -ml-1 flex items-end text-xs sm:text-sm text-gray-400 mb-0 pb-0">
         Select the currency to view statistics
       </a>
       <Button

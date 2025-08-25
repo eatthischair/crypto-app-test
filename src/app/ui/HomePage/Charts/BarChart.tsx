@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Colors } from 'chart.js';
+import { Colors } from 'chart.js/auto';
 
 import {
   Chart as ChartJS,
@@ -17,7 +17,7 @@ import { Bar } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import Skeleton from 'react-loading-skeleton';
-
+import { useTheme } from 'next-themes';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -61,6 +61,31 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
 
   const latestVolume = `${unit} ${formatNum(currentPrice)}`;
 
+  const { theme } = useTheme();
+  const lineColor = theme === 'dark' ? '#6b6be5' : '#b5b5fd';
+  const fillColor = theme === 'dark' ? '#ac66e2' : '#a963e1';
+  const dataset2FillColor = theme === 'dark' ? '#6b6ae4' : '#8585ff';
+
+  let width, height, gradient;
+
+  function getGradient(ctx, chartArea) {
+    const chartWidth = chartArea.right - chartArea.left;
+    const chartHeight = chartArea.bottom - chartArea.top;
+    if (!gradient || width !== chartWidth || height !== chartHeight) {
+      width = chartWidth;
+      height = chartHeight;
+      gradient = ctx.createLinearGradient(
+        0,
+        chartArea.bottom,
+        0,
+        chartArea.top
+      );
+      gradient.addColorStop(0, fillColor);
+      gradient.addColorStop(1, lineColor);
+    }
+    return gradient;
+  }
+
   const data = {
     labels,
     datasets: [
@@ -68,14 +93,15 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
         label: 'Dataset 1',
         data: dayVolume,
         borderColor: 'red',
-        backgroundColor: '#543374',
+        // backgroundColor: '#543374',
+        backgroundColor: fillColor,
       },
       {
         label: 'Dataset 2',
         data: secondChartDayVolume,
         // borderColor: 'rgb(66, 99, 132)',
         borderColor: '#ffffff',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: dataset2FillColor,
         yAxisID: 'y2',
         fill: true,
       },
@@ -90,7 +116,7 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
         display: false,
       },
       colors: {
-        forceOverride: true,
+        forceOverride: false,
       },
     },
     scales: {
@@ -124,7 +150,7 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
         // max: 30,
         ticks: {
           display: false,
-          stepSize: 5000,
+          stepSize: 5,
         },
         grid: {
           display: false,

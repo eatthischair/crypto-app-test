@@ -47,11 +47,20 @@ export const NavBar = () => {
 
   return (
     <div className="w-full max-w-[1400px] lg:m-auto min-h-[20%] grid grid-cols-1 gap-3 p-2 sm:grid-cols-[auto_auto_auto_1fr_2fr_auto_auto] sm:gap-4 sm:p-0 sm:min-h-[20%] sm:items-center">
-      <div className="col-start-1 flex gap-4 px-3 sm:justify-self-start">
+      <div className="col-start-1 hidden sm:flex gap-4 px-3 sm:justify-self-start">
         <Image
           src={'/images/logo.png'}
           width={220}
           height={60}
+          alt="Company Logo"
+          className={logoClassName}
+        />
+      </div>
+      <div className="col-start-1 flex sm:hidden gap-4 mr-28 py-2 sm:justify-self-start border">
+        <Image
+          src={'/images/logoMobile.png'}
+          width={50}
+          height={50}
           alt="Company Logo"
           className={logoClassName}
         />
@@ -67,7 +76,7 @@ export const NavBar = () => {
         />
       </div>
 
-      <div className="col-start-5 sm:justify-self-end justify-self-start w-[6em] -ml-8 sm:w-[16em] h-full">
+      <div className="sm:col-start-5 sm:justify-self-end justify-self-start py-2 sm:py-0 sm:-ml-8 sm:w-[16em] h-full max-w-[40px] sm:max-w-[400px] -mr-8 sm:mr-0">
         <SearchBar coinsList={coinsList} />
       </div>
       <div className="col-start-6 justify-self-end flex items-center">

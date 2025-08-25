@@ -46,7 +46,7 @@ export const ChartButtons = ({
           {coins.map((coin, index) => (
             <CarouselItem
               key={coin.name}
-              className={` flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-sm mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-200 sm:basis-1/6 basis-1/3 text-nowrap overflow-hidden border items-center justify-evenly
+              className={` flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-sm mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-200 dark:hover:bg-indigo-600 sm:basis-1/6 basis-1/4 text-nowrap overflow-hidden border items-center justify-evenly
                 pl-4 cursor-pointer ${index === 0 ? 'ml-4' : ''}
                  ${
                    coinName == coin.id.toLowerCase() ||
@@ -62,19 +62,26 @@ export const ChartButtons = ({
                 width={30}
                 height={30}
                 alt=""
-                className="sm:py-4 py-2"
+                className="hidden sm:flex sm:py-4 py-2"
+              />
+              <Image
+                src={coin.image}
+                width={20}
+                height={20}
+                alt=""
+                className="sm:hidden sm:py-4 py-2 -ml-2 sm:ml-0"
               />
 
               <div className="flex items-center sm:grid sm:grid-rows-2 w-full sm:py-2 sm:m-0 sm:p-0 sm:place-self-center text-xl sm:text-base align-middle">
                 <div className="justify-start overflow-clip text-nowrap hidden sm:flex">
                   {coin.name}
-                  <div className="justify-items-center ">
+                  <div className="justify-items-center text-gray-300 ">
                     {' '}
                     ({coin.symbol.toUpperCase()})
                   </div>
                 </div>
 
-                <div className="sm:hidden visible px-2  mb-0 flex ">
+                <div className="sm:hidden visible px-2  mb-0 flex text-sm">
                   {coin.symbol.toUpperCase()}
                 </div>
                 <div className="grid-cols-2 justify-self-start font-xs py-0 hidden sm:grid ">

@@ -10,7 +10,7 @@ export const SearchDropDown = ({
   return (
     <div className="-ml-12 sm:ml-0">
       {isDropdownOpen && filteredCoins.length > 0 ? (
-        <ul className="absolute z-100  bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 max-w-[200px] sm:max-w-full">
+        <ul className="absolute z-100  bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 max-w-[200px] sm:max-w-full ">
           {filteredCoins.map((coin) => (
             <Link href={`/coin/${coin.id}`} key={coin.id}>
               <li

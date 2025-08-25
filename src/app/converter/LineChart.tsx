@@ -24,8 +24,30 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
   if (!coin1Prices) return;
 
   const { theme } = useTheme();
-  const lineColor = theme === 'dark' ? '#8c9ce9' : 'rgb(206,206,254)';
-  const fillColor = theme === 'dark' ? '#8c9ce9' : '#8989fe';
+  const lineColor = theme === 'dark' ? '#6b6be5' : '#b5b5fd';
+  const fillColor = theme === 'dark' ? '#1e1e3f' : '#e4e4ff';
+
+  let width, height, gradient;
+
+  function getGradient(ctx, chartArea) {
+    const chartWidth = chartArea.right - chartArea.left;
+    const chartHeight = chartArea.bottom - chartArea.top;
+    if (!gradient || width !== chartWidth || height !== chartHeight) {
+      // Create the gradient because this is either the first render
+      // or the size of the chart has changed
+      width = chartWidth;
+      height = chartHeight;
+      gradient = ctx.createLinearGradient(
+        0,
+        chartArea.bottom,
+        0,
+        chartArea.top
+      );
+      gradient.addColorStop(0, fillColor);
+      gradient.addColorStop(1, lineColor);
+    }
+    return gradient;
+  }
 
   const labels = coin1Prices.prices.map((item) => null);
 
@@ -35,11 +57,19 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
       {
         label: 'Dataset 1',
         data: coin1Prices.prices,
-        borderColor: 'blue',
+        borderColor: lineColor,
         backgroundColor: fillColor, // Color for the fill
         fill: {
           target: 'origin',
-          above: lineColor, // Area will be red above the origin
+          above: function (context) {
+            const chart = context.chart;
+            const { ctx, chartArea } = chart;
+
+            if (!chartArea) {
+              return;
+            }
+            return getGradient(ctx, chartArea);
+          },
           below: 'red',
         },
       },

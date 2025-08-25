@@ -44,9 +44,7 @@ export function CoinTableLineChart({ coin, fillColor, gradientColor }) {
       );
       gradient.addColorStop(0, gradientColor);
       gradient.addColorStop(0.5, fillColor);
-      // gradient.addColorStop(1, 'red');
     }
-
     return gradient;
   }
 
@@ -117,7 +115,6 @@ export function CoinTableLineChart({ coin, fillColor, gradientColor }) {
         backgroundColor: fillColor,
         fill: {
           target: 'origin',
-          // above: fillColor
           above: function (context) {
             const chart = context.chart;
             const { ctx, chartArea } = chart;
