@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { useTheme } from 'next-themes';
 import { Line } from 'react-chartjs-2';
 ChartJS.register(
   CategoryScale,
@@ -21,10 +22,34 @@ ChartJS.register(
   Legend
 );
 
-export function CoinTableLineChart({ coin, fillColor }) {
+export function CoinTableLineChart({ coin, fillColor, gradientColor }) {
   const sevenDayArr = coin.sparkline_in_7d.price;
   const priceGoingUp = sevenDayArr[sevenDayArr.length - 1] >= sevenDayArr[0];
   const labels = sevenDayArr.map((item) => new Date(item[0]));
+
+  let width, height, gradient;
+  function getGradient(ctx, chartArea) {
+    const chartWidth = chartArea.right - chartArea.left;
+    const chartHeight = chartArea.bottom - chartArea.top;
+    if (!gradient || width !== chartWidth || height !== chartHeight) {
+      // Create the gradient because this is either the first render
+      // or the size of the chart has changed
+      width = chartWidth;
+      height = chartHeight;
+      gradient = ctx.createLinearGradient(
+        0,
+        chartArea.bottom,
+        0,
+        chartArea.top
+      );
+      gradient.addColorStop(0, gradientColor);
+      gradient.addColorStop(0.5, fillColor);
+      // gradient.addColorStop(1, 'red');
+    }
+
+    return gradient;
+  }
+
   const options = {
     responsive: true,
     plugins: {
@@ -63,10 +88,10 @@ export function CoinTableLineChart({ coin, fillColor }) {
 
     elements: {
       line: {
-        tension: 1,
+        tension: 0.2,
       },
       point: {
-        pointRadius: 0,
+        pointRadius: 1,
       },
     },
   };
@@ -78,13 +103,30 @@ export function CoinTableLineChart({ coin, fillColor }) {
         label: 'Dataset 1',
         data: sevenDayArr,
         // borderColor: priceGoingUp ? 'green' : 'red',
-        borderColor: fillColor,
+        // borderColor: fillColor,
+        borderColor: function (context) {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+
+          if (!chartArea) {
+            return;
+          }
+          return getGradient(ctx, chartArea);
+        },
+
         backgroundColor: fillColor,
         fill: {
           target: 'origin',
-          // above: 'rgb(28, 26, 59)', // Area will be red above the origin
-          above: fillColor,
-          below: 'red',
+          // above: fillColor
+          above: function (context) {
+            const chart = context.chart;
+            const { ctx, chartArea } = chart;
+
+            if (!chartArea) {
+              return;
+            }
+            return getGradient(ctx, chartArea);
+          },
         },
       },
     ],

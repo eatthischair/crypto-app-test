@@ -77,8 +77,8 @@ export const TableRow = ({ coin, index }) => {
     bg-[var(--card)] rounded-lg hover:border
      sm:text-base touch-auto"
     >
-      <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal items-center">
-        <div className="p-1 flex items-center">
+      <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal items-center ">
+        <div className="p-1 flex items-center ">
           <Image
             src={coin.image}
             width="40"
@@ -88,13 +88,15 @@ export const TableRow = ({ coin, index }) => {
             className=""
           />
         </div>
-        <Link href={`/coin/${coin.id}`}>
-          {coin.name}
-          {'\n'}({coin.symbol.toUpperCase()})
+        <Link href={`/coin/${coin.id}`} className="text-sm sm:text-base">
+          {coin.symbol.toUpperCase()}
+          {'\n'}
+          <div className="text-xs text-gray-300">{coin.name}</div>
         </Link>
       </div>
       <div className="flex items-center overflow-clip">
-        {unit} {formatNum(currentPrice)}
+        {unit}
+        {formatNum(currentPrice)}
       </div>
 
       <div className="hidden sm:flex sm:items-center">
@@ -160,7 +162,11 @@ export const TableRow = ({ coin, index }) => {
         </div>
       </div>
       <div>
-        <CoinTableLineChart coin={coin} fillColor={fillColor} />
+        <CoinTableLineChart
+          coin={coin}
+          fillColor={fillColor}
+          gradientColor={colors[index % colors.length][1]}
+        />
       </div>
     </div>
   );

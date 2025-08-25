@@ -19,7 +19,7 @@ export const ConvertCurrency = ({
     exchangeRateUsd
   ).currentPrice;
 
-  const [secondVal, setSecondVal] = useState(firstVal * currentPrice);
+  const [secondVal, setSecondVal] = useState(firstVal / currentPrice);
 
   const symbolArr = useMemo(() => {
     if (!toggled) {
