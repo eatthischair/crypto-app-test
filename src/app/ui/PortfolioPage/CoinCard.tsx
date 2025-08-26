@@ -68,22 +68,32 @@ export const CoinCard = ({
   };
 
   return (
-    <div className="w-full shadow-lg rounded-lg overflow-hidden bg-[var(--card)] sm:grid sm:grid-cols-[20%_80%] sm:gap-4 sm:p-8 mb-12 relative">
+    <div className="w-full shadow-lg rounded-lg overflow-hidden bg-[var(--card)] sm:grid sm:grid-cols-[20%_80%] sm:gap-4 sm:p-0 mb-12 relative items-center">
       {/* Image and Name Section */}
-      <div className="flex flex-col items-center justify-start h-[20vh] sm:w-full w-full aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
+      {/* <div className="flex flex-col items-center justify-start h-[20vh]  aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
         <img
           src={data?.image}
           alt="Coin Icon"
-          className="w-1/4 lg:w-[256px] h-auto object-cover sm:pt-0"
+          className="w-1/4 aspect-square lg:w-[256px] h-auto object-cover sm:pt-0"
         />
         <div className="mt-2 text-left  ">
+          {coin.coinName} ({coin.symbol.toUpperCase()})
+        </div>
+      </div> */}
+      <div className="flex flex-col items-center justify-center h-[20vh] p-2 sm:p-0 mt-4 ">
+        <img
+          src={data?.image}
+          alt="Coin Icon"
+          className="max-h-[50%] aspect-square lg:max-h-[128px] h-auto object-cover sm:pt-0"
+        />
+        <div className="mt-2 text-center">
           {coin.coinName} ({coin.symbol.toUpperCase()})
         </div>
       </div>
 
       {/* Grid for Data and EditCoin */}
       <div className="grid grid-cols-3 p-8 m-2 items-stretch sm:grid-cols-4 sm:grid-rows-[auto_repeat(2,_1fr)] relative">
-        <div className="absolute top-2 right-2 sm:static sm:col-span-4 sm:flex sm:justify-end sm:items-start sm:p-2">
+        <div className="absolute top-2 right-4 flex gap-2 items-center sm:static sm:col-span-4 sm:flex sm:justify-end sm:items-start sm:p-2 sm:gap-4">
           <EditCoin
             coin={coin}
             coinsData={coinsData}
@@ -92,7 +102,7 @@ export const CoinCard = ({
             updateCoins={updateCoins}
           />
           <Trash
-            className="text-gray-500 hover:text-blue-500 cursor-pointer absolute right-8 top-0 sm:top-10 sm:right-2"
+            className="text-gray-500 hover:text-blue-500 cursor-pointer"
             size={20}
             onClick={deleteCoin}
           />
