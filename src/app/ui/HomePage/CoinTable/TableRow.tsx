@@ -99,10 +99,10 @@ export const TableRow = ({ coin, index }) => {
         {formatNum(currentPrice)}
       </div>
 
-      <div className="hidden sm:flex sm:items-center   my-4">
+      <div className="hidden sm:flex sm:items-center my-4">
         {formatPriceChange(coin.price_change_percentage_1h_in_currency)}
       </div>
-      <div className="hidden sm:flex sm:items-center   my-4">
+      <div className="hidden sm:flex sm:items-center my-4">
         {formatPriceChange(coin.price_change_percentage_24h_in_currency)}
       </div>
       <div className="hidden sm:flex sm:items-center   my-4">
