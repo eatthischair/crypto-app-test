@@ -45,13 +45,13 @@ export function DataBar({ data }) {
   ).currentPrice;
 
   return (
-    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-4 py-4 border-y sm:py-0 sm:gap-12 text-xs z-0 dark:bg-[var(--card)] sm:-mt-12 sm:-ml-12 ">
+    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-2 border-y sm:py-0 sm:gap-12 text-xs z-0 dark:bg-[var(--card)] sm:-mt-12 sm:-ml-12 max-h-[50px] h-[3rem] sm:h-full">
       <div className="p-2 py-0 sm:p-8 hidden sm:flex gap-2 items-center">
         <Zap
           fill="#000"
           color="#000"
           size={18}
-          className="rounded-full bg-white  w-4 h-4 p-1 "
+          className="rounded-full bg-white  w-4 h-4 p-1 border"
         />
         Coins {data.active_cryptocurrencies}
       </div>

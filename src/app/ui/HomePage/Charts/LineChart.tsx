@@ -107,7 +107,7 @@ export function LineChart({
       {
         label: 'Dataset 1',
         data: prices,
-        // borderColor: '#4e4ea8',
+
         borderColor: lineColor,
         backgroundColor: 'rgba(19, 19, 39, .01)',
         fill: {

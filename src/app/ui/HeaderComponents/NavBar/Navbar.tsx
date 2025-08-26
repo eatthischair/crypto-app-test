@@ -46,7 +46,7 @@ export const NavBar = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-full max-w-[1400px] lg:m-auto min-h-[20%] grid grid-cols-1 gap-3 p-2 sm:grid-cols-[auto_auto_auto_1fr_2fr_auto_auto] sm:gap-4 sm:p-0 sm:min-h-[20%] sm:items-center">
+    <div className="w-full max-w-[1400px] lg:m-auto min-h-[20%] grid grid-cols-1 gap-3 sm:grid-cols-[auto_auto_auto_1fr_2fr_auto_auto] sm:gap-4 sm:p-0 sm:min-h-[20%] sm:items-center ">
       <div className="col-start-1 hidden sm:flex gap-4 px-3 sm:justify-self-start">
         <Image
           src={'/images/logo.png'}
@@ -56,11 +56,11 @@ export const NavBar = () => {
           className={logoClassName}
         />
       </div>
-      <div className="col-start-1 flex sm:hidden gap-4 mr-28 py-2 sm:justify-self-start border">
+      <div className="flex items-center justify-start p-3 sm:hidden">
         <Image
           src={'/images/logoMobile.png'}
-          width={50}
-          height={50}
+          width={70}
+          height={70}
           alt="Company Logo"
           className={logoClassName}
         />

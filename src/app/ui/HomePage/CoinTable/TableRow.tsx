@@ -72,13 +72,13 @@ export const TableRow = ({ coin, index }) => {
 
   return (
     <div
-      className="grid grid-cols-[40%_20%_40%] gap-2 p-2 m-1 truncate h-full border
-    sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:h-[6rem] sm:py-0 sm:my-0
-    bg-[var(--card)] rounded-md hover:border
+      className="grid grid-cols-[40%_20%_40%] gap-2 p-2 m-1 truncate
+    sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:py-0 sm:my-0
+    bg-[var(--card)] rounded-sm hover:border
      sm:text-base touch-auto"
     >
-      <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 break-words whitespace-normal items-center ">
-        <div className="p-1 flex items-center ">
+      <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 my-6 break-words whitespace-normal items-center ">
+        <div className="px-1 flex items-center ">
           <Image
             src={coin.image}
             width="40"
@@ -94,22 +94,22 @@ export const TableRow = ({ coin, index }) => {
           <div className="text-xs text-gray-300">{coin.name}</div>
         </Link>
       </div>
-      <div className="flex items-center overflow-clip">
+      <div className="flex items-center overflow-clip   my-4">
         {unit}
         {formatNum(currentPrice)}
       </div>
 
-      <div className="hidden sm:flex sm:items-center">
+      <div className="hidden sm:flex sm:items-center   my-4">
         {formatPriceChange(coin.price_change_percentage_1h_in_currency)}
       </div>
-      <div className="hidden sm:flex sm:items-center ">
+      <div className="hidden sm:flex sm:items-center   my-4">
         {formatPriceChange(coin.price_change_percentage_24h_in_currency)}
       </div>
-      <div className="hidden sm:flex sm:items-center">
+      <div className="hidden sm:flex sm:items-center   my-4">
         {formatPriceChange(coin.price_change_percentage_7d_in_currency)}
       </div>
 
-      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:m-0 sm:p-0">
+      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:m-0 sm:p-0   sm:my-1">
         <div
           style={{
             color: fillColor,
@@ -135,7 +135,7 @@ export const TableRow = ({ coin, index }) => {
         </div>
       </div>
 
-      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:gap-0 sm:m-0 sm:p-0 sm:align-items-center">
+      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:m-0 sm:p-0 sm:my-1">
         <div
           style={{
             color: fillColor,
@@ -149,7 +149,7 @@ export const TableRow = ({ coin, index }) => {
         <div></div>
         <div className="m-0 p-0 pt-6">{formatNum(coin.total_supply)}</div>
 
-        <div className="col-span-3 gap-0 h-full py-1 sm:flex sm:items-center">
+        <div className="col-span-3 gap-0 m-0 p-0 sm:flex sm:items-center">
           <ProgressBar
             completed={circulatingTotalSupply}
             maxCompleted={100}
