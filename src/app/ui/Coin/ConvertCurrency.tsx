@@ -3,7 +3,7 @@ import { IoMdSwap } from 'react-icons/io';
 import { Input } from '@/components/ui/input';
 import { useState, useMemo } from 'react';
 import { formatPrice } from '@/lib/utils';
-import { convert } from '../HeaderComponents/NavBar/convert';
+import { convert } from '../Header/NavBar/convert';
 export const ConvertCurrency = ({
   coin,
   exchangeRateObj,

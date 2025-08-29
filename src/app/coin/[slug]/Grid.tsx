@@ -1,8 +1,8 @@
 'use client';
-import { LinksRow } from '../../ui/CoinPage/LinksRow';
-import { ConvertCurrency } from '../../ui/CoinPage/ConvertCurrency';
-import { BottomChart } from '@/app/ui/CoinPage/BottomChart';
-import { CoinData } from '@/app/ui/CoinPage/CoinData';
+import { LinksRow } from '../../ui/Coin/LinksRow';
+import { ConvertCurrency } from '../../ui/Coin/ConvertCurrency';
+import { BottomChart } from '@/app/ui/Coin/BottomChart';
+import { CoinData } from '@/app/ui/Coin/CoinData';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
@@ -22,7 +22,7 @@ export const Grid = ({ coin, allPrices }) => {
     !exchangeRates.rates.usd
   ) {
     return (
-      <div className="w-full h-full">
+      <div className="h-full w-full">
         <Skeleton count={20} />
       </div>
     );
@@ -32,16 +32,16 @@ export const Grid = ({ coin, allPrices }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:grid-rows-[80%_20%] sm:h-[40vh] sm:gap-8 sm:p-8">
-        <div className="flex flex-col justify-center items-center p-4 bg-[var(--card)] rounded-sm sm:flex sm:flex-col sm:justify-center sm:items-center sm:p-4 sm:place-content-center">
+      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:grid-rows-2 sm:gap-8">
+        <div className="flex flex-col items-center justify-center rounded-sm bg-card p-4 sm:flex sm:flex-col sm:place-content-center sm:items-center sm:justify-center">
           <Image
             height="80"
             width="80"
             src={coin.image?.large}
             alt="Coin symbol"
-            className="w-20 h-20 sm:w-[100px] sm:h-[100px]"
+            className="h-20 w-20 sm:h-[100px] sm:w-[100px]"
           />
-          <div className="w-full flex justify-center m-0 p-2 gap-0 text-center sm:w-36 sm:place-content-center">
+          <div className="m-0 flex w-full justify-center gap-0 p-2 text-center sm:place-content-center">
             {coin.name}({coin.symbol.toUpperCase()})
           </div>
         </div>
@@ -50,29 +50,32 @@ export const Grid = ({ coin, allPrices }) => {
           href={coin.links.homepage}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex justify-center items-center truncate overflow-hidden text-ellipsis bg-[var(--card)] rounded-sm px-4 py-2 sm:flex sm:place-content-center sm:flex-nowrap"
+          className="bg-card flex items-center justify-center truncate overflow-hidden rounded-sm px-4 py-2 text-ellipsis sm:flex sm:flex-nowrap sm:place-content-center"
         >
           {coin.links.homepage}
         </a>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:h-[40vh] sm:gap-4 sm:p-8">
-        <div className="sm:col-span-2 overflow-ellipsis overflow-y-auto p-4 bg-[var(--background)] rounded-sm sm:p-8">
+      <div className="mt-12 grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:gap-8 border">
+        <div className="overflow-y-auto rounded-sm bg-[var(--background)] p-4 overflow-ellipsis sm:col-span-2">
           {coin.description.en}
         </div>
-
-        <LinksRow coin={coin} />
+        <div className="sm:col-span-1">
+          <LinksRow coin={coin} />
+        </div>
       </div>
+
       <ConvertCurrency
         coin={coin}
         exchangeRateObj={exchangeRateObj}
         exchangeRateUsd={exchangeRates.rates.usd}
         currency={currency}
       />
+
       {allPrices && allPrices.prices ? (
         <BottomChart allPrices={allPrices.prices} />
       ) : (
-        <div className="flex justify-center items-center h-[40vh] w-full">
+        <div className="flex items-center justify-center">
           Chart data Not Available
         </div>
       )}

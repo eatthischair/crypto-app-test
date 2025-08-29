@@ -1,7 +1,7 @@
 'use client';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { HeaderComponents } from './ui/HeaderComponents';
+import { HeaderComponents } from './ui/Header';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { ThemeProvider } from './ui/Components/theme-provider';
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="sm:w-full sm:h-full sm:p-12 m-0 overflow-x-hidden">
+        <div className="sm:w-full sm:h-full sm:p-12 sm:px-24 m-0 overflow-x-hidden border">
           <QueryClientProvider client={queryClient}>
             <Provider store={store}>
               <ThemeProvider
@@ -35,7 +35,9 @@ export default function RootLayout({
                   <Suspense fallback={<Skeleton count={5} />}>
                     <HeaderComponents />
                   </Suspense>
-                  <div className="max-w-[1400px] lg:m-auto">{children}</div>
+                  <div className="max-w-[1400px] lg:m-auto border">
+                    {children}
+                  </div>
                 </SkeletonTheme>
               </ThemeProvider>
             </Provider>

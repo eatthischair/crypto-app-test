@@ -45,7 +45,7 @@ export const CoinTableComponents = ({ coinTable }) => {
       const arr = [...coinsSorted, ...newData];
       const seen = new Set();
       const unique = arr.filter((item) => {
-        const key = item.id; // Use the property that defines uniqueness
+        const key = item.id;
         if (seen.has(key)) return false;
         seen.add(key);
         return true;
@@ -58,8 +58,8 @@ export const CoinTableComponents = ({ coinTable }) => {
 
   if (!coinTable) return;
   return (
-    <div className="overflow-y-auto sm:w-full">
-      <div className="grid">
+    <div className="overflow-y-auto sm:w-full overflow-x-hidden border-2">
+      <div className="grid scroll-x-none">
         <TableHeader toggleState={toggleState} filterCoins={filterCoins} />
       </div>
       <Table coinsSorted={coinsSorted} getData={getData} hasMore={hasMore} />

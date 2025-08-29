@@ -12,7 +12,7 @@ import {
 } from 'chart.js/auto';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { convert } from '../../HeaderComponents/NavBar/convert';
+import { convert } from '../../Header/NavBar/convert';
 import { Line } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
 import { useTheme } from 'next-themes';
@@ -184,7 +184,7 @@ export function LineChart({
   };
 
   return (
-    <div className="w-full max-w-[600px] dark:bg-[#131327] rounded-md">
+    <div className="dark:bg-[#131327] rounded-md">
       <div className="absolute m-4 text-foreground">
         <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}

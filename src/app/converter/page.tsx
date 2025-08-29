@@ -1,12 +1,12 @@
 'use client';
 import { Repeat } from 'lucide-react';
 
-import { ConvertCard } from '../ui/ConverterPage/ConvertCard';
+import { ConvertCard } from '../ui/Converter/ConvertCard';
 import { useState, useEffect } from 'react';
-import { convert } from '../ui/HeaderComponents/NavBar/convert';
+import { convert } from '../ui/Header/NavBar/convert';
 import { LineChart } from './LineChart';
 import { getCoinPriceHistory } from '../api/getCoinPriceHistory';
-import { ConverterSwitch } from '../ui/HomePage/Converter/ConverterSwitch';
+import { ConverterSwitch } from '../ui/Home/Converter/ConverterSwitch';
 
 const Converter = () => {
   const [coin1CurPrice, setCoin1CurPrice] = useState(0);

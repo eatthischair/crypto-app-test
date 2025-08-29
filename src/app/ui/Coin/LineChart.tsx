@@ -75,7 +75,7 @@ export function LineChart({ prices }) {
   };
 
   return (
-    <div className="w-screen min-w-screen p-0 sm:-ml-12 mb-24">
+    <div className=" min-w-full min-h-1/3 p-0 pt-8 mb-24">
       <Line options={options} data={data} height={200} width={1000} />
     </div>
   );

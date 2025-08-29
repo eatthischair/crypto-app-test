@@ -26,14 +26,13 @@ export const ChartTimeline = ({
     }
   };
   return (
-    <>
+    <div className="bg-card p-1 rounded-xs">
       {timelineArr.map((option, index) => (
         <Button
           key={option}
-          className={`cursor-pointer flex-grow h-full text-[var(--foreground)] rounded-sm bg-opacity-0 hover:bg-indigo-200 dark:hover:bg-indigo-600 mx-1 ${
+          className={`cursor-pointer flex-grow text-[var(--foreground)] rounded-sm bg-opacity-0 hover:bg-indigo-200 dark:hover:bg-indigo-600 m-1 p-4 ${
             days == timelineInDays[index]
-              ? // ? 'bg-gradient-to-b from-indigo-700 to-indigo-800 shadow-indigo-500 shadow-[0_0_1px] border'
-                selectedClassName
+              ? 'bg-gradient-to-b from-indigo-700 to-indigo-800 shadow-indigo-500 shadow-[0_0_1px] border'
               : ''
           }`}
           onClick={() => toggleState(timelineInDays[index])}
@@ -41,6 +40,6 @@ export const ChartTimeline = ({
           {option}
         </Button>
       ))}
-    </>
+    </div>
   );
 };

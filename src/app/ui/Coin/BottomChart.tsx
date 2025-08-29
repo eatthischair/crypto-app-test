@@ -13,9 +13,9 @@ export const BottomChart = ({ allPrices }) => {
   }, [radioSelect, allPrices]);
 
   return (
-    <>
+    <div className='border'>
       <RadioGroupForChart setRadioSelect={setRadioSelect} />
       <LineChart prices={prices} />
-    </>
+    </div>
   );
 };

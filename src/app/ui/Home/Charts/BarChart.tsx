@@ -11,7 +11,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js/auto';
-import { convert } from '../../HeaderComponents/NavBar/convert';
+import { convert } from '../../Header/NavBar/convert';
 import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import { formatNum } from '@/lib/utils';
@@ -160,7 +160,7 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
   };
 
   return (
-    <div className="w-full max-w-[600px] dark:bg-[#131327] rounded-md">
+    <div className=" dark:bg-[#131327] rounded-md">
       <div className="absolute m-4 text-foreground ">
         <h4 className=" sm:text-sm">Volume 24h</h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>

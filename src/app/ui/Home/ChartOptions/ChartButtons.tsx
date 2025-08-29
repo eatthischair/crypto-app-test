@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { formatPriceChange, formatPrice, formatNum } from '@/lib/utils';
 import { useSelector } from 'react-redux';
-import { convert } from '@/app/ui/HeaderComponents/NavBar/convert';
+import { convert } from '@/app/ui/Header/NavBar/convert';
 import {
   Carousel,
   CarouselContent,
@@ -40,13 +40,13 @@ export const ChartButtons = ({
   };
 
   return (
-    <div className="px-4 sm:w-full w-[90%]">
+    <div className="">
       <Carousel>
         <CarouselContent>
           {coins.map((coin, index) => (
             <CarouselItem
               key={coin.name}
-              className={` flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-xs mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-200 dark:hover:bg-indigo-600 sm:basis-1/6 basis-1/4 text-nowrap overflow-hidden  items-center justify-evenly
+              className={`flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-xs mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-200 dark:hover:bg-indigo-600 sm:basis-1/6 basis-1/4 text-nowrap overflow-hidden  items-center justify-evenly
                 pl-4 cursor-pointer ${index === 0 ? 'ml-4' : ''}
                  ${
                    coinName == coin.id.toLowerCase() ||
@@ -75,9 +75,8 @@ export const ChartButtons = ({
               <div className="flex items-center sm:grid sm:grid-rows-2 w-full sm:py-2 sm:m-0 sm:p-0 sm:place-self-center text-xl sm:text-base align-middle">
                 <div className="justify-start overflow-clip text-nowrap hidden sm:flex">
                   {coin.name}
-                  <div className="justify-items-center text-gray-300 ">
-                    {' '}
-                    ({coin.symbol.toUpperCase()})
+                  <div className="justify-items-center text-m flex self-center">
+                    &nbsp;({coin.symbol.toUpperCase()})
                   </div>
                 </div>
 
@@ -97,8 +96,6 @@ export const ChartButtons = ({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { AddCoinButton } from '@/app/ui/PortfolioPage/AddCoinButton';
-import { CoinCard } from '@/app/ui/PortfolioPage/CoinCard';
+import { AddCoinButton } from '@/app/ui/Portfolio/AddCoinButton';
+import { CoinCard } from '@/app/ui/Portfolio/CoinCard';
 import { getPortfolioCoinData } from '@/app/api/getPortfolioCoinData';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';

@@ -11,6 +11,7 @@ import { getCoinsList } from '@/app/api/getCoinsList';
 import Image from 'next/image';
 import { House, Layers, RefreshCw } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 
 export const NavBar = () => {
   const [coinsList, setCoinsList] = useState(null);
@@ -48,13 +49,15 @@ export const NavBar = () => {
   return (
     <div className="w-full max-w-[1400px] lg:m-auto min-h-[20%] grid grid-cols-1 gap-3 sm:grid-cols-[auto_auto_auto_1fr_2fr_auto_auto] sm:gap-4 sm:p-0 sm:min-h-[20%] sm:items-center ">
       <div className="col-start-1 hidden sm:flex gap-4 px-3 sm:justify-self-start">
-        <Image
-          src={'/images/logo.png'}
-          width={220}
-          height={60}
-          alt="Company Logo"
-          className={logoClassName}
-        />
+        <Link href={'/'}>
+          <Image
+            src={'/images/logo.png'}
+            width={220}
+            height={60}
+            alt="Company Logo"
+            className={logoClassName}
+          />
+        </Link>
       </div>
       <div className="flex items-center justify-start p-3 sm:hidden">
         <Image

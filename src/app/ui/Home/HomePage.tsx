@@ -5,7 +5,7 @@ import { CoinTable } from './CoinTable/CoinTable';
 import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
 import { Suspense } from 'react';
-import { ConverterSwitch } from '../HomePage/Converter/ConverterSwitch';
+import { ConverterSwitch } from './Converter/ConverterSwitch';
 import { CoinTableComponents } from './CoinTable/CoinTableComponents';
 import { getCoinTableData } from '@/app/api/getCoinTableData';
 import { ChartButtons } from './ChartOptions/ChartButtons';
@@ -75,7 +75,7 @@ export function HomePage() {
 
   return (
     <>
-      <div className="w-full max-w-full col-span-1 flex flex-shrink">
+      <div className="w-full max-w-full col-span-1 flex flex-shrink ">
         <ConverterSwitch />
       </div>
       <div className="">
@@ -84,7 +84,7 @@ export function HomePage() {
           setCompareToggled={setCompareToggled}
         />
       </div>
-      <div className="ml-8 sm:mx-2 ">
+      <div className="">
         <ChartButtons
           coinTableData={coinTableData}
           changeChart={changeChart}
@@ -94,8 +94,8 @@ export function HomePage() {
           secondChartCoinName={secondChartCoinName}
         />
       </div>
-      <div className="grid grid-cols-1 grid-rows-2 gap-2 p-4 sm:flex sm:h-3/5 sm:gap-8 sm:justify-center sm:flex-grow ">
-        <div className="sm:h-3/5 w-full h-full">
+      <div className="max-w-full grid grid-cols-1 grid-rows-2 gap-2 sm:gap-2 py-4 sm:flex sm:px-0 ">
+        <div className="sm:flex-1 sm:max-w-1/2 ">
           <LineChart
             pricesData={chartData}
             formattedDate={formattedDate}
@@ -103,7 +103,7 @@ export function HomePage() {
             secondChartData={secondChartData}
           />
         </div>
-        <div className="sm:h-3/5 w-full h-full">
+        <div className="sm:flex-1 sm:max-w-1/2 w-full  ">
           <BarChart
             pricesData={chartData}
             formattedDate={formattedDate}
@@ -111,10 +111,7 @@ export function HomePage() {
           />
         </div>
       </div>
-      <div
-        className="w-[40%] m-2 grid-cols-5 bg-[var(--background)]
-      flex justify-between p-1 rounded "
-      >
+      <div className="grid-cols-5 flex justify-between rounded ">
         <ChartTimeline
           setChartTimeline={setChartTimeline}
           days={days}

@@ -4,11 +4,11 @@ import { formatNum, formatPriceChange } from '../../../../lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
-import { convert } from '../../HeaderComponents/NavBar/convert';
+import { convert } from '../../Header/NavBar/convert';
 import Skeleton from 'react-loading-skeleton';
 import { useRef } from 'react';
-import { tableRowProgressColors } from '../CoinTable/tableRowProgressColors';
-import { tableRowProgressColorsLightMode } from '../CoinTable/tableRowProgressColorsLightMode';
+import { tableRowProgressColors } from './tableRowProgressColors';
+import { tableRowProgressColorsLightMode } from './tableRowProgressColorsLightMode';
 import './tableRow.css';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useTheme } from 'next-themes';
@@ -72,10 +72,10 @@ export const TableRow = ({ coin, index }) => {
 
   return (
     <div
-      className="grid grid-cols-[40%_20%_40%] gap-2 p-2 m-1 truncate
-    sm:grid-cols-[25%_10%_6%_6%_6%_12%_12%_15%] sm:gap-4 sm:p-4 sm:py-0 sm:my-0
-    bg-[var(--card)] rounded-sm hover:border
-     sm:text-base touch-auto"
+      className="grid grid-cols-[40%_20%_40%] gap-2 p-2 truncate
+    sm:grid-cols-[19%_6%_6%_6%_6%_16%_16%_20%] sm:gap-4 sm:p-4 sm:py-0 sm:my-0
+    bg-[var(--card)] rounded-sm hover:bg-indigo-200 dark:hover:bg-indigo-600
+     touch-auto"
     >
       <div className="grid grid-cols-[40%_60%] sm:grid-cols-[15%_85%] p-0 m-0 my-6 break-words whitespace-normal items-center ">
         <div className="px-1 flex items-center ">
@@ -88,13 +88,25 @@ export const TableRow = ({ coin, index }) => {
             className=""
           />
         </div>
-        <Link href={`/coin/${coin.id}`} className="text-sm sm:text-base">
-          {coin.symbol.toUpperCase()}
-          {'\n'}
-          <div className="text-xs text-gray-300">{coin.name}</div>
+
+        <Link
+          href={`/coin/${coin.id}`}
+          className="text-sm flex items-baseline flex-col sm:flex-row overflow-clip mx-1"
+        >
+          {/* mobile */}
+          <span className="flex sm:hidden order-1 sm:order-2 ">
+            {coin.symbol.toUpperCase()}
+          </span>
+          {/* desktop */}
+          <span className="hidden sm:flex order-1 sm:order-2 text-sm text-gray-600 dark:text-gray-300">
+            &nbsp;{coin.symbol.toUpperCase()}
+          </span>
+          <div className="text-xs text-gray-600 dark:text-gray-300 sm:text-inherit sm:text-base sm:dark:text-white order-2 sm:order-1 text-nowrap overflow-clip">
+            {coin.name}
+          </div>
         </Link>
       </div>
-      <div className="flex items-center overflow-clip   my-4">
+      <div className="flex items-center overflow-clip my-4">
         {unit}
         {formatNum(currentPrice)}
       </div>
@@ -105,24 +117,25 @@ export const TableRow = ({ coin, index }) => {
       <div className="hidden sm:flex sm:items-center my-4">
         {formatPriceChange(coin.price_change_percentage_24h_in_currency)}
       </div>
-      <div className="hidden sm:flex sm:items-center   my-4">
+      <div className="hidden sm:flex sm:items-center my-4">
         {formatPriceChange(coin.price_change_percentage_7d_in_currency)}
       </div>
 
-      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:m-0 sm:p-0   sm:my-1">
+      <div className="hidden sm:grid sm:grid-cols-2 sm:gap-0  text-sm">
         <div
-          style={{
-            color: fillColor,
-            margin: 0,
-            padding: 0,
-            paddingTop: '1.5rem',
-          }}
+          style={{ color: fillColor }}
+          className="flex items-end justify-start"
         >
           {formatNum(totalVolume)}
         </div>
-        <div className="m-0 p-0"></div>
-        <div className="m-0 p-0 pt-6">{formatNum(marketCap)}</div>
-        <div className="col-span-3 m-0 p-0 py-1 sm:flex sm:items-center">
+        <div className="flex items-end justify-end">
+          <span
+            style={{ color: colors[index % colors.length][1] }}
+            className="text-lg"
+          ></span>
+          {formatNum(marketCap)}
+        </div>
+        <div className="col-span-2">
           <ProgressBar
             completed={progressVolumeMarketCap}
             maxCompleted={100}
@@ -135,21 +148,21 @@ export const TableRow = ({ coin, index }) => {
         </div>
       </div>
 
-      <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:m-0 sm:p-0 sm:my-1">
+      <div className="hidden sm:grid sm:grid-cols-2 text-sm ">
         <div
           style={{
             color: fillColor,
-            margin: 0,
-            padding: 0,
-            paddingTop: '1.5rem',
           }}
+          className="flex items-end justify-start"
         >
           {formatNum(coin.circulating_supply)}
         </div>
-        <div></div>
-        <div className="m-0 p-0 pt-6">{formatNum(coin.total_supply)}</div>
 
-        <div className="col-span-3 gap-0 m-0 p-0 sm:flex sm:items-center">
+        <div className="flex items-end justify-end">
+          {formatNum(coin.total_supply)}
+        </div>
+
+        <div className="col-span-2">
           <ProgressBar
             completed={circulatingTotalSupply}
             maxCompleted={100}

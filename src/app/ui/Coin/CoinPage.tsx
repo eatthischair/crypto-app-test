@@ -1,6 +1,6 @@
-import { LineChart } from '../HomePage/Charts/LineChart';
-import { BarChart } from '../HomePage/Charts/BarChart';
-import { CoinTable } from '../HomePage/CoinTable/CoinTable';
+import { LineChart } from '../Home/Charts/LineChart';
+import { BarChart } from '../Home/Charts/BarChart';
+import { CoinTable } from '../Home/CoinTable/CoinTable';
 export default async function CoinPage({}: {}) {
   return (
     <>

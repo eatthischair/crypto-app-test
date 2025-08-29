@@ -1,6 +1,6 @@
 'use client';
 import { formatPriceChange } from '@/lib/utils';
-import { convert } from '@/app/ui/HeaderComponents/NavBar/convert';
+import { convert } from '@/app/ui/Header/NavBar/convert';
 import { formatNum } from '@/lib/utils';
 import { useSelector } from 'react-redux';
 import { Plus } from 'lucide-react';
@@ -65,9 +65,9 @@ export const CoinData = ({ coin }) => {
 
   return (
     <>
-      <div className="row-span-2 p-4 bg-[var(--card)] rounded-sm justify-center">
-        <div className="grid grid-rows-3 gap-4 content-center p-4 h-full bg-[var(--card)] rounded-sm">
-          <span className="flex text-4xl justify-center gap-2 items-center">
+      <div className="bg-card row-span-2 justify-center rounded-sm p-4">
+        <div className="bg-card grid h-full grid-rows-3 content-center gap-4 rounded-sm p-4">
+          <span className="flex items-center justify-center gap-2 text-4xl">
             <small>
               {unit} {formatNum(currentPrice)}
             </small>
@@ -79,35 +79,35 @@ export const CoinData = ({ coin }) => {
           </span>
 
           <div className="text-center">
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <FaCaretUp size={35} color="#00c9be" />
               <span>All Time High:</span>
               <span className="text-xl">
                 {unit} {formatNum(allTimeHigh)}
               </span>
             </div>
-            <div className="text-gray-500 text-sm">
+            <div className="text-sm text-gray-500">
               {new Date(coin.market_data.ath_date.usd).toUTCString()}
             </div>
           </div>
 
           <div className="text-center">
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <FaCaretDown size={35} color="#f2015d" />
               <span>All Time Low:</span>
-              <span className="text-xl ">
+              <span className="text-xl">
                 {unit} {formatNum(allTimeLow)}
               </span>
             </div>
-            <div className="text-gray-500 text-sm">
+            <div className="text-sm text-gray-500">
               {new Date(coin.market_data.atl_date.usd).toUTCString()}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="row-span-3 bg-[var(--card)] rounded-sm ">
-        <div className="grid grid-rows-6 gap-4 h-[100%] content-center p-4  ">
+      <div className="bg-card row-span-3 rounded-sm">
+        <div className="grid h-[100%] grid-rows-6 content-center gap-4 p-4">
           {[
             { label: 'Market Cap', value: formatNum(marketCap) },
             {
@@ -131,20 +131,20 @@ export const CoinData = ({ coin }) => {
           ].map(({ label, value }, idx) => (
             <div
               key={idx}
-              className="font-semibold m-0 grid grid-flow-col justify-start"
+              className="m-0 grid grid-flow-col justify-start font-semibold"
             >
               <Plus
                 size={20}
                 strokeWidth={3}
-                className="p-1 mr-4 mt-.5 shadow-indigo-500 rounded-full shadow-[0_0_20px]"
+                className="mt-.5 mr-4 rounded-full p-1 shadow-[0_0_20px] shadow-indigo-500"
                 strokeLinejoin="round"
               />
-              <span className="font-semibold flex-nowrap">{label}</span>:{' '}
+              <span className="flex-nowrap font-semibold">{label}</span>:{' '}
               {value}
             </div>
           ))}
 
-          <div className="hidden sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:m-0 sm:p-0">
+          <div className="hidden sm:m-0 sm:grid sm:grid-cols-2 sm:grid-rows-[25%_75%] sm:p-0">
             <div
               style={{
                 color: '#e37100',
