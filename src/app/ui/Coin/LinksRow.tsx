@@ -9,7 +9,7 @@ export const LinksRow = ({ coin }) => {
           key={idx}
           className="mt-8 flex items-center justify-between gap-2 rounded-sm bg-[var(--card)] p-4 first:mt-2"
         >
-          <a target="_blank" rel="noopener noreferrer" href={link} title={link}>
+          <a target="_blank" rel="noopener   noreferrer" href={link} title={link}>
             <FaLink />
           </a>
           <div className="truncate">{link}</div>

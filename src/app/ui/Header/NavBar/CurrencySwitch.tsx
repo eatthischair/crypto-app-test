@@ -45,7 +45,7 @@ export const CurrencySwitch = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="border rounded-md p-2 sm:p-3 cursor-pointer hover:bg-popover">
+      <DropdownMenuTrigger className="border rounded-md p-2 sm:p-3 cursor-pointer hover:bg-accent ">
         {(currency || 'usd').toUpperCase()}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="max-h-60 border">

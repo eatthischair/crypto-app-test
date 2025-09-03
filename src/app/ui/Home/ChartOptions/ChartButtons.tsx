@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { useState } from 'react';
 
 export const ChartButtons = ({
   coinTableData,
@@ -20,6 +21,8 @@ export const ChartButtons = ({
   changeChartForCompare,
   secondChartCoinName,
 }) => {
+  const [loading, isLoading] = useState(true);
+
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
     (state: any) => state.exchangeRatesReducer.exchangeRates
@@ -40,7 +43,7 @@ export const ChartButtons = ({
   };
 
   return (
-    <div className="">
+    <>
       <Carousel>
         <CarouselContent>
           {coins.map((coin, index) => (
@@ -97,6 +100,6 @@ export const ChartButtons = ({
           ))}
         </CarouselContent>
       </Carousel>
-    </div>
+    </>
   );
 };

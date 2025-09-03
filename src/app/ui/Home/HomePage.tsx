@@ -12,6 +12,9 @@ import { ChartButtons } from './ChartOptions/ChartButtons';
 import { ChartTimeline } from './ChartOptions/ChartTimeline';
 import { CompareButton } from './ChartOptions/CompareButton';
 import { useState, useEffect } from 'react';
+import { HomeSkeleton } from './HomeSkeleton/HomeSkeleton';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export function HomePage() {
   const [chartData, setChartData] = useState('');
@@ -48,7 +51,10 @@ export function HomePage() {
     year: 'numeric',
   });
 
-  if (!coinTableData || !chartData) return null;
+  // if (!coinTableData || !chartData)
+  return <HomeSkeleton />;
+
+  // return <Skeleton count={50} />; // Five-line loading skeleton
 
   const changeChart = async (coinName) => {
     const chartData = await getChartData(coinName, days);
@@ -111,7 +117,7 @@ export function HomePage() {
           />
         </div>
       </div>
-      <div className="grid-cols-5 flex justify-between rounded ">
+      <div className="grid-cols-5 flex justify-between rounded">
         <ChartTimeline
           setChartTimeline={setChartTimeline}
           days={days}

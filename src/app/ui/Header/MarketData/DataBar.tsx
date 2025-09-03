@@ -1,8 +1,6 @@
 'use client';
-import { Progress } from '@/components/ui/progress';
 import ProgressBar from '@ramonak/react-progress-bar';
-
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
+import { DataBarSkeleton } from './DataBarSkeleton';
 import { useSelector } from 'react-redux';
 import { convert } from '../NavBar/convert';
 import { formatNum } from '@/lib/utils';
@@ -25,11 +23,7 @@ export function DataBar({ data }) {
     !data ||
     !data.total_volume
   ) {
-    return (
-      <div className="w-screen h-screen">
-        <Skeleton count={1} />
-      </div>
-    );
+    return <DataBarSkeleton />;
   }
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
@@ -45,7 +39,7 @@ export function DataBar({ data }) {
   ).currentPrice;
 
   return (
-    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-2 border-y sm:py-0 sm:gap-12 text-xs z-0 dark:bg-[var(--card)] sm:-mt-12 sm:-ml-12 max-h-[50px] h-[3rem] sm:h-full">
+    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-2 border-y sm:py-0 sm:gap-12 text-xs z-0 dark:bg-[var(--card)] sm:-mt-12 sm:-ml-24 max-h-[50px] h-[3rem] sm:h-full">
       <div className="p-2 py-0 sm:p-8 hidden sm:flex gap-2 items-center">
         <Zap
           fill="#000"

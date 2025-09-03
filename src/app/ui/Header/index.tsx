@@ -2,9 +2,10 @@
 import { NavBar } from './NavBar/Navbar';
 import { DataBar } from './MarketData/DataBar';
 import { useQuery } from '@tanstack/react-query';
-import Skeleton from 'react-loading-skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 import { getGlobalData } from '@/app/api/getGlobalData';
 import { useState, useEffect } from 'react';
+import { DataBarSkeleton } from './MarketData/DataBarSkeleton';
 
 export function HeaderComponents() {
   const { isPending, error, data } = useQuery({
@@ -16,9 +17,9 @@ export function HeaderComponents() {
   });
 
   return (
-    <div className="">
-      {isPending ? <Skeleton /> : <DataBar data={data?.data} />}
+    <>
+      {isPending ? <DataBarSkeleton /> : <DataBar data={data?.data} />}
       <NavBar />
-    </div>
+    </>
   );
 }
