@@ -30,6 +30,7 @@ export const EditCoin = ({
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  console.log('coindate', coin.purchasedDate);
   const handleInput = (searchTerm) => {
     setCoinName(searchTerm);
     setIsDropdownOpen(searchTerm.length > 0);
@@ -83,10 +84,10 @@ export const EditCoin = ({
           size={20}
         />
       </DialogTrigger>
-      <DialogContent className="w-full rounded-sm bg-white dark:bg-[var(--background)]">
+      <DialogContent className="w-full rounded-sm bg-white dark:bg-background">
         <DialogHeader>
-          <DialogTitle>Edit Coin</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-inherit">Edit Coin</DialogTitle>
+          <DialogDescription className="text-inherit">
             Edit your portfolio for this coin
           </DialogDescription>
         </DialogHeader>
@@ -103,35 +104,15 @@ export const EditCoin = ({
             <div className="w-full"></div>
           )}
           <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <div className="relative col-span-4">
-                <Input
-                  id="name"
-                  onChange={(e) => handleInput(e.target.value)}
-                  value={coinName}
-                  className="col-span-4 rounded-xs"
-                  placeholder={coin.coinName}
-                  disabled={true}
-                />
-                {coinName && (
-                  <AddCoinDropDown
-                    filteredCoins={filteredCoins}
-                    isDropdownOpen={isDropdownOpen}
-                    setIsDropdownOpen={setIsDropdownOpen}
-                    searchTerm={coinName}
-                    setCoinName={setCoinName}
-                    setCoinImage={setCoinImage}
-                  />
-                )}
-              </div>
-            </div>
+            <div className="grid grid-cols-4 items-center gap-4"></div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Input
                 id="amt"
                 type="number"
-                className="col-span-4 rounded-xs"
+                className="col-span-4 rounded-xs !placeholder-gray-400"
                 onChange={(e) => setPurchasedAmt(e.target.value)}
                 placeholder={coin.purchasedAmt}
+                value={purchasedAmt || coin.purchasedAmt}
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
@@ -141,7 +122,9 @@ export const EditCoin = ({
                 className="col-span-4 rounded-xs"
                 onChange={(e) => setPurchasedDate(e.target.value)}
                 max={today}
-                placeholder={coin.purchasedDate}
+                value={purchasedDate || coin.purchasedDate}
+                // onFocus={(this.type = 'date')}
+                // onBlur={(this.type = 'text')}
               />
             </div>
           </div>

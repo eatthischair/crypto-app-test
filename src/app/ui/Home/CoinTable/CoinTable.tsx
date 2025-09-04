@@ -1,10 +1,10 @@
 'use client';
 import { CoinTableComponents } from './CoinTableComponents';
 import { getCoinTableData } from '../../../api/getCoinTableData';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
-import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
+// import { CoinTableSkeleton } from '../HomeSkeleton/CoinTableSkeleton';
+import { TableRowSkeleton } from '../HomeSkeleton/TableRowSkeleton';
 export function CoinTable() {
   const [coinTable, setCoinTable] = useState(null);
 
@@ -16,6 +16,14 @@ export function CoinTable() {
     updateTable();
   }, []);
 
-  if (!coinTable) return <Skeleton count={50} />;
+  if (!coinTable) {
+    return (
+      <div className="gap-2">
+        <Skeleton className="w-full h-12 my-2" />
+        <TableRowSkeleton />
+      </div>
+    );
+  }
+
   return <CoinTableComponents coinTable={coinTable} />;
 }

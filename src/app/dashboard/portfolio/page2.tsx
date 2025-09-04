@@ -19,8 +19,8 @@ export default function Page2({ coinsList }) {
         //find current price, price change 24h
         //then compute price change and amount value
         const coinInfo = coinResponse.find((coin) => coin.id === data.coinName);
-        const currentPriceToday = coinInfo.current_price;
-        const priceChangeToday = coinInfo.price_change_percentage_24h;
+        const currentPriceToday = coinInfo?.current_price;
+        const priceChangeToday = coinInfo?.price_change_percentage_24h;
         data.currentPriceToday = currentPriceToday;
         data.priceChangeToday = priceChangeToday;
         return {

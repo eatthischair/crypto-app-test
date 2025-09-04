@@ -51,8 +51,7 @@ export function HomePage() {
     year: 'numeric',
   });
 
-  // if (!coinTableData || !chartData)
-  return <HomeSkeleton />;
+  if (!coinTableData || !chartData) return <HomeSkeleton />;
 
   // return <Skeleton count={50} />; // Five-line loading skeleton
 
@@ -126,9 +125,9 @@ export function HomePage() {
         />
       </div>
       <div>
-        <Suspense fallback={<LoadingSpinner />}>
-          <CoinTable />
-        </Suspense>
+        {/* <Suspense fallback={<LoadingSpinner />}> */}
+        <CoinTable />
+        {/* </Suspense> */}
       </div>
     </>
   );

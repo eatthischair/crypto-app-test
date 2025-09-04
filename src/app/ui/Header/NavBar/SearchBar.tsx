@@ -38,7 +38,7 @@ export const SearchBar = ({ coinsList }) => {
       </div>
       <Input
         placeholder="Search..."
-        className="hidden sm:flex h-full bg-[var(--card)] focus:ring-0 focus:border-white my-0 py-2 px-5 placeholder:opacity-0 -ml-2 sm:pl-12 sm:placeholder:opacity-100"
+        className="hidden sm:flex h-full bg-[var(--card)] focus:ring-0 focus:border-white my-0 py-2 px-5 placeholder:opacity-0 -ml-2 sm:pl-12 sm:placeholder:opacity-100 !placeholder-inherit"
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}

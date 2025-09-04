@@ -8,6 +8,8 @@ import { ConverterSwitchSkeleton } from './ConverterSwitchSkeleton';
 import { CompareButtonSkeleton } from './CompareButtonSkeleton';
 import { ChartSkeletons } from './ChartSkeletons';
 import { ChartTimelineSkeleton } from './ChartTimelineSkeleton';
+import { CoinTableSkeleton } from './CoinTableSkeleton';
+
 export const HomeSkeleton = () => {
   return (
     <>
@@ -21,18 +23,14 @@ export const HomeSkeleton = () => {
         <ChartButtonsSkeleton />
       </div>
       <div className="max-w-full grid grid-cols-1 grid-rows-2 gap-2 sm:gap-2 py-4 sm:flex sm:px-0 ">
-        {/* <div className="sm:flex-1 sm:max-w-1/2 ">
-          <LineChart />
-        </div>
-        <div className="sm:flex-1 sm:max-w-1/2 w-full  ">
-          <BarChart />
-        </div> */}
         <ChartSkeletons />
       </div>
       <div className="grid-cols-5 flex justify-between rounded">
         <ChartTimelineSkeleton />
       </div>
-      <div>{/* <CoinTable /> */}</div>
+      <div>
+        <CoinTableSkeleton />
+      </div>
     </>
   );
 };
