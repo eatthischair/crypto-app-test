@@ -3,7 +3,6 @@ import { CoinTableComponents } from './CoinTableComponents';
 import { getCoinTableData } from '../../../api/getCoinTableData';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-// import { CoinTableSkeleton } from '../HomeSkeleton/CoinTableSkeleton';
 import { TableRowSkeleton } from '../HomeSkeleton/TableRowSkeleton';
 export function CoinTable() {
   const [coinTable, setCoinTable] = useState(null);

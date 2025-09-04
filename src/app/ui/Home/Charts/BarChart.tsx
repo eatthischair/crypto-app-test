@@ -135,7 +135,6 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
         suggestedMin: Math.min(volume),
         suggestedMax: Math.max(volume),
         ticks: {
-          // stepSize: 500,
           display: false,
         },
         grid: {
@@ -147,7 +146,7 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
       },
       x: {
         min: 0,
-        // max: 30,
+        max: 30,
         ticks: {
           display: false,
           stepSize: 5,
@@ -160,13 +159,16 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
   };
 
   return (
-    <div className=" dark:bg-[#131327] rounded-md">
+    <div className="dark:bg-[#1e1934] bg-white rounded-md">
       <div className="absolute m-4 text-foreground ">
-        <h4 className=" sm:text-sm">Volume 24h</h4>
+        <h4 className="sm:text-sm">Volume 24h</h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>
         <div className="text-sm">{formattedDate}</div>
       </div>
       <Bar options={options} data={data} height={500} width={800} />
+      <div className="flex justify-between items-center text-xs px-1 text-gray-500 dark">
+        <span>{new Date().toLocaleString()}</span>
+      </div>
     </div>
   );
 }

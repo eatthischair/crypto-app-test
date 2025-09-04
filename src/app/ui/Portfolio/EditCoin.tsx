@@ -15,34 +15,14 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { LuPencil } from 'react-icons/lu';
 
-export const EditCoin = ({
-  setCoinsData,
-  coinsList,
-  coinsData,
-  updateCoins,
-  coin,
-}) => {
+export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
   const [coinName, setCoinName] = useState(coin.coinName);
   const [purchasedAmt, setPurchasedAmt] = useState(0);
-  const [purchasedDate, setPurchasedDate] = useState('');
-  const [coinImage, setCoinImage] = useState('');
+  const [purchasedDate, setPurchasedDate] = useState(coin.purchasedDate || '');
   const today = new Date().toISOString().split('T')[0];
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  console.log('coindate', coin.purchasedDate);
-  const handleInput = (searchTerm) => {
-    setCoinName(searchTerm);
-    setIsDropdownOpen(searchTerm.length > 0);
-  };
-
-  const filteredCoins = coinsList?.filter((coin) =>
-    coin.id.toLowerCase().startsWith(coinName.toLowerCase())
-  );
 
   const saveCoin = async () => {
     const coinData = { coinName, purchasedAmt, purchasedDate };
-    setCoinName('');
     const apiData = await fetchCoinData(coinName);
     const mergedObj = {
       ...coinData,
@@ -93,13 +73,16 @@ export const EditCoin = ({
         </DialogHeader>
         <div className="grid grid-cols-[40%_60%] w-full bg-[var(--background)]">
           {coinImage ? (
-            <Image
-              src={coinImage}
-              width={400}
-              height={400}
-              alt="Selected Coin Logo"
-              className="p-4"
-            />
+            <div className="flex flex-col items-center justify-center h-[20vh] p-2 sm:p-0 mt-4 ">
+              <img
+                src={coinImage}
+                alt="Coin Icon"
+                className="max-h-[50%] aspect-square lg:max-h-[128px] h-auto object-cover sm:pt-0"
+              />
+              <div className="mt-2 text-center">
+                {coin.coinName} ({coin.symbol.toUpperCase()})
+              </div>
+            </div>
           ) : (
             <div className="w-full"></div>
           )}
@@ -112,7 +95,7 @@ export const EditCoin = ({
                 className="col-span-4 rounded-xs !placeholder-gray-400"
                 onChange={(e) => setPurchasedAmt(e.target.value)}
                 placeholder={coin.purchasedAmt}
-                value={purchasedAmt || coin.purchasedAmt}
+                value={purchasedAmt}
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
@@ -123,8 +106,6 @@ export const EditCoin = ({
                 onChange={(e) => setPurchasedDate(e.target.value)}
                 max={today}
                 value={purchasedDate || coin.purchasedDate}
-                // onFocus={(this.type = 'date')}
-                // onBlur={(this.type = 'text')}
               />
             </div>
           </div>
@@ -135,8 +116,7 @@ export const EditCoin = ({
               type="button"
               variant="secondary"
               onClick={saveCoin}
-              disabled={!(purchasedAmt > 0 && purchasedDate)}
-              className="bg-[#3a397c]"
+              className="bg-popover"
             >
               Save Changes
             </Button>

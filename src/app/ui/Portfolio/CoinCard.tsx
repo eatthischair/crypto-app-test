@@ -40,7 +40,8 @@ export const CoinCard = ({
     return <Skeleton count={5} />;
   }
 
-  const amtChangeSincePurchase = coin.currentPriceToday / coin.current_price;
+  const amtChangeSincePurchase =
+    (coin.currentPriceToday / coin.current_price) * 100 - 100;
 
   const { currentPrice, unit } = convert(
     data.currentPriceToday,
@@ -65,22 +66,14 @@ export const CoinCard = ({
   const deleteCoin = () => {
     const newCoinsData = coinsData.filter((item) => item !== coin);
     setCoinsData(newCoinsData);
+    localStorage.setItem('coins', JSON.stringify(newCoinsData));
   };
 
   return (
-    <div className="w-full shadow-lg rounded-lg overflow-hidden bg-[var(--card)] sm:grid sm:grid-cols-[20%_80%] sm:gap-4 sm:p-0 mb-12 relative items-center">
-      {/* Image and Name Section */}
-      {/* <div className="flex flex-col items-center justify-start h-[20vh]  aspect-square p-2 sm:p-0 mt-4 sm:mt-8">
-        <img
-          src={data?.image}
-          alt="Coin Icon"
-          className="w-1/4 aspect-square lg:w-[256px] h-auto object-cover sm:pt-0"
-        />
-        <div className="mt-2 text-left  ">
-          {coin.coinName} ({coin.symbol.toUpperCase()})
-        </div>
-      </div> */}
-      <div className="flex flex-col items-center justify-center h-[20vh] p-2 sm:p-0 mt-4 ">
+    // <div className="w-full shadow-lg rounded-lg overflow-hidden bg-card sm:grid sm:grid-cols-[20%_80%] sm:gap-4 sm:p-0 mb-12 relative items-center">
+    <div className="w-full shadow-lg rounded-lg overflow-hidden bg-card sm:grid sm:grid-cols-[20%_80%] sm:gap-3 sm:p-0 mb-8 relative items-center">
+      {/* <div className="flex flex-col items-center justify-center h-[20vh] p-2 sm:p-0 mt-4 border"> */}
+      <div className="flex flex-col items-center justify-center h-[15vh] p-1 sm:p-0 mt-2 ">
         <img
           src={data?.image}
           alt="Coin Icon"
@@ -92,14 +85,16 @@ export const CoinCard = ({
       </div>
 
       {/* Grid for Data and EditCoin */}
-      <div className="grid grid-cols-3 p-8 m-2 items-stretch sm:grid-cols-4 sm:grid-rows-[auto_repeat(2,_1fr)] relative">
-        <div className="absolute top-2 right-4 flex gap-2 items-center sm:static sm:col-span-4 sm:flex sm:justify-end sm:items-start sm:p-2 sm:gap-4">
+      {/* <div className="grid grid-cols-3 px-8 py-0 m-2 items-stretch sm:grid-cols-4 sm:grid-rows-[auto_repeat(2,_1fr)] relative"> */}
+      <div className="grid grid-cols-3 px-12 m-1 items-stretch sm:grid-cols-4 sm:grid-rows-[auto_repeat(2,_1fr)] relative">
+        <div className="absolute top-2 right-4 flex gap-2 items-center sm:static sm:col-span-4 sm:flex sm:justify-end sm:items-start sm:py-4 sm:gap-4 ">
           <EditCoin
             coin={coin}
             coinsData={coinsData}
             coinsList={coinsList}
             setCoinsData={setCoinsData}
             updateCoins={updateCoins}
+            coinImage={data?.image}
           />
           <Trash
             className="text-gray-500 hover:text-blue-500 cursor-pointer"
@@ -210,7 +205,7 @@ export const CoinCard = ({
             Amount Price Change since Purchase
           </h3>
           <span className="sm:text-lg text-base font-bold">
-            {formatPriceChange(amtChangeSincePurchase - 1)}
+            {formatPriceChange(amtChangeSincePurchase)}
           </span>
         </div>
 

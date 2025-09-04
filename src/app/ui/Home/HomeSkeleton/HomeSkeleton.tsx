@@ -1,8 +1,3 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from '@/components/ui/carousel';
 import { ChartButtonsSkeleton } from './ChartButtonsSkeleton';
 import { ConverterSwitchSkeleton } from './ConverterSwitchSkeleton';
 import { CompareButtonSkeleton } from './CompareButtonSkeleton';

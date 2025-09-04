@@ -9,7 +9,7 @@ export const CompareButton = ({ compareToggled, setCompareToggled }) => {
         Select the currency to view statistics
       </a>
       <Button
-        className="sm:p-3 bg-[var(--card)] flex items-center gap-1 text-[var(--foreground)] rounded-xs justify-self-end h-full w-[12em] max-h-[5vh] hover:bg-indigo-600"
+        className="sm:p-3 bg-[var(--card)] flex items-center gap-1 text-[var(--foreground)] rounded-xs justify-self-end h-full w-[12em] max-h-[5vh] hover:bg-indigo-200 dark:hover:bg-indigo-600"
         onClick={() => setCompareToggled(!compareToggled)}
       >
         {!compareToggled ? (

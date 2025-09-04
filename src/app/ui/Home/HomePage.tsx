@@ -125,9 +125,7 @@ export function HomePage() {
         />
       </div>
       <div>
-        {/* <Suspense fallback={<LoadingSpinner />}> */}
         <CoinTable />
-        {/* </Suspense> */}
       </div>
     </>
   );

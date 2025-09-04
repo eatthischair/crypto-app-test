@@ -58,7 +58,7 @@ export const CoinTableComponents = ({ coinTable }) => {
 
   if (!coinTable) return;
   return (
-    <div className="overflow-y-auto sm:w-full overflow-x-hidden border-2">
+    <div className="overflow-y-auto sm:w-full overflow-x-hidden">
       <div className="grid scroll-x-none">
         <TableHeader toggleState={toggleState} filterCoins={filterCoins} />
       </div>

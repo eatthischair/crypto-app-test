@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="sm:w-full sm:h-full sm:p-12 sm:px-24 m-0 overflow-x-hidden border">
+        <div className="sm:w-full sm:h-full sm:p-12 sm:px-24 m-0 overflow-x-hidden ">
           <QueryClientProvider client={queryClient}>
             <Provider store={store}>
               <ThemeProvider
@@ -35,9 +35,7 @@ export default function RootLayout({
                   <Suspense fallback={<Skeleton count={5} />}>
                     <HeaderComponents />
                   </Suspense>
-                  <div className="max-w-[1400px] lg:m-auto border">
-                    {children}
-                  </div>
+                  <div className="max-w-[1400px] lg:m-auto ">{children}</div>
                 </SkeletonTheme>
               </ThemeProvider>
             </Provider>

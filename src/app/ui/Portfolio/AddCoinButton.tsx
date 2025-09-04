@@ -38,10 +38,6 @@ export const AddCoinButton = ({
     setIsDropdownOpen(searchTerm.length > 0);
   };
 
-  // const filteredCoins = coinsList?.filter((coin) =>
-  //   coin.id.toLowerCase().startsWith(coinName.toLowerCase())
-  // );
-
   useEffect(() => {
     const getCoins = async () => {
       const results = await getSearchResults(coinName);
@@ -66,6 +62,7 @@ export const AddCoinButton = ({
     localStorage.setItem('coins', JSON.stringify([...coinsData, mergedObj]));
     setCoinsData([...coinsData, mergedObj]);
     updateCoins();
+    setCoinImage('');
   };
 
   const fetchCoinData = async (coinName) => {
@@ -89,7 +86,9 @@ export const AddCoinButton = ({
       <DialogContent className="w-full rounded-sm bg-white dark:bg-[var(--background)]">
         <DialogHeader>
           <DialogTitle>Add Coin</DialogTitle>
-          <DialogDescription>Search for a coin to add</DialogDescription>
+          <DialogDescription className="text-inherit">
+            Search for a coin to add
+          </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-[40%_60%] w-full bg-[var(--background)]">
           {coinImage ? (
@@ -110,7 +109,7 @@ export const AddCoinButton = ({
                   id="name"
                   onChange={(e) => handleInput(e.target.value)}
                   value={coinName}
-                  className="col-span-4 rounded-xs"
+                  className="col-span-4 rounded-xs placeholder:text-inherit/90"
                   placeholder="Select Coin"
                 />
                 {coinName && (
@@ -129,7 +128,7 @@ export const AddCoinButton = ({
               <Input
                 id="amt"
                 type="number"
-                className="col-span-4 rounded-xs"
+                className="col-span-4 rounded-xs placeholder:text-inherit/90"
                 onChange={(e) => setPurchasedAmt(e.target.value)}
                 placeholder="Purchased Amt"
               />
@@ -153,7 +152,7 @@ export const AddCoinButton = ({
               variant="secondary"
               onClick={saveCoin}
               disabled={!(coinName && purchasedAmt > 0 && purchasedDate)}
-              className="bg-[#3a397c]"
+              className="bg-popover"
             >
               Save Changes
             </Button>

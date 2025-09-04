@@ -10,7 +10,6 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js/auto';
-import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { convert } from '../../Header/NavBar/convert';
 import { Line } from 'react-chartjs-2';
@@ -63,10 +62,6 @@ export function LineChart({
 
   const latestPrice = `${unit} ${formatNum(currentPrice)}`;
 
-  // const { theme } = useTheme();
-  // const fillColor = theme === 'dark' ? '#25254e' : 'rgb(206,206,254)';
-  // const lineColor = theme === 'dark' ? '#4e4ea8' : '#8989fe';
-
   const { theme } = useTheme();
   const lineColor = theme === 'dark' ? '#6b6be5' : '#b5b5fd';
   const fillColor = theme === 'dark' ? '#1e1e3f' : '#e4e4ff';
@@ -107,7 +102,6 @@ export function LineChart({
       {
         label: 'Dataset 1',
         data: prices,
-
         borderColor: lineColor,
         backgroundColor: 'rgba(19, 19, 39, .01)',
         fill: {
@@ -121,16 +115,8 @@ export function LineChart({
             }
             return getGradient(ctx, chartArea);
           },
-          below: 'red',
         },
-        // backgroundColor: bgColor,
         yAxisID: 'y1',
-        // fill: {
-        //   target: 'origin',
-        //   // above: 'rgb(28, 26, 59)', // Area will be red above the origin
-        //   above: fillColor,
-        //   below: 'red',
-        // },
       },
     ],
   };
@@ -175,7 +161,7 @@ export function LineChart({
     },
     elements: {
       line: {
-        tension: 0.2,
+        tension: 1,
       },
       point: {
         pointRadius: 0,
@@ -184,7 +170,7 @@ export function LineChart({
   };
 
   return (
-    <div className="dark:bg-[#131327] rounded-md">
+    <div className="dark:bg-[#131327] bg-white rounded-md">
       <div className="absolute m-4 text-foreground">
         <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}
@@ -193,6 +179,9 @@ export function LineChart({
         <div className="text-sm">{formattedDate}</div>
       </div>
       <Line options={options} data={data} height={500} width={800} />
+      <div className="flex justify-between items-center text-xs px-1 text-gray-500">
+        <span>{new Date().toLocaleString()}</span>
+      </div>
     </div>
   );
 }
