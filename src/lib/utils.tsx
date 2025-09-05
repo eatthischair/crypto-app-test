@@ -39,7 +39,7 @@ export const formatPriceChange = (num) => {
   const color = isPositive === 1 ? 'text-[#00c9be]' : 'text-[#f2015d]';
   num = isPositive === 1 ? num : Math.abs(num);
 
-  const classNameString = `flex items-center gap-1 ${color}`;
+  const classNameString = `flex items-center ${color}`;
   return (
     <div className={classNameString}>
       {formatted}
@@ -62,6 +62,5 @@ export function getGradient(ctx, chartArea, gradientColor, fillColor) {
     gradient.addColorStop(0.5, fillColor);
     // gradient.addColorStop(1, 'red');
   }
-
   return gradient;
 }

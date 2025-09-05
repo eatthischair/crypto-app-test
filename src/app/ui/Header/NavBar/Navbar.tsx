@@ -79,7 +79,7 @@ export const NavBar = () => {
         />
       </div>
 
-      <div className="sm:col-start-5 sm:justify-self-end justify-self-start py-2 sm:py-0 sm:-ml-8 sm:w-[16em] h-full max-w-[40px] sm:max-w-[400px] -mr-8 sm:mr-0">
+      <div className="sm:col-start-5 sm:justify-self-end justify-self-start py-2 sm:py-0 sm:w-[16em] h-full max-w-[40px] sm:max-w-[400px] dark:bg-gradient-to-r from-[#131327] to-[#131327]">
         <SearchBar coinsList={coinsList} />
       </div>
       <div className="col-start-6 justify-self-end flex items-center">

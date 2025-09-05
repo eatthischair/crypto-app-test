@@ -9,9 +9,12 @@ export const SearchDropDown = ({
   setIsModalOpen,
 }) => {
   return (
-    <div className="w-full min-w-full relative sm:flex sm:-ml-8">
+    <div className="w-full min-w-full relatve sm:flex sm:justify-start bg-card dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
       {isDropdownOpen && filteredCoins.length > 0 ? (
-        <ul className="absolute min-w-full top-full left-0 right-8 z-100 bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 sm:absolute sm:right-0 sm:max-w-full">
+        <ul
+          className="absolute min-w-full top-full left-0 right-8 z-100 bg-card dark:bg-gradient-to-r from-[#131327] to-[#131327]
+ rounded-md shadow-lg max-h-60 overflow-auto mt-1 sm:absolute sm:right-0 sm:max-w-full"
+        >
           {filteredCoins.map((coin) => (
             <Link
               href={`/coin/${coin.id}`}
@@ -36,14 +39,20 @@ export const SearchDropDown = ({
         </ul>
       ) : (
         isDropdownOpen && (
-          <ul className="absolute top-full left-0 right-0 z-100 bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-w-60 p-32">
+          <ul
+            className="absolute top-full left-0 right-0 z-100 dark:bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-w-60 p-32
+          bg-gradient-to-r from-[#131327] to-[#131327]"
+          >
             <LoadingSpinner />
             <ul></ul>
           </ul>
         )
       )}
       {isDropdownOpen && filteredCoins.length === 0 && searchTerm && (
-        <ul className="absolute top-full left-0 right-0 z-10 bg-popover rounded-md shadow-lg p-4 mt-1 min-w-60 opacity-100">
+        <ul
+          className="absolute top-full left-0 right-0 z-10 bg-popover rounded-md shadow-lg p-4 mt-1 min-w-60 opacity-100
+        bg-gradient-to-r from-[#131327] to-[#131327]"
+        >
           No results found
         </ul>
       )}

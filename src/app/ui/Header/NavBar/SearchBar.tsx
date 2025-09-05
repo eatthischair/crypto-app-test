@@ -32,13 +32,14 @@ export const SearchBar = ({ coinsList }) => {
   };
 
   return (
-    <div className="relative w-[40px] h-full focus:ring-0 focus:border-none p-3 px-8 border-[var(--background)] sm:ml-0 sm:w-full sm:py-1 sm:px-0 ">
+    <div className="relative w-[40px] h-full focus:ring-0 focus:border-none px-8 sm:ml-0 sm:w-full sm:py-1 sm:px-0 ">
       <div className="hidden absolute inset-y-0 left-0 -ml-10 sm:flex items-center justify-center pointer-events-none sm:left-12">
         <Search size={18} strokeWidth={2.5} />
       </div>
       <Input
         placeholder="Search..."
-        className="hidden sm:flex h-full bg-[var(--card)] focus:ring-0 focus:border-white my-0 py-2 px-5 placeholder:opacity-0 -ml-2 sm:pl-12 sm:placeholder:opacity-100 !placeholder-inherit"
+        className="hidden sm:flex h-full bg-card focus:ring-0 focus:border-white my-0 py-2 px-5 placeholder:opacity-0 sm:pl-12 sm:placeholder:opacity-100 !placeholder-gray-00 dark:!placeholder-gray-200 !placeholder-ml-2
+        dark:bg-gradient-to-r from-[#131327] to-[#1a1934]"
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}
@@ -71,7 +72,7 @@ export const SearchBar = ({ coinsList }) => {
             </div>
             <Input
               placeholder="Search..."
-              className="h-full bg-[var(--background)] focus:ring-0 focus:border-white my-0 py-2 px-3 w-full"
+              className="h-full bg-background focus:ring-0 focus:border-white my-0 py-2 px-3 w-full"
               value={searchTerm}
               onChange={handleInputChange}
               onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}
@@ -87,7 +88,7 @@ export const SearchBar = ({ coinsList }) => {
           </div>
         </div>
       )}
-      <div className="hidden sm:flex">
+      <div className="hidden sm:flex ">
         {filteredCoins && (
           <SearchDropDown
             isDropdownOpen={isDropdownOpen}

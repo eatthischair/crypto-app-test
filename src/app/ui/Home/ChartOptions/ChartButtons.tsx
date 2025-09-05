@@ -49,7 +49,7 @@ export const ChartButtons = ({
           {coins.map((coin, index) => (
             <CarouselItem
               key={coin.name}
-              className={`flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-xs mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-indigo-200 dark:hover:bg-indigo-600 sm:basis-1/6 basis-1/4 text-nowrap overflow-hidden  items-center justify-evenly
+              className={`flex flex-row sm:grid grid-cols-[50%_50%] sm:grid-cols-[20%_80%] rounded-xs mx-1 max-h-[15vh] h-full bg-[var(--background)] hover:bg-[var(--hover)] sm:basis-1/6 basis-1/4 text-nowrap overflow-hidden  items-center justify-evenly
                 pl-4 cursor-pointer ${index === 0 ? 'ml-4' : ''}
                  ${
                    coinName == coin.id.toLowerCase() ||
@@ -91,7 +91,7 @@ export const ChartButtons = ({
                     {formatNum(formatCurrency(coin.current_price))}{' '}
                     {currency.toUpperCase()}
                   </div>
-                  <div className="justify-self-end ">
+                  <div className="justify-self-end text-sm flex !items-bottom ">
                     {formatPriceChange(coin.ath_change_percentage)}
                   </div>
                 </div>

@@ -26,7 +26,7 @@ export const ChartTimeline = ({
     }
   };
   return (
-    <div className="bg-muted-foreground px-2  rounded-xs ">
+    <div className="bg-muted-foreground px-2  rounded-[5px] mb-12 mt-4">
       {timelineArr.map((option, index) => (
         <Button
           key={option}
