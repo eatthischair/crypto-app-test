@@ -38,7 +38,7 @@ export const SearchBar = ({ coinsList }) => {
       </div>
       <Input
         placeholder="Search..."
-        className="hidden sm:flex h-full bg-card focus:ring-0 focus:border-white my-0 py-2 px-5 placeholder:opacity-0 sm:pl-12 sm:placeholder:opacity-100 !placeholder-gray-00 dark:!placeholder-gray-200 !placeholder-ml-2
+        className="hidden sm:flex h-full bg-card focus:ring-0 focus:border-white my-0 py-2 px-5 placeholder:opacity-0 sm:pl-12 sm:placeholder:opacity-100 sm:!placeholder-gray-800 dark:!placeholder-gray-100 !placeholder-ml-2
         dark:bg-gradient-to-r from-[#131327] to-[#1a1934]"
         value={searchTerm}
         onChange={handleInputChange}

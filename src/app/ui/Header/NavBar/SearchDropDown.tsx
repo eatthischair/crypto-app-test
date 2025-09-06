@@ -30,7 +30,7 @@ export const SearchDropDown = ({
                   alt="Coin thumbnail"
                   width={20}
                   height={20}
-                  className="aspect-square max-h-[1.2rem] min-h-[1.2rem] max-w-[1.2rem] min-w-[1.2rem]w-auto h-auto"
+                  className="aspect-square max-h-[1.2rem] min-h-[1.2rem] max-w-[1.2rem] min-w-[1.2rem]w-auto h-auto "
                 />
                 {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
               </li>
@@ -41,7 +41,7 @@ export const SearchDropDown = ({
         isDropdownOpen && (
           <ul
             className="absolute top-full left-0 right-0 z-100 dark:bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 min-w-60 p-32
-          bg-gradient-to-r from-[#131327] to-[#131327]"
+          bg-card dark:bg-gradient-to-r from-[#131327] to-[#131327]"
           >
             <LoadingSpinner />
             <ul></ul>
@@ -51,7 +51,7 @@ export const SearchDropDown = ({
       {isDropdownOpen && filteredCoins.length === 0 && searchTerm && (
         <ul
           className="absolute top-full left-0 right-0 z-10 bg-popover rounded-md shadow-lg p-4 mt-1 min-w-60 opacity-100
-        bg-gradient-to-r from-[#131327] to-[#131327]"
+        bg-card dark:bg-gradient-to-r from-[#131327] to-[#131327]"
         >
           No results found
         </ul>

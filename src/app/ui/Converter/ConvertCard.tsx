@@ -127,7 +127,7 @@ export const ConvertCard = ({
           />
         ) : (
           <p className="text-right w-2/5 lg:text-lg">
-            {convertedAmt || 'Quanity'}
+            {convertedAmt || 'Quantity'}
           </p>
         )}
       </div>

@@ -19,7 +19,7 @@ export const NavBarLinks = ({
       href={href}
       className={cn(
         buttonVariants({ variant: color }),
-        'flex h-[8vh] sm:text-xl p-4 px-0 sm:w-[90%] sm:h-[80%] border-0'
+        'flex h-12 sm:text-xl p-0 pt-2 px-0 shadow-none border-none hover:text-indigo-400 dark:hover:text-indigo-400 hover:bg-inherit'
       )}
     >
       {icon}

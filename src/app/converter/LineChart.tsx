@@ -82,7 +82,7 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
         tension: 0.5,
       },
       point: {
-        radius: 1,
+        radius: 0,
       },
     },
     plugins: {

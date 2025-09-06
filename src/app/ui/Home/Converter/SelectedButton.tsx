@@ -3,16 +3,15 @@ import { type ReactNode } from 'react';
 const SelectedButton = ({ selected, py, children }) => {
   return (
     <div
-      className={`p-[1px]
-
+      className={`p-[0px]
       rounded-md`}
     >
       <div
         className={`${
           selected
-            ? 'bg-indigo-400 dark:bg-indigo-700/90'
-            : 'hover:bg-indigo-400 hover:dark:bg-indigo-700/90'
-        } ${py || ''} rounded-md`}
+            ? 'bg-indigo-400 dark:bg-indigo-700/90 border-none'
+            : 'hover:bg-[var(--hover)] border-0'
+        } ${py || ''} rounded-md border-`}
       >
         {children}
       </div>
