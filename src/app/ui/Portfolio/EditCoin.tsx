@@ -17,7 +17,7 @@ import { LuPencil } from 'react-icons/lu';
 
 export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
   const [coinName, setCoinName] = useState(coin.coinName);
-  const [purchasedAmt, setPurchasedAmt] = useState(0);
+  const [purchasedAmt, setPurchasedAmt] = useState(coin.purchasedAmt);
   const [purchasedDate, setPurchasedDate] = useState(coin.purchasedDate || '');
   const today = new Date().toISOString().split('T')[0];
 
