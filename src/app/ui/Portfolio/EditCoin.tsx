@@ -64,14 +64,14 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
           size={20}
         />
       </DialogTrigger>
-      <DialogContent className="w-full rounded-sm bg-white dark:bg-background">
+      <DialogContent className="w-full rounded-sm bg-white dark:bg-card">
         <DialogHeader>
           <DialogTitle className="text-inherit">Edit Coin</DialogTitle>
           <DialogDescription className="text-inherit">
             Edit your portfolio for this coin
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-[40%_60%] w-full bg-[var(--background)]">
+        <div className="grid grid-cols-[40%_60%] w-full bg-card ">
           {coinImage ? (
             <div className="flex flex-col items-center justify-center h-[20vh] p-2 sm:p-0 mt-4 ">
               <img
@@ -86,27 +86,32 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
           ) : (
             <div className="w-full"></div>
           )}
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4"></div>
-            <div className="grid grid-cols-4 items-center gap-4">
+          <div className="flex flex-col justify-between py-4 px-4  h-[20vh]">
+            <div className="flex flex-col">
               <Input
                 id="amt"
                 type="number"
-                className="col-span-4 rounded-xs !placeholder-gray-400"
+                className="w-full rounded-xs !placeholder-gray-400"
                 onChange={(e) => setPurchasedAmt(e.target.value)}
                 placeholder={coin.purchasedAmt}
                 value={purchasedAmt}
               />
+              <span className="text-xs text-gray-500 dark:text-gray-100 mt-2 self-start">
+                Edit amount purchased
+              </span>
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
+            <div className="flex flex-col">
               <Input
                 id="date"
                 type="date"
-                className="col-span-4 rounded-xs"
+                className="w-full rounded-xs"
                 onChange={(e) => setPurchasedDate(e.target.value)}
                 max={today}
                 value={purchasedDate || coin.purchasedDate}
               />
+              <span className="text-xs text-gray-500 dark:text-gray-200 mt-2 self-start">
+                Edit date purchased
+              </span>
             </div>
           </div>
         </div>
@@ -116,7 +121,7 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
               type="button"
               variant="secondary"
               onClick={saveCoin}
-              className="bg-popover"
+              className="bg-card border hover:bg-[var(--hover)]"
             >
               Save Changes
             </Button>

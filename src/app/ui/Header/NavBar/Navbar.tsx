@@ -60,13 +60,15 @@ export const NavBar = () => {
         </Link>
       </div>
       <div className="flex items-center justify-start p-3 sm:hidden">
-        <Image
-          src={'/images/logoMobile.png'}
-          width={70}
-          height={70}
-          alt="Company Logo"
-          className={logoClassName}
-        />
+        <Link href={'/'}>
+          <Image
+            src={'/images/logoMobile.png'}
+            width={70}
+            height={70}
+            alt="Company Logo"
+            className={logoClassName}
+          />
+        </Link>
       </div>
       <div className="hidden col-start-2 justify-self-start sm:flex items-center">
         <NavBarLinks href="/" title={'Coins'} icon={<House size={26} />} />

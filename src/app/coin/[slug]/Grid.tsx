@@ -60,7 +60,7 @@ export const Grid = ({ coin, allPrices }) => {
 
       <div className="mt-12 grid grid-cols-1 gap-4 p-4 sm:grid-cols-3 sm:gap-8 border">
         <div className="overflow-y-auto rounded-sm bg-[var(--background)] p-4 overflow-ellipsis sm:col-span-2">
-          {coin.description.en || "Description Not Available"}
+          {coin.description.en || 'Description Not Available'}
         </div>
         <div className="sm:col-span-1">
           <LinksRow coin={coin} />

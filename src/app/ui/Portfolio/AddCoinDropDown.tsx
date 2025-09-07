@@ -24,11 +24,11 @@ export const AddCoinDropDown = ({
   return (
     <>
       {isDropdownOpen && filteredCoins.length > 0 ? (
-        <ul className="absolute z-100 bg-popover rounded-md shadow-lg max-h-60 overflow-auto ">
+        <ul className="absolute z-100 bg-primary rounded-md shadow-lg max-h-60 overflow-auto dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
           {filteredCoins.map((coin) => (
             <li
               key={coin.id}
-              className="px-4 py-2 cursor-pointer opacity-100 hover:bg-secondary flex flex-row gap-2 overflow-clip"
+              className="px-4 py-2 cursor-pointer opacity-100 hover:bg-[var(--hover)] flex flex-row gap-2 overflow-clip"
               onClick={() => handleClick(coin.id)}
             >
               <Image

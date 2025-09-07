@@ -32,13 +32,13 @@ export const SearchBar = ({ coinsList }) => {
   };
 
   return (
-    <div className="relative w-[40px] h-full focus:ring-0 focus:border-none px-8 sm:ml-0 sm:w-full sm:py-1 sm:px-0 ">
-      <div className="hidden absolute inset-y-0 left-0 -ml-10 sm:flex items-center justify-center pointer-events-none sm:left-12">
+    <div className="relative w-[40px] h-full focus:ring-0 focus:border-none px-8 sm:ml-0 sm:w-full sm:py-[2px] sm:px-0 bg-[var(--background)] ">
+      <div className="hidden absolute inset-y-0 left-0 -ml-9 sm:flex items-center justify-center pointer-events-none sm:left-12">
         <Search size={18} strokeWidth={2.5} />
       </div>
       <Input
         placeholder="Search..."
-        className="hidden sm:flex h-full bg-card focus:ring-0 focus:border-white my-0 py-2 px-5 placeholder:opacity-0 sm:pl-12 sm:placeholder:opacity-100 sm:!placeholder-gray-800 dark:!placeholder-gray-100 !placeholder-ml-2
+        className="hidden sm:flex h-full bg-card focus:ring-0 focus:border-white my-0 py-3 px-5 placeholder:opacity-0 sm:pl-12 sm:placeholder:opacity-100 sm:!placeholder-gray-800 dark:!placeholder-gray-100 !placeholder-ml-2
         dark:bg-gradient-to-r from-[#131327] to-[#1a1934]"
         value={searchTerm}
         onChange={handleInputChange}

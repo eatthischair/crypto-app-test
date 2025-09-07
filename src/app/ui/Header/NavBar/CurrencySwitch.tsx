@@ -42,14 +42,20 @@ export const CurrencySwitch = () => {
     dispatch(currencySwitch(cur));
     localStorage.setItem('currency', cur);
   };
+  console.log('ee', Object.entries(currencies.rates));
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="border rounded-md p-2 sm:p-3 cursor-pointer bg-[var(--card)] hover:bg-[var(--hover)] ">
         {(currency || 'usd').toUpperCase()}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="max-h-60 border w-full " align="start">
-        {Object.keys(currencies.rates)
+      <DropdownMenuContent
+        className="max-h-60 border w-full bg-[var(--card)]"
+        align="start"
+      >
+        {Object.entries(currencies.rates)
+          .filter((cur) => cur[1].type !== 'crypto')
+          .map((cur) => cur[0])
           .sort()
           .map((cur) => {
             return (

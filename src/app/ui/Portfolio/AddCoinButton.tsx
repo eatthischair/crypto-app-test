@@ -81,16 +81,21 @@ export const AddCoinButton = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Add Coin</Button>
+        <Button
+          className="bg-[var(--card)] hover:bg-[var(--hover)]"
+          variant="outline"
+        >
+          Add Coin
+        </Button>
       </DialogTrigger>
-      <DialogContent className="w-full rounded-sm bg-white dark:bg-[var(--background)]">
+      <DialogContent className="w-full rounded-sm bg-white dark:bg-card">
         <DialogHeader>
           <DialogTitle>Add Coin</DialogTitle>
           <DialogDescription className="text-inherit">
             Search for a coin to add
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-[40%_60%] w-full bg-[var(--background)]">
+        <div className="grid grid-cols-[40%_60%] w-full bg-card dark:bg">
           {coinImage ? (
             <Image
               src={coinImage}
