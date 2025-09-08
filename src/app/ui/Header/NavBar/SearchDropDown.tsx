@@ -9,7 +9,7 @@ export const SearchDropDown = ({
   setIsModalOpen,
 }) => {
   return (
-    <div className="w-full min-w-full relatve sm:flex sm:justify-start bg-card dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
+    <div className="w-full min-w-full relative sm:flex sm:justify-start bg-card dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
       {isDropdownOpen && filteredCoins.length > 0 ? (
         <ul
           className="absolute min-w-full top-full left-0 right-8 z-100 bg-card dark:bg-gradient-to-r from-[#131327] to-[#131327]

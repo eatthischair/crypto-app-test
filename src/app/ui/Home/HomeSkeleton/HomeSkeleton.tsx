@@ -8,7 +8,7 @@ import { CoinTableSkeleton } from './CoinTableSkeleton';
 export const HomeSkeleton = () => {
   return (
     <>
-      <div className="w-full max-w-full col-span-1 flex flex-shrink ">
+      <div className="hidden w-full max-w-full col-span-1 sm:flex flex-shrink ">
         <ConverterSwitchSkeleton />
       </div>
       <div className="">

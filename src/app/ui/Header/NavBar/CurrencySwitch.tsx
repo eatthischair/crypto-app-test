@@ -42,7 +42,6 @@ export const CurrencySwitch = () => {
     dispatch(currencySwitch(cur));
     localStorage.setItem('currency', cur);
   };
-  console.log('ee', Object.entries(currencies.rates));
 
   return (
     <DropdownMenu>

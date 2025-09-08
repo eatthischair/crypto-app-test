@@ -72,7 +72,7 @@ export const TableRow = ({ coin, index }) => {
 
   return (
     <div
-      className="grid grid-cols-[40%_20%_40%] gap-2 p-2 truncate
+      className="grid grid-cols-[40%_20%_40%] gap-2 px-2 truncate
     sm:grid-cols-[19%_6%_6%_6%_6%_16%_16%_20%] sm:gap-4 sm:p-4 sm:py-0 sm:my-0
     bg-[var(--card)] rounded-sm hover:bg-[var(--hover)]
      touch-auto"

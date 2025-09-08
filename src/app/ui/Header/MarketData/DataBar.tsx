@@ -39,7 +39,7 @@ export function DataBar({ data }) {
   ).currentPrice;
 
   return (
-    <span className="max-w-screen w-screen flex my-4 items-center justify-center gap-2 border-y sm:py-0 sm:gap-12 text-xs z-0 bg-muted-foreground dark:bg-[var(--card)] sm:-mt-12 sm:-ml-24 max-h-[50px] h-[3rem] sm:h-full">
+    <span className="max-w-screen min-w-[110%] w-screen flex my-4 items-center justify-center gap-2 border-y sm:py-0 sm:gap-12 text-xs z-0 bg-muted-foreground dark:bg-[var(--card)] -ml-4 -mt-0 sm:-mt-12 sm:-ml-24 max-h-[50px] h-[3rem] sm:h-full">
       <div className="p-2 py-0 sm:p-8 hidden sm:flex gap-2 items-center">
         <Zap
           fill="#000"

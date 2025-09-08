@@ -28,8 +28,6 @@ export const Grid = ({ coin, allPrices }) => {
     );
   }
 
-  console.log('coin descrip', coin.description);
-
   const exchangeRateObj = exchangeRates?.rates?.[currency];
 
   return (

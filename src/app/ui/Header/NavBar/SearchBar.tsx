@@ -16,6 +16,7 @@ export const SearchBar = ({ coinsList }) => {
   useEffect(() => {
     const getCoins = async () => {
       const results = await getSearchResults(searchTerm);
+      console.log('penis', results);
       setFilteredCoins(results.coins);
     };
     const debouncedGetCoins = debounce(getCoins, 300);
@@ -47,15 +48,15 @@ export const SearchBar = ({ coinsList }) => {
       />
       {/* Mobile Modal Trigger - visible only on mobile */}
       <button
-        className="flex items-center justify-center w-[45px] h-full bg-[var(--card)] sm:hidden -ml-8 py-3 rounded-sm"
+        className=" border flex items-center justify-center w-[45px] h-full bg-[var(--card)] sm:hidden -ml- py-[11px] rounded-sm"
         onClick={() => setIsModalOpen(true)}
       >
-        <Search size={18} strokeWidth={2.5} className="-ml-0" />
+        <Search size={18} strokeWidth={2.5} className="-ml-" />
       </button>
 
       {/* Mobile Search Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20 sm:hidden">
+        <div className="fixed inset-0 bg-inherit bg-opacity-50 z-50 flex items-start justify-center pt-20 sm:hidden">
           <div className="bg-[var(--card)] w-full mx-4 rounded-lg p-4 max-w-sm">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Search</h3>
@@ -72,19 +73,21 @@ export const SearchBar = ({ coinsList }) => {
             </div>
             <Input
               placeholder="Search..."
-              className="h-full bg-background focus:ring-0 focus:border-white my-0 py-2 px-3 w-full"
+              className="h-full bg-background focus:ring-0 focus:border-white my-0 py-2 px-3 w-full sm:!placeholder-gray-800 dark:!placeholder-gray-100 "
               value={searchTerm}
               onChange={handleInputChange}
               onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}
             />
-            {filteredCoins && (
-              <SearchDropDown
-                isDropdownOpen={isDropdownOpen}
-                filteredCoins={filteredCoins}
-                searchTerm={searchTerm}
-                setIsModalOpen={setIsModalOpen}
-              />
-            )}
+            <div className=" bg-white">
+              {filteredCoins && (
+                <SearchDropDown
+                  isDropdownOpen={isDropdownOpen}
+                  filteredCoins={filteredCoins}
+                  searchTerm={searchTerm}
+                  setIsModalOpen={setIsModalOpen}
+                />
+              )}
+            </div>
           </div>
         </div>
       )}
