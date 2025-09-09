@@ -53,8 +53,6 @@ export function HomePage() {
 
   if (!coinTableData || !chartData) return <HomeSkeleton />;
 
-  // return <Skeleton count={50} />; // Five-line loading skeleton
-
   const changeChart = async (coinName) => {
     const chartData = await getChartData(coinName, days);
     setChartData(chartData);
@@ -99,7 +97,7 @@ export function HomePage() {
           secondChartCoinName={secondChartCoinName}
         />
       </div>
-      <div className="max-w-full grid grid-cols-1 grid-rows-2 gap-2 sm:gap-2 py-4 sm:flex sm:px-0 mt-12">
+      <div className="max-w-full grid grid-cols-1 grid-rows-2 gap-2 sm:gap-2 py-4 sm:flex sm:px-0 sm:mt-12">
         <div className="sm:flex-1 sm:max-w-1/2 ">
           <LineChart
             pricesData={chartData}

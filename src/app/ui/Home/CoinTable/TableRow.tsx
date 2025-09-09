@@ -94,9 +94,7 @@ export const TableRow = ({ coin, index }) => {
           className="text-sm flex items-baseline flex-col sm:flex-row overflow-clip mx-1"
         >
           {/* mobile */}
-          <span className="flex sm:hidden order-1 sm:order-2 ">
-            {coin.symbol.toUpperCase()}
-          </span>
+          <span className="flex sm:hidden ">{coin.symbol.toUpperCase()}</span>
           {/* desktop */}
           <span className="hidden sm:flex order-1 sm:order-2 text-sm text-gray-600 dark:text-gray-300">
             &nbsp;{coin.symbol.toUpperCase()}
@@ -174,7 +172,7 @@ export const TableRow = ({ coin, index }) => {
           />
         </div>
       </div>
-      <div>
+      <div className="flex sm:block order-2">
         <CoinTableLineChart
           coin={coin}
           fillColor={fillColor}

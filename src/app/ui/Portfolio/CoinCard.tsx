@@ -80,7 +80,8 @@ export const CoinCard = ({
           className="max-h-[50%] aspect-square lg:max-h-[128px] h-auto object-cover sm:pt-0"
         />
         <div className="mt-2 text-center">
-          {coin.coinName} ({coin.symbol.toUpperCase()})
+          {coin.coinName.charAt(0).toUpperCase() + coin.coinName.slice(1)} (
+          {coin.symbol.toUpperCase()})
         </div>
       </div>
 

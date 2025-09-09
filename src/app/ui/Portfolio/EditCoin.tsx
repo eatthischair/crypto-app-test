@@ -16,7 +16,9 @@ import Image from 'next/image';
 import { LuPencil } from 'react-icons/lu';
 
 export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
-  const [coinName, setCoinName] = useState(coin.coinName);
+  const [coinName, setCoinName] = useState(
+    coin.coinName.charAt(0).toUpperCase() + coin.coinName.slice(1)
+  );
   const [purchasedAmt, setPurchasedAmt] = useState(coin.purchasedAmt);
   const [purchasedDate, setPurchasedDate] = useState(coin.purchasedDate || '');
   const today = new Date().toISOString().split('T')[0];
@@ -80,7 +82,7 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
                 className="max-h-[50%] aspect-square lg:max-h-[128px] h-auto object-cover sm:pt-0"
               />
               <div className="mt-2 text-center">
-                {coin.coinName} ({coin.symbol.toUpperCase()})
+                {coinName} ({coin.symbol.toUpperCase()})
               </div>
             </div>
           ) : (

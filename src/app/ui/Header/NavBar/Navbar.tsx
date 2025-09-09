@@ -91,7 +91,7 @@ export const NavBar = () => {
         <ThemeButton />
       </div>
 
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-[var(--background)] shadow-lg  opacity-100 z-10">
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-[var(--background)]  opacity-100 z-10">
         <div className="flex justify-around items-center h-16 max-w-screen-lg mx-auto">
           <button className="flex-1 flex flex-col items-center justify-center text-sm font-medium text-gray-600 dark:text-white">
             <NavBarLinks href="/" title={'Coins'} icon={<House size={26} />} />

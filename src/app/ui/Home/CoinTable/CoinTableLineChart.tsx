@@ -129,8 +129,8 @@ export function CoinTableLineChart({ coin, fillColor, gradientColor }) {
     ],
   };
   return (
-    <div className="flex h-full items-center sm:p-0 mt-0 ">
-      <Line options={options} data={data} height={35} width={100} />
+    <div className="flex h-24 w-48 sm:w-full sm:h-full items-end sm:p-0 sm:mt-0 ">
+      <Line options={options} data={data} height={40} width={100} />
     </div>
   );
 }
