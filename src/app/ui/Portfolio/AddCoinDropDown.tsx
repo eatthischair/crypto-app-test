@@ -24,7 +24,7 @@ export const AddCoinDropDown = ({
   return (
     <>
       {isDropdownOpen && filteredCoins.length > 0 ? (
-        <ul className="absolute z-100 bg-primary rounded-md shadow-lg max-h-60 overflow-auto dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
+        <ul className="absolute z-100 bg-popover rounded-md shadow-lg max-h-60 overflow-auto dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
           {filteredCoins.map((coin) => (
             <li
               key={coin.id}

@@ -27,16 +27,12 @@ export default function RootLayout({
             <Provider store={store}>
               <ThemeProvider
                 attribute="class"
-                defaultTheme="system"
+                defaultTheme="dark"
                 enableSystem
                 disableTransitionOnChange
               >
-                {/* <SkeletonTheme baseColor="var(--background)"> */}
-                {/* <Suspense fallback={<Skeleton count={5} />}> */}
                 <HeaderComponents />
-                {/* </Suspense> */}
                 <div className="max-w-[1400px] lg:m-auto ">{children}</div>
-                {/* </SkeletonTheme> */}
               </ThemeProvider>
             </Provider>
           </QueryClientProvider>

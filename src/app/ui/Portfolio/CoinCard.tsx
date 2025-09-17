@@ -1,22 +1,18 @@
 'use client';
 import React from 'react';
 import { formatPriceChange } from '@/lib/utils';
-import { Progress } from '@/components/ui/progress';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useSelector } from 'react-redux';
 import { convert } from '../Header/NavBar/convert';
 import { formatNum } from '@/lib/utils';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { LuPencil } from 'react-icons/lu';
 import { EditCoin } from './EditCoin';
 import { Trash } from 'lucide-react';
 
 export const CoinCard = ({
   coin,
   data,
-  editCoin,
   coinsData,
   coinsList,
   setCoinsData,

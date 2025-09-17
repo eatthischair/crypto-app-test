@@ -10,7 +10,6 @@ import {
   DialogClose,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { AddCoinDropDown } from './AddCoinDropDown';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -18,12 +17,7 @@ import { useEffect } from 'react';
 import { getSearchResults } from '@/app/api/getSearchResults';
 import { debounce } from 'lodash';
 
-export const AddCoinButton = ({
-  setCoinsData,
-  coinsList,
-  coinsData,
-  updateCoins,
-}) => {
+export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');

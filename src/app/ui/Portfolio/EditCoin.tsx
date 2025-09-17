@@ -16,9 +16,7 @@ import Image from 'next/image';
 import { LuPencil } from 'react-icons/lu';
 
 export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
-  const [coinName, setCoinName] = useState(
-    coin.coinName.charAt(0).toUpperCase() + coin.coinName.slice(1)
-  );
+  const [coinName, setCoinName] = useState(coin.coinName);
   const [purchasedAmt, setPurchasedAmt] = useState(coin.purchasedAmt);
   const [purchasedDate, setPurchasedDate] = useState(coin.purchasedDate || '');
   const today = new Date().toISOString().split('T')[0];
@@ -34,6 +32,20 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
     let updatedCoins = storedCoins ? JSON.parse(storedCoins) : [];
     const coinIndex = updatedCoins.findIndex(
       (coin) => coin.coinName === coinName
+    );
+    console.log(
+      'allconsoles',
+      coinData,
+      'apiData',
+      apiData,
+      'mergedObj',
+      mergedObj,
+      'storedCoins',
+      storedCoins,
+      'updatedCoins',
+      updatedCoins,
+      'coinIndex',
+      coinIndex
     );
     if (coinIndex !== -1) {
       updatedCoins[coinIndex] = mergedObj;
