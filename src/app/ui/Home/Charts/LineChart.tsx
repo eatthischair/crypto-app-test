@@ -31,11 +31,11 @@ export function LineChart({
   coinName,
   secondChartData,
 }) {
-  const prices = pricesData?.prices;
+  let prices = pricesData?.prices;
   const prices2 = secondChartData?.prices;
 
   const priceValues = prices.map((item) => item[1]);
-  const labels = prices?.map((item) => new Date(item[0]).getDate());
+  const labels = prices?.map((item) => new Date(item[0]));
 
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
@@ -92,7 +92,7 @@ export function LineChart({
     labels,
     datasets: [
       {
-        label: 'Dataset 2',
+        label: 'Price',
         data: prices2,
         borderColor: '#d897ff',
         backgroundColor: 'rgba(19, 19, 39, .01)',
@@ -100,7 +100,7 @@ export function LineChart({
         fill: false,
       },
       {
-        label: 'Dataset 1',
+        label: 'Price',
         data: prices,
         borderColor: lineColor,
         backgroundColor: 'rgba(19, 19, 39, .01)',
@@ -170,7 +170,7 @@ export function LineChart({
   };
 
   return (
-    <div className="dark:bg-[#131327] bg-white rounded-md">
+    <div className="dark:bg-[#131327] bg-white rounded-md border border-white dark:border-[#131327]">
       <div className="absolute m-4 text-foreground">
         <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}
@@ -178,7 +178,9 @@ export function LineChart({
         <h2 className=" text-sm sm:text-4xl font-bold">{latestPrice}</h2>
         <div className="text-sm">{formattedDate}</div>
       </div>
-      <Line options={options} data={data} height={500} width={800} />
+      <div className=" pt-8 mt-8">
+        <Line options={options} data={data} height={500} width={800} />
+      </div>
       <div className="flex justify-between items-center text-xs px-1 text-gray-500">
         <span>{new Date().toLocaleString()}</span>
       </div>

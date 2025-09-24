@@ -49,13 +49,13 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
     return gradient;
   }
 
-  const labels = coin1Prices.prices.map((item) => null);
+  const labels = coin1Prices.prices.map((item) => new Date(item[0]));
 
   const data = {
-    labels: labels,
+    labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Price',
         data: coin1Prices.prices,
         borderColor: lineColor,
         backgroundColor: fillColor, // Color for the fill
@@ -98,7 +98,6 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
         display: false,
       },
     },
-
     layout: {
       autoPadding: false,
       padding: -4,
@@ -115,7 +114,11 @@ export function LineChart({ coin1Prices, coin2Prices, chartTitle }) {
         max: Math.max(...coin1Prices.prices),
       },
       x: {
+        display: false,
         gridLines: {
+          display: false,
+        },
+        grid: {
           display: false,
         },
       },

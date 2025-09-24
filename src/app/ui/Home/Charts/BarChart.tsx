@@ -51,7 +51,7 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
   //strip unix timestamps
   const secondChartDayVolume = secondChartVolume?.map((item) => item[1]);
   const dayVolume = volume.map((item) => item[1]);
-  const labels = volume.map((item) => new Date(item[0]).getDate());
+  const labels = volume?.map((item) => new Date(item[0]));
 
   const { currentPrice, unit } = convert(
     volume[volume.length - 1][1],
@@ -90,14 +90,14 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: '24h Volume',
         data: dayVolume,
         borderColor: 'red',
         // backgroundColor: '#543374',
         backgroundColor: fillColor,
       },
       {
-        label: 'Dataset 2',
+        label: '24h Volume',
         data: secondChartDayVolume,
         // borderColor: 'rgb(66, 99, 132)',
         borderColor: '#ffffff',
@@ -159,13 +159,15 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
   };
 
   return (
-    <div className="dark:bg-[#1e1934] bg-white rounded-md">
+    <div className="dark:bg-[#1e1934] bg-white rounded-md border border-white dark:border-[#131327]">
       <div className="absolute m-4 text-foreground ">
         <h4 className="sm:text-sm">Volume 24h</h4>
         <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>
         <div className="text-sm">{formattedDate}</div>
       </div>
-      <Bar options={options} data={data} height={500} width={800} />
+      <div className=" pt-8 mt-8">
+        <Bar options={options} data={data} height={500} width={800} />
+      </div>
       <div className="flex justify-between items-center text-xs px-1 text-gray-500 dark">
         <span>{new Date().toLocaleString()}</span>
       </div>

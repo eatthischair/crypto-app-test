@@ -100,13 +100,6 @@ export const ConvertCard = ({
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="sm:max-h-60 flex-col flex-shrink ml-16 dark:bg-indigo-950 border ">
-            {/* {coins.map((cur) => {
-              return (
-                <DropdownMenuItem key={cur.id} onClick={() => handleClick(cur)}>
-                  {cur.id} ({cur.symbol.toUpperCase()})
-                </DropdownMenuItem>
-              );
-            })} */}
             {coins.map((cur) => {
               return (
                 <DropdownMenuItem key={cur.id} onClick={() => handleClick(cur)}>
