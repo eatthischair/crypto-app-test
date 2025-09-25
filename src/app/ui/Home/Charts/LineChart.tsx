@@ -68,7 +68,7 @@ export function LineChart({
 
   let width, height, gradient;
 
-  function getGradient(ctx, chartArea) {
+  function getGradient(ctx, chartArea, isCompareChart) {
     const chartWidth = chartArea.right - chartArea.left;
     const chartHeight = chartArea.bottom - chartArea.top;
     if (!gradient || width !== chartWidth || height !== chartHeight) {
@@ -82,8 +82,8 @@ export function LineChart({
         0,
         chartArea.top
       );
-      gradient.addColorStop(0, fillColor);
-      gradient.addColorStop(1, lineColor);
+      gradient.addColorStop(0, isCompareChart ? '#1e1e3f' : '#ffffff');
+      gradient.addColorStop(1, '#1e1e3f');
     }
     return gradient;
   }
@@ -95,9 +95,21 @@ export function LineChart({
         label: 'Price',
         data: prices2,
         borderColor: '#d897ff',
-        backgroundColor: 'rgba(19, 19, 39, .01)',
+        backgroundColor: 'rgba(19, 19, 19 , .01)',
         yAxisID: 'y2',
-        fill: false,
+        fill: {
+          target: 'origin',
+          above: function (context) {
+            const chart = context.chart;
+            const { ctx, chartArea } = chart;
+
+            if (!chartArea) {
+              return;
+            }
+            return getGradient(ctx, chartArea, true);
+          },
+        },
+        // fill: false,
       },
       {
         label: 'Price',

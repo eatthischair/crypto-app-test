@@ -44,7 +44,10 @@ export const SearchBar = ({ coinsList }) => {
         value={searchTerm}
         onChange={handleInputChange}
         onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}
-        onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
+        onBlur={() => {
+          setTimeout(() => setIsDropdownOpen(false), 200);
+          setTimeout(() => setSearchTerm(''), 200);
+        }}
       />
       {/* Mobile Modal Trigger - visible only on mobile */}
       <button
@@ -77,6 +80,7 @@ export const SearchBar = ({ coinsList }) => {
               value={searchTerm}
               onChange={handleInputChange}
               onFocus={() => setIsDropdownOpen(searchTerm.length > 0)}
+              onBlur={() => setSearchTerm('')}
             />
             <div className=" bg-white">
               {filteredCoins && (

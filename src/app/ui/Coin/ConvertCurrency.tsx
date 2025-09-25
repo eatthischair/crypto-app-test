@@ -69,7 +69,7 @@ export const ConvertCurrency = ({
         <Input
           disabled
           className="w-full text-sm border-none disabled:opacity-100 sm:text-xl"
-          value={formatPrice(secondVal)}
+          value={formatPrice(secondVal.toFixed(3))}
         />
       </div>
     </div>
