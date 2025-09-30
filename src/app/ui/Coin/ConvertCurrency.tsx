@@ -43,7 +43,7 @@ export const ConvertCurrency = ({
   const switchVals = () => {
     const placeholder = firstVal;
     setFirstVal(secondVal);
-    setSecondVal(placeholder);
+    setSecondVal(Number(placeholder));
     setToggled(!toggled);
   };
 

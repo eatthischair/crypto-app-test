@@ -9,6 +9,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { useTheme } from 'next-themes';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -23,7 +25,33 @@ export function LineChart({ prices }) {
   const labels = prices.map(() => null);
 
   const priceIsUp = prices[0][1] < prices[prices.length - 1][1];
-  const lineColor = priceIsUp ? 'green' : 'red';
+  // const lineColor = priceIsUp ? 'green' : 'red';
+
+  const { theme } = useTheme();
+  const lineColor = theme === 'dark' ? '#6b6be5' : '#b5b5fd';
+  const fillColor = theme === 'dark' ? '#1e1e3f' : '#e4e4ff';
+
+  let width, height, gradient;
+
+  function getGradient(ctx, chartArea, isCompareChart) {
+    const chartWidth = chartArea.right - chartArea.left;
+    const chartHeight = chartArea.bottom - chartArea.top;
+    if (!gradient || width !== chartWidth || height !== chartHeight) {
+      // Create the gradient because this is either the first render
+      // or the size of the chart has changed
+      width = chartWidth;
+      height = chartHeight;
+      gradient = ctx.createLinearGradient(
+        0,
+        chartArea.bottom,
+        0,
+        chartArea.top
+      );
+      gradient.addColorStop(0, lineColor);
+      gradient.addColorStop(1, fillColor);
+    }
+    return gradient;
+  }
 
   const data = {
     labels,
@@ -35,6 +63,18 @@ export function LineChart({ prices }) {
         borderColor: lineColor,
 
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        fill: {
+          target: 'origin',
+          above: function (context) {
+            const chart = context.chart;
+            const { ctx, chartArea } = chart;
+
+            if (!chartArea) {
+              return;
+            }
+            return getGradient(ctx, chartArea, false);
+          },
+        },
       },
     ],
   };
@@ -66,7 +106,7 @@ export function LineChart({ prices }) {
     },
     elements: {
       line: {
-        tension: 0.1,
+        tension: 0.2,
       },
       point: {
         pointRadius: 1,

@@ -82,8 +82,8 @@ export function LineChart({
         0,
         chartArea.top
       );
-      gradient.addColorStop(0, isCompareChart ? '#1e1e3f' : '#ffffff');
-      gradient.addColorStop(1, '#1e1e3f');
+      gradient.addColorStop(0, lineColor);
+      gradient.addColorStop(1, fillColor);
     }
     return gradient;
   }
@@ -109,7 +109,6 @@ export function LineChart({
             return getGradient(ctx, chartArea, true);
           },
         },
-        // fill: false,
       },
       {
         label: 'Price',
@@ -125,7 +124,7 @@ export function LineChart({
             if (!chartArea) {
               return;
             }
-            return getGradient(ctx, chartArea);
+            return getGradient(ctx, chartArea, false);
           },
         },
         yAxisID: 'y1',
