@@ -242,7 +242,7 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
               onClick={saveCoin}
               className="bg-popover"
             >
-              Save Changes
+              Save Coin
             </Button>
           </DialogClose>
         </DialogFooter>

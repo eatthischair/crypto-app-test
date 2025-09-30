@@ -100,8 +100,15 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
           ) : (
             <div className="w-full"></div>
           )}
-          <div className="flex flex-col justify-between py-4 px-4  h-[20vh]">
-            <div className="flex flex-col">
+          <div className="flex flex-col justify-between py-4 px-4 ">
+            <Input
+              id="name"
+              value={coinName}
+              disabled={true}
+              className={`col-span-4 rounded-xs placeholder:text-inherit/90`}
+              placeholder="Select Coin"
+            />
+            <div className="flex flex-col ">
               <Input
                 id="amt"
                 type="number"
@@ -110,9 +117,9 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
                 placeholder={coin.purchasedAmt}
                 value={purchasedAmt}
               />
-              <span className="text-xs text-gray-500 dark:text-gray-100 mt-2 self-start">
+              {/* <span className="text-xs text-gray-500 dark:text-gray-100 mt-2 self-start">
                 Edit amount purchased
-              </span>
+              </span> */}
             </div>
             <div className="flex flex-col">
               <Input
@@ -123,9 +130,9 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
                 max={today}
                 value={purchasedDate || coin.purchasedDate}
               />
-              <span className="text-xs text-gray-500 dark:text-gray-200 mt-2 self-start">
+              {/* <span className="text-xs text-gray-500 dark:text-gray-200 mt-2 self-start">
                 Edit date purchased
-              </span>
+              </span> */}
             </div>
           </div>
         </div>
