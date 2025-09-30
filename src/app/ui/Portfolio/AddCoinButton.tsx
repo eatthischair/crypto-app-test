@@ -235,14 +235,16 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
           </div>
         </div>
         <DialogFooter>
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={saveCoin}
-            className="bg-popover"
-          >
-            Save Coin
-          </Button>
+          <DialogClose asChild>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={saveCoin}
+              className="bg-popover"
+            >
+              Save Changes
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
