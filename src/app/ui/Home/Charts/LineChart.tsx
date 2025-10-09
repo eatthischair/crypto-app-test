@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js/auto';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { convert } from '../../Header/NavBar/convert';
 import { Line } from 'react-chartjs-2';
@@ -34,8 +35,11 @@ export function LineChart({
   let prices = pricesData?.prices;
   const prices2 = secondChartData?.prices;
 
-  const priceValues = prices.map((item) => item[1]);
-  const labels = prices?.map((item) => new Date(item[0]));
+  const priceValues = useMemo(() => prices.map((item) => item[1]), [prices]);
+  const labels = useMemo(
+    () => prices?.map((item) => new Date(item[0])),
+    [prices]
+  );
 
   const currency = useSelector((state: any) => state.currencyReducer.currency);
   const exchangeRates = useSelector(
@@ -66,14 +70,17 @@ export function LineChart({
   const lineColor = theme === 'dark' ? '#6b6be5' : '#b5b5fd';
   const fillColor = theme === 'dark' ? '#1e1e3f' : '#e4e4ff';
 
-  let width, height, gradient;
-
+  let width1, height1, gradient1;
+  let width2, height2, gradient2;
   function getGradient(ctx, chartArea, isCompareChart) {
+    let width = isCompareChart ? width2 : width1;
+    let height = isCompareChart ? height2 : height1;
+    let gradient = isCompareChart ? gradient2 : gradient1;
+
     const chartWidth = chartArea.right - chartArea.left;
     const chartHeight = chartArea.bottom - chartArea.top;
+
     if (!gradient || width !== chartWidth || height !== chartHeight) {
-      // Create the gradient because this is either the first render
-      // or the size of the chart has changed
       width = chartWidth;
       height = chartHeight;
       gradient = ctx.createLinearGradient(
@@ -82,8 +89,25 @@ export function LineChart({
         0,
         chartArea.top
       );
-      gradient.addColorStop(0, lineColor);
-      gradient.addColorStop(1, fillColor);
+      // gradient.addColorStop(0, lineColor);
+      // gradient.addColorStop(1, fillColor);
+      if (isCompareChart) {
+        gradient.addColorStop(0, 'rgba(216, 151, 255, 0.3)'); // Purple at bottom with 50% opacity
+        gradient.addColorStop(1, 'rgba(245, 212, 255, 0.3)'); // Light purple at top with 50% opacity
+      } else {
+        gradient.addColorStop(0, lineColor);
+        gradient.addColorStop(1, fillColor);
+      }
+      // Update the correct variables
+      if (isCompareChart) {
+        width2 = width;
+        height2 = height;
+        gradient2 = gradient;
+      } else {
+        width1 = width;
+        height1 = height;
+        gradient1 = gradient;
+      }
     }
     return gradient;
   }
@@ -91,25 +115,26 @@ export function LineChart({
   const data = {
     labels,
     datasets: [
-      {
-        label: 'Price',
-        data: prices2,
-        borderColor: '#d897ff',
-        backgroundColor: 'rgba(19, 19, 19 , .01)',
-        yAxisID: 'y2',
-        fill: {
-          target: 'origin',
-          above: function (context) {
-            const chart = context.chart;
-            const { ctx, chartArea } = chart;
-
-            if (!chartArea) {
-              return;
-            }
-            return getGradient(ctx, chartArea, true);
-          },
-        },
-      },
+      ...(secondChartData?.prices
+        ? [
+            {
+              label: 'Price',
+              data: secondChartData.prices,
+              borderColor: '#d897ff',
+              backgroundColor: 'rgba(19, 19, 19 , .01)',
+              yAxisID: 'y2',
+              fill: {
+                target: 'origin',
+                above: function (context) {
+                  const chart = context.chart;
+                  const { ctx, chartArea } = chart;
+                  if (!chartArea) return;
+                  return getGradient(ctx, chartArea, true);
+                },
+              },
+            },
+          ]
+        : []),
       {
         label: 'Price',
         data: prices,
@@ -133,6 +158,8 @@ export function LineChart({
   };
 
   const options = {
+    spanGaps: true, // enable for all datasets
+
     responsive: true,
     plugins: {
       legend: {
@@ -140,6 +167,7 @@ export function LineChart({
         display: false,
       },
     },
+    // animation: false,
     scales: {
       y1: {
         type: 'linear',
@@ -161,7 +189,6 @@ export function LineChart({
       },
       x: {
         min: 0,
-        // max: 30,
         ticks: {
           display: false,
         },
@@ -172,7 +199,7 @@ export function LineChart({
     },
     elements: {
       line: {
-        tension: 1,
+        tension: 0.1,
       },
       point: {
         pointRadius: 0,
@@ -181,7 +208,7 @@ export function LineChart({
   };
 
   return (
-    <div className="dark:bg-[#131327] bg-white rounded-md border border-white dark:border-[#131327]">
+    <div className="dark:bg-[#131327] bg-white rounded-md border border-white dark:border-[#131327] px-2">
       <div className="absolute m-4 text-foreground">
         <h4 className=" sm:text-sm">
           {coinName.charAt(0).toUpperCase() + coinName.slice(1)}
@@ -189,8 +216,8 @@ export function LineChart({
         <h2 className=" text-sm sm:text-4xl font-bold">{latestPrice}</h2>
         <div className="text-sm">{formattedDate}</div>
       </div>
-      <div className=" pt-8 mt-8">
-        <Line options={options} data={data} height={500} width={800} />
+      <div className=" pt-6 mt-8">
+        <Line options={options} data={data} height={400} width={800} />
       </div>
       <div className="flex justify-between items-center text-xs px-1 text-gray-500">
         <span>{new Date().toLocaleString()}</span>

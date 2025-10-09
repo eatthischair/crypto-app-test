@@ -21,6 +21,8 @@ const Converter = () => {
   const [coin2Name, setCoin2Name] = useState('');
   const [coin1Symbol, setCoin1Symbol] = useState('');
   const [coin2Symbol, setCoin2Symbol] = useState('');
+  const [quantity1, setQuantity1] = useState(0);
+  const [quantity2, setQuantity2] = useState(0);
 
   const [chartTitle, setChartTitle] = useState(
     ` ${coin1Name} (${coin1Symbol.toUpperCase()}) to $${coin2Name} (${coin2Symbol.toUpperCase()})`
@@ -64,6 +66,8 @@ const Converter = () => {
     setCoin1Symbol(coin2Symbol);
     setCoin2Symbol(coinPlaceholder.coin1Symbol);
     setChartTitle(` ${coin1Name} to $${coin2Name}`);
+    setQuantity1(quantity2);
+    setQuantity2(quantity1);
   };
 
   return (
@@ -83,26 +87,34 @@ const Converter = () => {
         <ConvertCard
           setCoin1CurPrice={setCoin1CurPrice}
           coin1CurPrice={coin1CurPrice}
+          coin2CurPrice={coin2CurPrice}
           setAmtToConvert={setAmtToConvert}
           setCoin1Id={setCoin1Id}
           setCoin1Name={setCoin1Name}
           coin1Name={coin1Name}
           setCoin1Symbol={setCoin1Symbol}
+          quantity1={quantity1}
+          setQuantity1={setQuantity1}
+          setQuantity2={setQuantity2}
         />
         <button
           onClick={handleSwitchCurrency}
-          className="p-3 md:p-4 bg-indigo-800 dark:bg-white text-sm absolute rounded-full rotate-90 translate-x-1/2 top-1/2 right-1/2 -translate-y-1/2 dark:border-4 dark:border-gray-800 hover:opacity-75 active:opacity-50 text-white dark:text-indigo-800"
+          className="p-3 md:p-4 bg-indigo-800 dark:bg-white text-sm absolute rounded-full rotate-90 translate-x-1/2 top-1/2 right-1/2 -translate-y-1/2 dark:border-4 dark:border-gray-800 hover:opacity-75 active:opacity-50 text-white dark:text-indigo-800 cursor-pointer"
         >
           <Repeat size={24} />
         </button>
         <ConvertCard
           setCoin2CurPrice={setCoin2CurPrice}
           coin2CurPrice={coin2CurPrice}
+          coin1CurPrice={coin1CurPrice}
           convertedAmt={convertedAmt}
           setCoin2Id={setCoin2Id}
           setCoin2Name={setCoin2Name}
           coin2Name={coin2Name}
           setCoin2Symbol={setCoin2Symbol}
+          quantity2={quantity2}
+          setQuantity2={setQuantity2}
+          setQuantity1={setQuantity1}
         />
       </div>
       <LineChart

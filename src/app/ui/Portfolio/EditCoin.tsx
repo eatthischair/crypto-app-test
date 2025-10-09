@@ -94,7 +94,8 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
                 className="max-h-[50%] aspect-square lg:max-h-[128px] h-auto object-cover sm:pt-0"
               />
               <div className="mt-2 text-center">
-                {coinName} ({coin.symbol.toUpperCase()})
+                {coinName.charAt(0).toUpperCase() + coinName.slice(1)} (
+                {coin.symbol.toUpperCase()})
               </div>
             </div>
           ) : (
@@ -103,7 +104,7 @@ export const EditCoin = ({ setCoinsData, updateCoins, coin, coinImage }) => {
           <div className="flex flex-col justify-between py-4 px-4 ">
             <Input
               id="name"
-              value={coinName}
+              value={coinName.charAt(0).toUpperCase() + coinName.slice(1)}
               disabled={true}
               className={`col-span-4 rounded-xs placeholder:text-inherit/90`}
               placeholder="Select Coin"

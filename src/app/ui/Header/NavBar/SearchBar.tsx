@@ -16,7 +16,6 @@ export const SearchBar = ({ coinsList }) => {
   useEffect(() => {
     const getCoins = async () => {
       const results = await getSearchResults(searchTerm);
-      console.log('penis', results);
       setFilteredCoins(results.coins);
     };
     const debouncedGetCoins = debounce(getCoins, 300);

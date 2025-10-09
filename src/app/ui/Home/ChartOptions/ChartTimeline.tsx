@@ -28,7 +28,7 @@ export const ChartTimeline = ({
   };
 
   return (
-    <div className="w-full py-1 sm:w-auto bg-muted-foreground px-1 sm:px-2 rounded-[5px] mb-4 sm:mb-12 sm:mt-4 flex sm:block gap-1 sm:gap-0">
+    <div className="w-full py-1 sm:w-auto bg-muted-foreground px-1 sm:px-2 rounded-sm mb-4 sm:mb-12 sm:mt-4 flex sm:block gap-1 sm:gap-0">
       {timelineArr.map((option, index) => (
         <Button
           key={option}

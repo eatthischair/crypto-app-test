@@ -2,23 +2,19 @@
 import { LineChart } from './Charts/LineChart';
 import { BarChart } from './Charts/BarChart';
 import { CoinTable } from './CoinTable/CoinTable';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
 import { getChartData } from '@/app/api/getChartData';
-import { Suspense } from 'react';
 import { ConverterSwitch } from './Converter/ConverterSwitch';
-import { CoinTableComponents } from './CoinTable/CoinTableComponents';
 import { getCoinTableData } from '@/app/api/getCoinTableData';
 import { ChartButtons } from './ChartOptions/ChartButtons';
 import { ChartTimeline } from './ChartOptions/ChartTimeline';
 import { CompareButton } from './ChartOptions/CompareButton';
 import { useState, useEffect } from 'react';
 import { HomeSkeleton } from './HomeSkeleton/HomeSkeleton';
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export function HomePage() {
   const [chartData, setChartData] = useState('');
-  const [secondChartData, setSecondChartData] = useState('');
+  const [secondChartData, setSecondChartData] = useState(null);
   const [coinTableData, setCoinTableData] = useState('');
 
   const [coinName, setCoinName] = useState('bitcoin');
@@ -39,8 +35,8 @@ export function HomePage() {
 
   useEffect(() => {
     if (!compareToggled) {
-      setSecondChartCoinName('');
-      setSecondChartData('');
+      setSecondChartCoinName((prev) => (prev ? '' : prev));
+      setSecondChartData((prev) => (prev ? null : prev)); // Change to null
     }
   }, [compareToggled]);
 
@@ -87,7 +83,7 @@ export function HomePage() {
           setCompareToggled={setCompareToggled}
         />
       </div>
-      <div className="">
+      <div>
         <ChartButtons
           coinTableData={coinTableData}
           changeChart={changeChart}
@@ -97,7 +93,7 @@ export function HomePage() {
           secondChartCoinName={secondChartCoinName}
         />
       </div>
-      <div className="max-w-full grid grid-cols-1 grid-rows-2 gap-2 sm:gap-2 py-4 sm:flex sm:px-0 sm:mt-12">
+      <div className="max-w-full grid grid-cols-1 grid-rows-2 gap-2 sm:gap-2 py-4 sm:flex sm:px-0 sm:mt-8">
         <div className="sm:flex-1 sm:max-w-1/2 ">
           <LineChart
             pricesData={chartData}

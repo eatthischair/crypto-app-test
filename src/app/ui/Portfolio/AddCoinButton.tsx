@@ -16,9 +16,10 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { getSearchResults } from '@/app/api/getSearchResults';
 import { debounce } from 'lodash';
-import { Calendar22 } from './Calendar';
 
 export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const [coinName, setCoinName] = useState('');
   const [purchasedAmt, setPurchasedAmt] = useState(0);
   const [purchasedDate, setPurchasedDate] = useState('');
@@ -77,7 +78,6 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
     }
 
     setValidationErrors(errors);
-
     return !errors.coinName && !errors.purchasedAmt && !errors.purchasedDate;
   };
 
@@ -101,6 +101,7 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
     localStorage.setItem('coins', JSON.stringify([...coinsData, mergedObj]));
     setCoinsData([...coinsData, mergedObj]);
     updateCoins();
+    setIsOpen(false);
   };
 
   const fetchCoinData = async (coinName) => {
@@ -117,7 +118,7 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
           className="bg-[var(--card)] hover:bg-[var(--hover)]"
@@ -126,10 +127,7 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
           Add Coin
         </Button>
       </DialogTrigger>
-      <DialogContent
-        className="w-full rounded-sm bg-white dark:bg-card"
-        // onInteractOutside={(e) => e.preventDefault()}
-      >
+      <DialogContent className="w-full rounded-sm bg-white dark:bg-card">
         <DialogHeader>
           <DialogTitle>Add Coin</DialogTitle>
           <DialogDescription className="text-inherit">
@@ -154,8 +152,8 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
                 <Input
                   id="name"
                   onChange={(e) => handleInput(e.target.value)}
-                  value={coinName}
-                  className={`col-span-4 rounded-xs placeholder:text-inherit/90 ${
+                  value={coinName.charAt(0).toUpperCase() + coinName.slice(1)}
+                  className={`col-span-4 rounded-xs placeholder:text-inherit/90 focus:!border focus-visible:!border ${
                     validationErrors.coinName
                       ? 'border-red-500 focus:border-red-500'
                       : ''
@@ -235,16 +233,16 @@ export const AddCoinButton = ({ setCoinsData, coinsData, updateCoins }) => {
           </div>
         </div>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={saveCoin}
-              className="bg-popover"
-            >
-              Save Coin
-            </Button>
-          </DialogClose>
+          {/* <DialogClose asChild> */}
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={saveCoin}
+            className="bg-card border hover:bg-[var(--hover)]"
+          >
+            Save Coin
+          </Button>
+          {/* </DialogClose> */}
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { ChartLine, X } from 'lucide-react';
 
 export const CompareButton = ({ compareToggled, setCompareToggled }) => {
-  const handleToggle = () => {};
   return (
     <div className="grid grid-cols-2 my-2 h-full py-2 ">
       <a className="p-0 mt-2 pt-4 flex items-end text-xs sm:text-sm text-gray-600 dark:text-gray-200 mb-0 pb-0 ">

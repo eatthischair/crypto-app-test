@@ -61,6 +61,7 @@ export const CurrencySwitch = () => {
               <DropdownMenuItem
                 key={cur}
                 onClick={() => handleCurrencyChange(cur)}
+                className="cursor-pointer"
               >
                 {cur.toUpperCase()}
               </DropdownMenuItem>

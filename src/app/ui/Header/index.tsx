@@ -17,9 +17,15 @@ export function HeaderComponents() {
   });
 
   return (
-    <>
-      {isPending ? <DataBarSkeleton /> : <DataBar data={data?.data} />}
+    <div className="">
+      {isPending ? (
+        <DataBarSkeleton />
+      ) : (
+        <div className="sm:fixed z-10 opacity-99">
+          <DataBar data={data?.data} />
+        </div>
+      )}
       <NavBar />
-    </>
+    </div>
   );
 }

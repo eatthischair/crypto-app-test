@@ -34,23 +34,25 @@ export const AddCoinDropDown = ({
               <Image
                 src={coin.thumb}
                 alt="Coin thumbnail"
-                width={20}
-                height={20}
-                className="aspect-square max-h-[2rem]"
+                width={30}
+                height={30}
+                className="aspect-square max-h-[2rem] max-w-[2rem]"
               />
-              {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
+              <div className=" flex place-self-center">
+                {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
+              </div>
             </li>
           ))}
         </ul>
       ) : (
         isDropdownOpen && (
-          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 p-32 min-w-60">
+          <ul className="absolute z-100 w-full bg-popover rounded-md shadow-lg max-h-60 overflow-auto mt-1 p-32 min-w-60 dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
             <LoadingSpinner />
           </ul>
         )
       )}
       {isDropdownOpen && filteredCoins.length === 0 && searchTerm && (
-        <div className="absolute z-10 w-full bg-popver border rounded-md shadow-lg p-4 mt-1">
+        <div className="absolute z-10 w-full bg-popover border rounded-md shadow-lg p-4 mt-1 dark:bg-gradient-to-r from-[#131327] to-[#1a1934]">
           No results found
         </div>
       )}

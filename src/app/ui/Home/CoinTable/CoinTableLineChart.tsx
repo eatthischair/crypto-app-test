@@ -130,10 +130,10 @@ export function CoinTableLineChart({ coin, fillColor, gradientColor }) {
   };
   return (
     <>
-      <div className="hidden sm:flex sm:w-full sm:h-full items-end">
-        <Line options={options} data={data} height={25} width={100} />
+      <div className="hidden sm:flex sm:w-full sm:h-full items-end pr-8">
+        <Line options={options} data={data} height={20} width={60} />
       </div>
-      <div className="flex sm:hidden h-24 w-full items-end ">
+      <div className="flex sm:hidden  w-full items-end pr-4">
         <Line options={options} data={data} height={40} width={60} />
       </div>
     </>
