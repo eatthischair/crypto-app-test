@@ -123,15 +123,16 @@ export function LineChart({
               borderColor: '#d897ff',
               backgroundColor: 'rgba(19, 19, 19 , .01)',
               yAxisID: 'y2',
-              fill: {
-                target: 'origin',
-                above: function (context) {
-                  const chart = context.chart;
-                  const { ctx, chartArea } = chart;
-                  if (!chartArea) return;
-                  return getGradient(ctx, chartArea, true);
-                },
-              },
+              // fill: {
+              //   target: 'origin',
+              //   above: function (context) {
+              //     const chart = context.chart;
+              //     const { ctx, chartArea } = chart;
+              //     if (!chartArea) return;
+              //     return getGradient(ctx, chartArea, true);
+              //   },
+              // },
+              fill: false,
             },
           ]
         : []),

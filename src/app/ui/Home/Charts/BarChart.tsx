@@ -1,179 +1,3 @@
-// 'use client';
-// import React from 'react';
-// import { Colors } from 'chart.js/auto';
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   BarElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// } from 'chart.js/auto';
-// import { convert } from '../../Header/NavBar/convert';
-// import { useSelector } from 'react-redux';
-// import { Bar } from 'react-chartjs-2';
-// import { formatNum } from '@/lib/utils';
-// import Skeleton from 'react-loading-skeleton';
-// import { useTheme } from 'next-themes';
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   BarElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-//   Colors
-// );
-
-// export function BarChart({ pricesData, formattedDate, secondChartData }) {
-//   const currency = useSelector((state: any) => state.currencyReducer.currency);
-//   const exchangeRates = useSelector(
-//     (state: any) => state.exchangeRatesReducer.exchangeRates
-//   );
-
-//   if (
-//     !currency ||
-//     !exchangeRates ||
-//     !exchangeRates.rates ||
-//     !exchangeRates.rates[currency] ||
-//     !exchangeRates.rates.usd
-//   ) {
-//     return <Skeleton />;
-//   }
-//   const exchangeRateObj = exchangeRates?.rates?.[currency];
-
-//   const volume = pricesData?.total_volumes;
-//   const secondChartVolume = secondChartData?.total_volumes;
-
-//   //strip unix timestamps
-//   const secondChartDayVolume = secondChartVolume?.map((item) => item[1]);
-//   const dayVolume = volume.map((item) => item[1]);
-//   const labels = volume?.map((item) => new Date(item[0]));
-
-//   const { currentPrice, unit } = convert(
-//     volume[volume.length - 1][1],
-//     exchangeRateObj,
-//     exchangeRates.rates.usd
-//   );
-
-//   const latestVolume = `${unit} ${formatNum(currentPrice)}`;
-
-//   const { theme } = useTheme();
-//   const lineColor = theme === 'dark' ? '#6b6be5' : '#b5b5fd';
-//   const fillColor = theme === 'dark' ? '#ac66e2' : '#a963e1';
-//   const dataset2FillColor = theme === 'dark' ? '#6b6ae4' : '#8585ff';
-
-//   let width, height, gradient;
-
-//   function getGradient(ctx, chartArea) {
-//     const chartWidth = chartArea.right - chartArea.left;
-//     const chartHeight = chartArea.bottom - chartArea.top;
-//     if (!gradient || width !== chartWidth || height !== chartHeight) {
-//       width = chartWidth;
-//       height = chartHeight;
-//       gradient = ctx.createLinearGradient(
-//         0,
-//         chartArea.bottom,
-//         0,
-//         chartArea.top
-//       );
-//       gradient.addColorStop(0, fillColor);
-//       gradient.addColorStop(1, lineColor);
-//     }
-//     return gradient;
-//   }
-
-//   const data = {
-//     labels,
-//     datasets: [
-//       {
-//         label: '24h Volume',
-//         data: dayVolume,
-//         borderColor: 'red',
-//         // backgroundColor: '#543374',
-//         backgroundColor: fillColor,
-//         barThickness: 2,
-//       },
-//       {
-//         label: '24h Volume',
-//         data: secondChartDayVolume,
-//         // borderColor: 'rgb(66, 99, 132)',
-//         borderColor: '#ffffff',
-//         backgroundColor: dataset2FillColor,
-//         yAxisID: 'y2',
-//         fill: true,
-//         barThickness: 1,
-//       },
-//     ],
-//   };
-
-//   const options = {
-//     responsive: true,
-//     plugins: {
-//       legend: {
-//         position: 'top' as const,
-//         display: false,
-//       },
-//       colors: {
-//         forceOverride: false,
-//       },
-//     },
-//     scales: {
-//       y1: {
-//         type: 'linear',
-//         position: 'left', // Left Y-axis for Dataset 1
-//         display: false, // Hide the entire Y-axis (labels, ticks, grid)
-//       },
-//       y2: {
-//         type: 'linear',
-//         position: 'right', // Right Y-axis for Dataset 2
-//         display: false, // Hide the entire Y-axis (labels, ticks, grid)
-//       },
-//       y: {
-//         beginAtZero: true,
-//         suggestedMin: Math.min(volume),
-//         suggestedMax: Math.max(volume),
-//         ticks: {
-//           display: false,
-//         },
-//         grid: {
-//           display: false,
-//         },
-//         border: {
-//           display: false,
-//         },
-//       },
-//       x: {
-//         min: 0,
-//         // max: 30,
-//         ticks: {
-//           display: false,
-//           stepSize: 5,
-//         },
-//         grid: {
-//           display: false,
-//         },
-//       },
-//     },
-//   };
-
-//   return (
-//     <div className="dark:bg-[#1e1934] bg-white rounded-md border border-white dark:border-[#131327] px-2">
-//       <div className="absolute m-4 text-foreground ">
-//         <h4 className="sm:text-sm">Volume 24h</h4>
-//         <h2 className=" text-sm sm:text-4xl font-bold">{latestVolume}</h2>
-//         <div className="text-sm">{formattedDate}</div>
-//       </div>
-//       <div className="pt-6 mt-8">
-//         <Bar options={options} data={data} height={400} width={800} />
-//       </div>
-//       <div className="flex justify-between items-center text-xs px-1 text-gray-500">
-//         <span>{new Date().toLocaleString()}</span>
-//       </div>
-//     </div>
-//   );
-// }
 'use client';
 import React from 'react';
 import { Colors } from 'chart.js/auto';
@@ -236,8 +60,6 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
   const latestVolume = `${unit} ${formatNum(currentPrice)}`;
 
   const { theme } = useTheme();
-  // const lineColor = theme === 'dark' ? '#6b6be5' : '#b5b5fd';
-  // const fillColor = theme === 'dark' ? '#ac66e2' : '#a963e1';
   const lineColor =
     theme === 'dark' ? 'rgba(107, 107, 229, 0.5)' : 'rgba(181, 181, 253, 1)';
   const fillColor =
@@ -302,9 +124,10 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
                 if (!chartArea) return dataset2FillColor;
                 return getGradient(ctx, chartArea, true);
               },
-              yAxisID: 'y2',
+              // yAxisID: 'y2',
               fill: true,
               barThickness: 0.5,
+              categoryPercentage: 0.8,
             },
           ]
         : []),
@@ -318,8 +141,9 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
           if (!chartArea) return fillColor;
           return getGradient(ctx, chartArea, false);
         },
-        barThickness: 0.5,
-        yAxisID: 'y1',
+        barThickness: 0.1,
+        categoryPercentage: 0.2,
+        // yAxisID: 'y1',
       },
     ],
   };
@@ -338,18 +162,22 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
     scales: {
       y1: {
         type: 'linear',
-        position: 'left', // Left Y-axis for Dataset 1
-        display: false, // Hide the entire Y-axis (labels, ticks, grid)
+        position: 'left',
+        display: false,
       },
       y2: {
         type: 'linear',
-        position: 'right', // Right Y-axis for Dataset 2
-        display: false, // Hide the entire Y-axis (labels, ticks, grid)
+        position: 'right',
+        display: false,
       },
       y: {
-        suggestedMin: Math.min(volume),
-        suggestedMax: Math.max(volume),
-        stacked: false,
+        stacked: true,
+        suggestedMin: secondChartData
+          ? Math.min(...secondChartDayVolume, ...dayVolume)
+          : Math.min(...dayVolume),
+        suggestedMax: secondChartData
+          ? Math.max(...secondChartDayVolume, ...dayVolume)
+          : Math.max(...dayVolume),
         ticks: {
           display: false,
         },
@@ -361,9 +189,9 @@ export function BarChart({ pricesData, formattedDate, secondChartData }) {
         },
       },
       x: {
-        stacked: false,
+        stacked: true,
         min: 0,
-        max: 500,
+        // max: 500,
         ticks: {
           display: false,
           stepSize: 5,
